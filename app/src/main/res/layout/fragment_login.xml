@@ -17,24 +17,25 @@
             android:layout_marginTop="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo_tripie"
+            android:src="@drawable/tripie_logo"
             app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/tripie_logo" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout_email"
-            android:inputType="textEmailAddress"
-            android:hint="Email"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:boxBackgroundColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            app:boxBackgroundColor="@color/white"
             app:layout_constraintTop_toBottomOf="@+id/imageView_logotripie">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editText_email"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,39 +58,41 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-        <CheckBox
-            android:id="@+id/checkbox_ingat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ingat Saya"
-            android:textColor="#656565"
-            app:layout_constraintTop_toBottomOf="@+id/layout_pass" />
+<!--        <CheckBox-->
+<!--            android:id="@+id/checkbox_ingat"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Ingat Saya"-->
+<!--            android:textColor="#656565"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/layout_pass" />-->
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBuatAkun"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="32dp"
             android:text="Buat Akun"
-            app:rippleColor="#C7E4FB"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/checkbox_ingat" />
+            app:layout_constraintTop_toBottomOf="@+id/layout_pass"
+            app:rippleColor="#C7E4FB" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnMasuk"
             android:backgroundTint="@color/blue"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:text="Masuk"
+            android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@+id/btnBuatAkun" />
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/logo_google"
+            android:layout_marginBottom="16dp"
             android:backgroundTint="@color/white"
+            android:src="@drawable/logo_google"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
