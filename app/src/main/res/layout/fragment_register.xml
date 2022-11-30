@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.register.RegisterFragment">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/btn_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:layout_marginLeft="25dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="transparent"
+                android:src="@drawable/ic_baseline_arrow_back_24" />
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/btn_back"
+        android:layout_width="match_parent"
+        android:layout_margin="25dp"
+        android:layout_height="match_parent">
+        
+        <TextView
+            android:id="@+id/titleDaftarAkun"
+            android:layout_marginTop="30dp"
+            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Daftar akun"
+            />
+        <TextView
+            android:id="@+id/titleMendaftarSebagai"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mendaftar sebagai : "
+            android:textSize="18dp"
+            android:layout_below="@id/titleDaftarAkun"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            />
+
+        <EditText
+            android:layout_marginTop="40dp"
+            android:layout_below="@id/titleMendaftarSebagai"
+            android:id="@+id/etNamaLengkap"
+            android:padding="10dp"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:hint="Nama Lengkap"
+            android:drawablePadding="12dp"
+            android:ems="10"
+            android:background="@drawable/custom_input"
+            android:layout_centerHorizontal="true"
+            tools:ignore="Autofill,TextFields" />
+
+        <EditText
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/etNamaLengkap"
+            android:id="@+id/etEmail"
+            android:padding="10dp"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:drawablePadding="12dp"
+            android:ems="10"
+            android:background="@drawable/custom_input"
+            android:layout_centerHorizontal="true"
+            tools:ignore="Autofill,TextFields" />
+
+        <EditText
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/etEmail"
+            android:id="@+id/etPassword"
+            android:padding="10dp"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:drawablePadding="12dp"
+            android:ems="10"
+            android:background="@drawable/custom_input"
+            android:layout_centerHorizontal="true"
+            tools:ignore="Autofill,TextFields" />
+
+        <EditText
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/etPassword"
+            android:id="@+id/etConfirmPassword"
+            android:padding="10dp"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:hint="Ulangi Password"
+            android:drawablePadding="12dp"
+            android:ems="10"
+            android:background="@drawable/custom_input"
+            android:layout_centerHorizontal="true"
+            tools:ignore="Autofill,TextFields" />
+
+        <Button
+            android:id="@+id/btn_daftar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:text="Login"
+            android:backgroundTint="#0095F6"
+
+            />
+
+
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
