@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_margin="25dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.register.RegisterSuccessFragment">
+    
+    <ImageView
+        android:id="@+id/imgSuccess"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        android:src="@drawable/success_process"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        />
+
+    <TextView
+        android:id="@+id/headerAkunBerhasilDibuat"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/imgSuccess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Akun berhasil dibuat"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="24dp"
+
+        />
+    
+    <TextView
+        android:layout_marginTop="14dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Setelah ini anda dapat login menggunakan akun yang telah terdaftar"
+        android:layout_below="@id/headerAkunBerhasilDibuat"
+
+        />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:text="Masuk"
+        android:backgroundTint="#0095F6"
+
+        />
+
+
+
+</RelativeLayout>
