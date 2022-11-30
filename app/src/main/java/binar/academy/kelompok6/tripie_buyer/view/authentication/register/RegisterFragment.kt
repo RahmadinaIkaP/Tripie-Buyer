@@ -6,8 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import binar.academy.kelompok6.tripie_buyer.R
+import binar.academy.kelompok6.tripie_buyer.databinding.FragmentRegisterBinding
 
 class RegisterFragment : Fragment() {
+
+    private var _binding : FragmentRegisterBinding?= null
+    private val binding get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

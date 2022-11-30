@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/homeFragment"
+        android:orderInCategory="100"
+        android:title="Home"
+        android:icon="@drawable/home_2"
+       />
+
+    <item
+        android:id="@+id/historiFragment"
+        android:orderInCategory="100"
+        android:title="Histori"
+        android:icon="@drawable/histori"
+       />
+
+
+    <item
+        android:icon="@drawable/heart"
+        android:id="@+id/whis"
+        android:orderInCategory="100"
+        android:title="Favorite"
+         />
+
+    <item
+        android:icon="@drawable/profile"
+        android:id="@+id/profileFragment"
+        android:orderInCategory="100"
+        android:title="Profile"
+
+       />
+
+</menu>
