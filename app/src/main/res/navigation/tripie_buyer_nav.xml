@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="binar.academy.kelompok6.tripie_buyer.view.login.LoginFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.authentication.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
 </navigation>

@@ -1,4 +1,4 @@
-package binar.academy.kelompok6.tripie_buyer.view.register
+package binar.academy.kelompok6.tripie_buyer.view.authentication.register
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

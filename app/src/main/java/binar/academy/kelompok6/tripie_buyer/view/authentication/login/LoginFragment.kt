@@ -1,13 +1,11 @@
-package binar.academy.kelompok6.tripie_buyer.view.login
+package binar.academy.kelompok6.tripie_buyer.view.authentication.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentLoginBinding
-import binar.academy.kelompok6.tripie_buyer.databinding.FragmentSplashScreenBinding
 
 class LoginFragment : Fragment() {
 
