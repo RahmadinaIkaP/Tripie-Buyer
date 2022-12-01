@@ -30,17 +30,7 @@
         android:id="@+id/homeFragment"
         android:name="binar.academy.kelompok6.tripie_buyer.view.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_historiFragment"
-            app:destination="@id/historiFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_whistlistFragment"
-            app:destination="@id/whistlistFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/registerFragment"
         android:name="binar.academy.kelompok6.tripie_buyer.view.authentication.register.RegisterFragment"
@@ -52,9 +42,6 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_profileFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
             android:id="@+id/action_profileFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
@@ -62,18 +49,10 @@
         android:id="@+id/historiFragment"
         android:name="binar.academy.kelompok6.tripie_buyer.view.histori.HistoriFragment"
         android:label="fragment_histori"
-        tools:layout="@layout/fragment_histori" >
-        <action
-            android:id="@+id/action_historiFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_histori" />
     <fragment
         android:id="@+id/whistlistFragment"
         android:name="binar.academy.kelompok6.tripie_buyer.view.whistlist.WhistlistFragment"
         android:label="fragment_whistlist"
-        tools:layout="@layout/fragment_whistlist" >
-        <action
-            android:id="@+id/action_whistlistFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_whistlist" />
 </navigation>
