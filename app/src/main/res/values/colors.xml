@@ -11,4 +11,5 @@
     <!--  custom color  -->
     <color name="soft_black">#0C0507</color>
     <color name="blue">#0095F6</color>
+    <color name="grey">#6C6F7C</color>
 </resources>

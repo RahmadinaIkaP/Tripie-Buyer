@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_margin="25dp"
         android:layout_height="match_parent">
-        
+
         <TextView
             android:id="@+id/titleDaftarAkun"
             android:layout_marginTop="30dp"
@@ -55,31 +55,29 @@
             />
 
         <EditText
-            android:layout_marginTop="40dp"
-            android:layout_below="@id/titleMendaftarSebagai"
             android:id="@+id/etNamaLengkap"
-            android:padding="10dp"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
-            android:hint="Nama Lengkap"
+            android:layout_below="@id/titleMendaftarSebagai"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/custom_input"
             android:drawablePadding="12dp"
             android:ems="10"
-            android:background="@drawable/custom_input"
-            android:layout_centerHorizontal="true"
             tools:ignore="Autofill,TextFields" />
 
         <EditText
-            android:layout_marginTop="20dp"
-            android:layout_below="@id/etNamaLengkap"
             android:id="@+id/etEmail"
-            android:padding="10dp"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:layout_below="@id/etNamaLengkap"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_input"
             android:drawablePadding="12dp"
             android:ems="10"
-            android:background="@drawable/custom_input"
-            android:layout_centerHorizontal="true"
+            android:padding="10dp"
+            android:hint="Nama Lengkap"
             tools:ignore="Autofill,TextFields" />
 
         <EditText
@@ -92,8 +90,6 @@
             android:hint="Password"
             android:drawablePadding="12dp"
             android:ems="10"
-            android:background="@drawable/custom_input"
-            android:layout_centerHorizontal="true"
             tools:ignore="Autofill,TextFields" />
 
         <EditText

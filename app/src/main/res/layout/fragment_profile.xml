@@ -1,14 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.profile.ProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_margin="25dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Your Profile"
+            style="@style/HeaderText"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/shape_round_imageview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_nama"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:hint="Nama Lengkap"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:hintTextColor="@color/blue"
+            app:boxStrokeColor="@color/blue"
+            app:boxBackgroundColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/iv_profile">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_nama"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_email"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Email"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            app:hintTextColor="@color/blue"
+            app:boxStrokeColor="@color/blue"
+            app:boxBackgroundColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/layout_nama">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_email"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_alamat"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Alamat"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            app:hintTextColor="@color/blue"
+            app:boxStrokeColor="@color/blue"
+            android:inputType="textLongMessage"
+            app:boxBackgroundColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/layout_email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_alamat"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_notelp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Nomor Telepon"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            app:hintTextColor="@color/blue"
+            app:boxStrokeColor="@color/blue"
+            android:inputType="textEmailAddress"
+            app:boxBackgroundColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/layout_alamat">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_notelp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnMasuk"
+            android:backgroundTint="@color/blue"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="25dp"
+            android:text="Edit Data"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/layout_notelp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
