@@ -1,13 +1,12 @@
 package binar.academy.kelompok6.tripie_buyer.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.databinding.ActivityMainBinding
-import binar.academy.kelompok6.tripie_buyer.view.histori.HistoriFragment
-import binar.academy.kelompok6.tripie_buyer.view.home.HomeFragment
-import binar.academy.kelompok6.tripie_buyer.view.profile.ProfileFragment
-import binar.academy.kelompok6.tripie_buyer.view.whistlist.WhistlistFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -17,28 +16,26 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragmentContainerView,HomeFragment())
-            commit()
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        navController.addOnDestinationChangedListener{ _, destination, _ ->
+            when(destination.id){
+                R.id.homeFragment, R.id.historiFragment, R.id.whistlistFragment, R.id.profileFragment ->{
+                    showBottomNav()
+                }
+                else -> hideBottomNav()
+            }
         }
 
-         binding.bottomNavigationView.setOnItemSelectedListener setOnItemReselectedListener@{
-            when(it.itemId){
-                R.id.homeFragment ->{
-                    supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,HomeFragment()).commit()
-                    return@setOnItemReselectedListener true
-                } R.id.historiFragment ->{
-                supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,HistoriFragment()).commit()
-                return@setOnItemReselectedListener true
-                } R.id.whistlistFragment ->{
-                    supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,WhistlistFragment()).commit()
-                    return@setOnItemReselectedListener true
-                }R.id.profileFragment ->{
-                    supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,ProfileFragment()).commit()
-                    return@setOnItemReselectedListener true
-                }
-            }
-            false
-        }
+        binding.bottomNavigationView.setupWithNavController(navController)
+    }
+
+    private fun showBottomNav() {
+        binding.bottomNavigationView.visibility = View.VISIBLE
+    }
+
+    private fun hideBottomNav() {
+        binding.bottomNavigationView.visibility = View.GONE
     }
 }

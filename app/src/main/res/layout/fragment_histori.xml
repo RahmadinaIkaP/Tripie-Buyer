@@ -19,19 +19,20 @@
         android:textSize="28sp"
         />
 
-    <EditText
-        android:layout_below="@+id/headerBooking"
-        android:layout_marginTop="40dp"
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/etSearchTiket"
-        android:padding="10dp"
         android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:hint="Cari tiket ..."
-        android:drawableRight="@drawable/search_normal"
+        android:layout_height="50dp"
+        android:layout_below="@+id/headerBooking"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/custom_input"
+        android:drawableEnd="@drawable/search_normal"
         android:drawablePadding="12dp"
         android:ems="10"
-        android:background="@drawable/custom_input"
-        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        app:queryHint="Cari tiket ..."
+        app:iconifiedByDefault="false"
         tools:ignore="Autofill,TextFields" />
 
 
@@ -39,7 +40,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMovie"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="20dp"
         android:layout_below="@id/etSearchTiket"
         tools:listitem="@layout/item_histori" />
@@ -47,13 +48,10 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="?android:attr/progressBarStyle"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        />
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 
 </RelativeLayout>

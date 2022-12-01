@@ -41,7 +41,7 @@ class LoginFragment : Fragment() {
 
         binding.btnBuatAkun.setOnClickListener {
             //masuk fragment register
-            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_profileFragment)
+            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registerFragment)
         }
     }
 }
