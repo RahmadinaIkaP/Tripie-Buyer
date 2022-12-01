@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tripie_buyer_nav"
-    app:startDestination="@id/splashScreenFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -22,9 +22,6 @@
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -35,29 +32,51 @@
         android:id="@+id/registerFragment"
         android:name="binar.academy.kelompok6.tripie_buyer.view.authentication.register.RegisterFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="binar.academy.kelompok6.tripie_buyer.view.profile.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_register" >
         <action
-            android:id="@+id/action_profileFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_registerFragment_to_registerSuccessFragment"
+            app:destination="@id/registerSuccessFragment" />
     </fragment>
     <fragment
         android:id="@+id/historiFragment"
         android:name="binar.academy.kelompok6.tripie_buyer.view.histori.HistoriFragment"
         android:label="fragment_histori"
-        tools:layout="@layout/fragment_histori" />
+        tools:layout="@layout/fragment_histori" >
+        <action
+            android:id="@+id/action_historiFragment_to_detailHistoriFragment"
+            app:destination="@id/detailHistoriFragment" />
+    </fragment>
     <fragment
         android:id="@+id/whistlistFragment"
         android:name="binar.academy.kelompok6.tripie_buyer.view.whistlist.WhistlistFragment"
         android:label="fragment_whistlist"
         tools:layout="@layout/fragment_whistlist" />
     <fragment
-        android:id="@+id/detailWishlistFragment"
-        android:name="binar.academy.kelompok6.tripie_buyer.view.whistlist.DetailWishlistFragment"
-        android:label="fragment_detail_wishlist"
-        tools:layout="@layout/fragment_detail_wishlist" />
+        android:id="@+id/detailHistoriFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.histori.DetailHistoriFragment"
+        android:label="fragment_detail_histori"
+        tools:layout="@layout/fragment_detail_histori" />
+    <fragment
+        android:id="@+id/registerSuccessFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.authentication.register.RegisterSuccessFragment"
+        android:label="fragment_register_success"
+        tools:layout="@layout/fragment_register_success" >
+        <action
+            android:id="@+id/action_registerSuccessFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.profile.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
 </navigation>

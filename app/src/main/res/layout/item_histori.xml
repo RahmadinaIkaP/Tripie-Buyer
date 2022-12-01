@@ -3,17 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clipChildren="false"
-    android:clipToPadding="false"
     app:cardCornerRadius="8dp"
     app:cardElevation="6dp"
-    app:cardUseCompatPadding="true"
-    app:contentPadding="0dp"
-    app:contentPaddingBottom="0dp"
-    app:contentPaddingLeft="0dp"
-    app:contentPaddingRight="0dp"
-    app:contentPaddingTop="0dp"
-    app:cardPreventCornerOverlap="false">
+    app:cardPreventCornerOverlap="false"
+    android:layout_margin="16dp">
 
         <RelativeLayout
             android:id="@+id/container"
@@ -27,9 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CGK"
-                android:textColor="@color/black"
-
-                />
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/tvBandaraTujuan"
@@ -37,18 +28,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="DPS"
-                android:textColor="@color/black"
-
-                />
+                android:textColor="@color/black" />
 
             <ImageView
                 android:id="@+id/ivPlane"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:src="@drawable/airplane"
+                android:layout_centerHorizontal="true" />
 
-                />
             <TextView
                 android:id="@+id/tvJamBerangkat"
                 android:layout_width="wrap_content"
@@ -56,9 +44,8 @@
                 android:text="07:40"
                 android:textColor="@color/black"
                 android:layout_below="@id/tvBandaraAsal"
-                android:paddingTop="10dp"
+                android:paddingTop="10dp" />
 
-                />
             <TextView
                 android:id="@+id/tvJamPulang"
                 android:layout_width="wrap_content"
@@ -67,9 +54,7 @@
                 android:textColor="@color/black"
                 android:layout_below="@id/tvBandaraTujuan"
                 android:paddingTop="10dp"
-                android:layout_alignParentEnd="true"
-
-                />
+                android:layout_alignParentEnd="true" />
 
             <TextView
                 android:id="@+id/tvHargatiket"
@@ -79,19 +64,18 @@
                 android:layout_height="wrap_content"
                 android:text="IDR 1.152.580"
                 android:textColor="#0066B3"
-                android:textStyle="bold"
-
-                />
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvJamBerangkat"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="25dp"
                 android:backgroundTint="#0095F6"
-                android:text="See Ticket Details" />
+                android:layout_below="@id/tvJamBerangkat"
+                android:layout_marginTop="25dp"
+                android:text="See Ticket Details"
+                android:textAllCaps="false"/>
 
         </RelativeLayout>
         <View

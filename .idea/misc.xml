@@ -3,35 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Materi-Kuliah/AndroidStudioProjects/TripieBuyer/app/src/main/res/drawable/profile_menu_bordered.xml" value="0.2375" />
+        <entry key="..\:/Materi-Kuliah/AndroidStudioProjects/TripieBuyer/app/src/main/res/drawable/success_process.xml" value="0.2385" />
         <entry key="..\:/Materi-Kuliah/AndroidStudioProjects/TripieBuyer/app/src/main/res/layout/activity_main.xml" value="0.23229166666666667" />
+        <entry key="..\:/Materi-Kuliah/AndroidStudioProjects/TripieBuyer/app/src/main/res/layout/fragment_detail_histori.xml" value="0.23229166666666667" />
+        <entry key="..\:/Materi-Kuliah/AndroidStudioProjects/TripieBuyer/app/src/main/res/layout/fragment_edit_profile.xml" value="0.23229166666666667" />
+        <entry key="..\:/Materi-Kuliah/AndroidStudioProjects/TripieBuyer/app/src/main/res/layout/fragment_favorite.xml" value="0.23229166666666667" />
+        <entry key="..\:/Materi-Kuliah/AndroidStudioProjects/TripieBuyer/app/src/main/res/layout/fragment_first_onboarding.xml" value="0.23229166666666667" />
+        <entry key="..\:/Materi-Kuliah/AndroidStudioProjects/TripieBuyer/app/src/main/res/layout/fragment_histori.xml" value="0.23229166666666667" />
+        <entry key="..\:/Materi-Kuliah/AndroidStudioProjects/TripieBuyer/app/src/main/res/layout/fragment_home.xml" value="0.23229166666666667" />
+        <entry key="..\:/Materi-Kuliah/AndroidStudioProjects/TripieBuyer/app/src/main/res/layout/fragment_login.xml" value="0.23229166666666667" />
+        <entry key="..\:/Materi-Kuliah/AndroidStudioProjects/TripieBuyer/app/src/main/res/layout/fragment_onboarding_main.xml" value="0.23229166666666667" />
+        <entry key="..\:/Materi-Kuliah/AndroidStudioProjects/TripieBuyer/app/src/main/res/layout/fragment_profile.xml" value="0.23229166666666667" />
+        <entry key="..\:/Materi-Kuliah/AndroidStudioProjects/TripieBuyer/app/src/main/res/layout/fragment_register_success.xml" value="0.23229166666666667" />
         <entry key="..\:/Materi-Kuliah/AndroidStudioProjects/TripieBuyer/app/src/main/res/layout/fragment_splash_screen.xml" value="0.2" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/drawable-v24/custom_input.xml" value="0.1" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.1425" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/drawable/profile.xml" value="0.1" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/drawable/shape_round_imageview.xml" value="0.1" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/drawable/shape_search.xml" value="0.1415" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_detail_histori.xml" value="0.16417272338606242" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_detail_wishlist.xml" value="0.25" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_favorite.xml" value="0.16417272338606242" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_first_onboarding.xml" value="0.2" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_histori.xml" value="0.16417272338606242" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_home.xml" value="0.16417272338606242" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_login.xml" value="0.25" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_onboarding_main.xml" value="0.2" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_profile.xml" value="0.16417272338606242" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_profile_settings.xml" value="0.1" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_register.xml" value="0.33" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_register_success.xml" value="0.16417272338606242" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_second_onboarding.xml" value="0.2" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_splash_screen.xml" value="0.2" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_third_onboarding.xml" value="0.2" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_whistlist.xml" value="0.33" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/item_favorit.xml" value="0.25" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/item_histori.xml" value="0.16417272338606242" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/item_history.xml" value="0.33" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/item_wishlist.xml" value="0.33" />
-        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/shape_button_round.xml" value="0.1" />
+        <entry key="..\:/Materi-Kuliah/AndroidStudioProjects/TripieBuyer/app/src/main/res/layout/fragment_whistlist.xml" value="0.23229166666666667" />
+        <entry key="..\:/Materi-Kuliah/AndroidStudioProjects/TripieBuyer/app/src/main/res/layout/item_histori.xml" value="0.2" />
+        <entry key="..\:/Materi-Kuliah/AndroidStudioProjects/TripieBuyer/app/src/main/res/menu/bottom_nav_menu.xml" value="0.23125" />
+        <entry key="..\:/Materi-Kuliah/AndroidStudioProjects/TripieBuyer/app/src/main/res/menu/menu.xml" value="0.23229166666666667" />
       </map>
     </option>
   </component>
@@ -40,5 +29,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.23229166666666667" />
+      </ProjectState>
+    </option>
   </component>
 </project>
