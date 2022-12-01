@@ -18,15 +18,15 @@
 
 
     <item
+        android:id="@+id/whistlistFragment"
         android:icon="@drawable/heart"
-        android:id="@+id/whis"
         android:orderInCategory="100"
         android:title="Favorite"
          />
 
     <item
-        android:icon="@drawable/profile"
         android:id="@+id/profileFragment"
+        android:icon="@drawable/profile"
         android:orderInCategory="100"
         android:title="Profile"
 
