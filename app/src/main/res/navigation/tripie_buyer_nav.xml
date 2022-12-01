@@ -55,4 +55,9 @@
         android:name="binar.academy.kelompok6.tripie_buyer.view.whistlist.WhistlistFragment"
         android:label="fragment_whistlist"
         tools:layout="@layout/fragment_whistlist" />
+    <fragment
+        android:id="@+id/detailWishlistFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.whistlist.DetailWishlistFragment"
+        android:label="fragment_detail_wishlist"
+        tools:layout="@layout/fragment_detail_wishlist" />
 </navigation>

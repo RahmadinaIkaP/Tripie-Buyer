@@ -5,8 +5,6 @@
     android:layout_height="wrap_content"
     android:clipChildren="false"
     android:clipToPadding="false"
-
-
     app:cardCornerRadius="8dp"
     app:cardElevation="6dp"
     app:cardUseCompatPadding="true"
@@ -42,12 +40,13 @@
                 android:textColor="@color/black"
 
                 />
+
             <ImageView
                 android:id="@+id/ivPlane"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/airplane"
                 android:layout_centerHorizontal="true"
+                android:src="@drawable/airplane"
 
                 />
             <TextView
@@ -88,10 +87,10 @@
                 android:id="@+id/btnDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:backgroundTint="#0095F6"
                 android:layout_below="@id/tvJamBerangkat"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="25dp"
+                android:backgroundTint="#0095F6"
                 android:text="See Ticket Details" />
 
         </RelativeLayout>
