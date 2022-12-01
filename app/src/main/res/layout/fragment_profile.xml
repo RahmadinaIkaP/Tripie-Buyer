@@ -24,8 +24,8 @@
 
         <ImageView
             android:id="@+id/iv_profile"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_marginTop="25dp"
             android:src="@drawable/shape_round_imageview"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,9 +41,12 @@
             android:hint="Nama Lengkap"
             android:ems="10"
             android:inputType="textPersonName"
+            android:backgroundTint="@drawable/custom_input"
             app:hintTextColor="@color/blue"
             app:boxStrokeColor="@color/blue"
             app:boxBackgroundColor="@color/white"
+            app:startIconDrawable="@drawable/ic_baseline_account_circle_24"
+            app:startIconTint="@color/blue"
             app:layout_constraintTop_toBottomOf="@+id/iv_profile">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -62,12 +65,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Email"
-            android:background="@drawable/custom_input"
+            android:backgroundTint="@drawable/custom_input"
             android:ems="10"
             android:inputType="textEmailAddress"
             app:hintTextColor="@color/blue"
             app:boxStrokeColor="@color/blue"
             app:boxBackgroundColor="@color/white"
+            app:startIconDrawable="@drawable/ic_baseline_email_24"
+            app:startIconTint="@color/blue"
             app:layout_constraintTop_toBottomOf="@id/layout_nama">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -86,12 +91,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Alamat"
-            android:background="@drawable/custom_input"
+            android:backgroundTint="@drawable/custom_input"
             android:ems="10"
             app:hintTextColor="@color/blue"
             app:boxStrokeColor="@color/blue"
             android:inputType="textLongMessage"
             app:boxBackgroundColor="@color/white"
+            app:startIconDrawable="@drawable/ic_baseline_location_on_24"
+            app:startIconTint="@color/blue"
             app:layout_constraintTop_toBottomOf="@+id/layout_email">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -110,12 +117,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Nomor Telepon"
-            android:background="@drawable/custom_input"
+            android:backgroundTint="@drawable/custom_input"
             android:ems="10"
             app:hintTextColor="@color/blue"
             app:boxStrokeColor="@color/blue"
             android:inputType="textEmailAddress"
             app:boxBackgroundColor="@color/white"
+            app:startIconDrawable="@drawable/ic_baseline_phone_24"
+            app:startIconTint="@color/blue"
             app:layout_constraintTop_toBottomOf="@+id/layout_alamat">
 
             <com.google.android.material.textfield.TextInputEditText
