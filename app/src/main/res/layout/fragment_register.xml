@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,15 +12,19 @@
         android:id="@+id/btn_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF">
+        android:background="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageButton
-                android:layout_marginLeft="25dp"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:layout_marginLeft="25dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_baseline_arrow_back_24" />
 
@@ -28,95 +33,136 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/btn_back"
-        android:layout_margin="25dp">
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_back">
 
         <TextView
             android:id="@+id/titleDaftarAkun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="24dp"
             android:text="Daftar akun"
-            android:textSize="15dp" />
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/titleMendaftarSebagai"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/titleDaftarAkun"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:text="Mendaftar sebagai : "
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_semibold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleDaftarAkun" />
 
-        <EditText
-            android:id="@+id/etNamaLengkap"
-            android:layout_width="360dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tfNamaLengkap"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/titleMendaftarSebagai"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/custom_input"
-            android:drawablePadding="12dp"
-            android:ems="10"
-            tools:ignore="Autofill,TextFields" />
-
-        <EditText
-            android:id="@+id/etEmail"
-            android:layout_width="360dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/etNamaLengkap"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/custom_input"
-            android:drawablePadding="12dp"
+            android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="Nama Lengkap"
-            android:padding="10dp"
-            tools:ignore="Autofill,TextFields" />
+            android:inputType="textEmailAddress"
+            app:boxBackgroundColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleMendaftarSebagai">
 
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="360dp"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNamaLengkap"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tfEmail"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/etEmail"
-            android:layout_marginTop="20dp"
-            android:drawablePadding="12dp"
+            android:layout_below="@id/titleMendaftarSebagai"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            app:boxBackgroundColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tfNamaLengkap">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tfPassword"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/titleMendaftarSebagai"
+            android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="Password"
-            android:padding="10dp"
-            tools:ignore="Autofill,TextFields" />
+            android:inputType="textEmailAddress"
+            app:boxBackgroundColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tfEmail">
 
-        <EditText
-            android:id="@+id/etConfirmPassword"
-            android:layout_width="360dp"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tfKonfirPass"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/etPassword"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/custom_input"
-            android:drawablePadding="12dp"
+            android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="Ulangi Password"
-            android:padding="10dp"
-            tools:ignore="Autofill,TextFields" />
+            android:inputType="textEmailAddress"
+            app:boxBackgroundColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tfPassword">
 
-        <Button
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etKonfirPass"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_daftar"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"
+            android:layout_marginTop="24dp"
             android:backgroundTint="#0095F6"
             android:text="Daftar"
-
-            />
-
-
-    </RelativeLayout>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tfKonfirPass" />
 
 
-</RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
