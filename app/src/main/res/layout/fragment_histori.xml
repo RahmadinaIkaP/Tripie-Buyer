@@ -35,8 +35,6 @@
         app:iconifiedByDefault="false"
         tools:ignore="Autofill,TextFields" />
 
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMovie"
         android:layout_width="match_parent"

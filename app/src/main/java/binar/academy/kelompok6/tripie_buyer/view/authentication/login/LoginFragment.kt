@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentLoginBinding
 
@@ -27,16 +28,18 @@ class LoginFragment : Fragment() {
 
         binding.btnMasuk.setOnClickListener {
             //username dan password di login
-            val inputEmail = binding.editTextEmail.text.toString()
-            val inputPass = binding.editTextPass.text.toString()
+//            val inputEmail = binding.editTextEmail.text.toString()
+//            val inputPass = binding.editTextPass.text.toString()
+//
+//            if(inputEmail == "" || inputPass == ""){
+//                Toast.makeText(context, "Fill In Username and Password!", Toast.LENGTH_SHORT).show()
+//            }
+//            else {
+//                //seleksi data yg diinput dengan data di API
+//                //ada -> navigasi ke home, gada -> toast no data
+//            }
 
-            if(inputEmail == "" || inputPass == ""){
-                Toast.makeText(context, "Fill In Username and Password!", Toast.LENGTH_SHORT).show()
-            }
-            else {
-                //seleksi data yg diinput dengan data di API
-                //ada -> navigasi ke home, gada -> toast no data
-            }
+            findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
         }
 
         binding.btnBuatAkun.setOnClickListener {

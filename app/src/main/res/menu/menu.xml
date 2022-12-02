@@ -25,7 +25,7 @@
          />
 
     <item
-        android:id="@+id/profileFragment"
+        android:id="@+id/loginFragment"
         android:icon="@drawable/profile"
         android:orderInCategory="100"
         android:title="Profile"
