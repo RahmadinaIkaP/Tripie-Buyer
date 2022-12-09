@@ -1,5 +1,6 @@
 package binar.academy.kelompok6.tripie_buyer.view.onboarding.fragment
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,6 +21,10 @@ class ThirdOnboardingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.line3.max = 5000
+        val currentProgress = 5000
+        ObjectAnimator.ofInt(binding.line3, "progress", currentProgress).setDuration(5000).start()
 
 //        binding.line3.setProgress(5000)
 //        if(binding.line3.progress >= 5000){

@@ -21,7 +21,7 @@ class OnboardingAdapter(var fragment:Fragment) : FragmentStateAdapter(fragment) 
                 OnboardingFragment.newInstance(1),
                 OnboardingFragment.newInstance(2))
 
-        class ViewHolder(var binding: FragmentFirstOnboardingBinding) : RecyclerView.ViewHolder(binding.root)
+        class ViewHolder(var binding: FragmentOnboardingBinding) : RecyclerView.ViewHolder(binding.root)
 
 //        override fun createFragment(position: Int): Fragment = fragments[position]
 
