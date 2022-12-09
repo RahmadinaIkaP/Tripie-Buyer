@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tripie_buyer_nav"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/splashScreenFragment">
 
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_splashScreenFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_onboardingFragment2"
+            app:destination="@id/onboardingFragment2" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -58,7 +61,11 @@
         android:id="@+id/whistlistFragment"
         android:name="binar.academy.kelompok6.tripie_buyer.view.whistlist.WhistlistFragment"
         android:label="fragment_whistlist"
-        tools:layout="@layout/fragment_whistlist" />
+        tools:layout="@layout/fragment_whistlist" >
+        <action
+            android:id="@+id/action_whistlistFragment_to_detailWishlistFragment"
+            app:destination="@id/detailWishlistFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailHistoriFragment"
         android:name="binar.academy.kelompok6.tripie_buyer.view.histori.DetailHistoriFragment"
@@ -86,5 +93,61 @@
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailWishlistFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.whistlist.DetailWishlistFragment"
+        android:label="fragment_detail_wishlist"
+        tools:layout="@layout/fragment_detail_wishlist" />
+    <fragment
+        android:id="@+id/firstOnboardingFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.onboarding.fragment.FirstOnboardingFragment"
+        android:label="fragment_first_onboarding"
+        tools:layout="@layout/fragment_first_onboarding" >
+        <action
+            android:id="@+id/action_firstOnboardingFragment_to_secondOnboardingFragment"
+            app:destination="@id/secondOnboardingFragment" />
+        <action
+            android:id="@+id/action_firstOnboardingFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondOnboardingFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.onboarding.fragment.SecondOnboardingFragment"
+        android:label="fragment_second_onboarding"
+        tools:layout="@layout/fragment_second_onboarding" >
+        <action
+            android:id="@+id/action_secondOnboardingFragment_to_thirdOnboardingFragment"
+            app:destination="@id/thirdOnboardingFragment" />
+        <action
+            android:id="@+id/action_secondOnboardingFragment_to_firstOnboardingFragment"
+            app:destination="@id/firstOnboardingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/thirdOnboardingFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.onboarding.fragment.ThirdOnboardingFragment"
+        android:label="fragment_third_onboarding"
+        tools:layout="@layout/fragment_third_onboarding" >
+        <action
+            android:id="@+id/action_thirdOnboardingFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_thirdOnboardingFragment_to_secondOnboardingFragment"
+            app:destination="@id/secondOnboardingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboardingFragment2"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.onboarding.fragment.OnboardingFragment"
+        android:label="fragment_onboarding"
+        tools:layout="@layout/fragment_onboarding" >
+        <action
+            android:id="@+id/action_onboardingFragment2_to_homeFragment2"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_onboardingFragment2_to_secondOnboardingFragment"
+            app:destination="@id/secondOnboardingFragment" />
+        <action
+            android:id="@+id/action_onboardingFragment2_to_thirdOnboardingFragment"
+            app:destination="@id/thirdOnboardingFragment" />
     </fragment>
 </navigation>

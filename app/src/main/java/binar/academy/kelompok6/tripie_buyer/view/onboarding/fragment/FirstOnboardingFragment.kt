@@ -1,19 +1,47 @@
 package binar.academy.kelompok6.tripie_buyer.view.onboarding.fragment
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.Navigation
 import binar.academy.kelompok6.tripie_buyer.R
+import binar.academy.kelompok6.tripie_buyer.databinding.FragmentFirstOnboardingBinding
+import binar.academy.kelompok6.tripie_buyer.view.home.HomeFragment
+import binar.academy.kelompok6.tripie_buyer.view.onboarding.adapter.OnboardingAdapter
+
 
 class FirstOnboardingFragment : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first_onboarding, container, false)
+    private lateinit var binding : FragmentFirstOnboardingBinding
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = FragmentFirstOnboardingBinding.inflate(layoutInflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.line1.setProgress(0)
+        binding.line1.max = 5000
+        val currentProgress = 5000
+        ObjectAnimator.ofInt(binding.line1, "progress", currentProgress).setDuration(5000).start()
+
+//        Handler().postDelayed({
+//            ViewPager.PageTransformer({view, position -> 1}).transformPage(view,2F)
+//                              //navigasi ke next fragment dalam viewpager
+//        }, 5000)
+
+        binding.txtSkipFirst.setOnClickListener{
+            Navigation.findNavController(view).navigate(R.id.action_onboardingFragment2_to_homeFragment2)
+        }
+
+//        binding.btnNextFirst.setOnClickListener {
+//            OnboardingAdapter(requireParentFragment()).createFragment(1).requireView()
+//        }
     }
 }

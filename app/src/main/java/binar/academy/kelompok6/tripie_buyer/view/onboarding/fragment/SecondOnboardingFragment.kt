@@ -1,20 +1,44 @@
 package binar.academy.kelompok6.tripie_buyer.view.onboarding.fragment
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import binar.academy.kelompok6.tripie_buyer.R
+import binar.academy.kelompok6.tripie_buyer.databinding.FragmentFirstOnboardingBinding
+import binar.academy.kelompok6.tripie_buyer.databinding.FragmentOnboardingBinding
+import binar.academy.kelompok6.tripie_buyer.databinding.FragmentSecondOnboardingBinding
+import binar.academy.kelompok6.tripie_buyer.view.onboarding.adapter.OnboardingAdapter
+import java.util.*
 
 class SecondOnboardingFragment : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second_onboarding, container, false)
+    private lateinit var binding : FragmentSecondOnboardingBinding
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = FragmentSecondOnboardingBinding.inflate(layoutInflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.line2.max = 5000
+        val currentProgress = 5000
+        ObjectAnimator.ofInt(binding.line2, "progress", currentProgress).setDuration(5000).start()
+
+//        Handler().postDelayed({
+//            FragmentOnboardingBinding.bind(view).viewPager.setCurrentItem(3)
+//        }, 5000)
+
+//        binding.btnNextSec.setOnClickListener {
+//            Navigation.findNavController(view).navigate(R.id.action_onboardingFragment2_to_thirdOnboardingFragment)
+//        }
     }
 
 }

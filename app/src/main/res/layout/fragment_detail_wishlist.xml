@@ -83,7 +83,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="250dp"
                                 android:scaleType="center"
-                                android:src="@drawable/bg_onboarding_3" />
+                                android:src="@drawable/bg_onboarding_1" />
 
                             <TextView
                                 android:id="@+id/txtJudulFavorit"

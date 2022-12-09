@@ -1,6 +1,7 @@
 package binar.academy.kelompok6.tripie_buyer.view.splashscreen
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -28,5 +29,8 @@ class SplashScreenFragment : Fragment() {
     }
 
     private fun startSplashScreen() {
+        Handler().postDelayed({
+            Navigation.findNavController(requireView()).navigate(R.id.action_splashScreenFragment_to_onboardingFragment2)
+        }, 1000)
     }
 }
