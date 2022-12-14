@@ -6,15 +6,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import binar.academy.kelompok6.tripie_buyer.R
+import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
+import binar.academy.kelompok6.tripie_buyer.data.model.request.LoginRequest
+import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentLoginBinding
+import binar.academy.kelompok6.tripie_buyer.view.authentication.viewmodel.AuthenticationViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    private lateinit var sharedPref: SharedPreferences
+    private lateinit var sharedPref: SharedPref
+    private val auth : AuthenticationViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -25,25 +36,45 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnMasuk.setOnClickListener {
-            //username dan password di login
-//            val inputEmail = binding.editTextEmail.text.toString()
-//            val inputPass = binding.editTextPass.text.toString()
-//
-//            if(inputEmail == "" || inputPass == ""){
-//                Toast.makeText(context, "Fill In Username and Password!", Toast.LENGTH_SHORT).show()
-//            }
-//            else {
-//                //seleksi data yg diinput dengan data di API
-//                //ada -> navigasi ke home, gada -> toast no data
-//            }
+        sharedPref = SharedPref(requireContext())
 
-            findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
+        binding.btnMasuk.setOnClickListener {
+            reqLogin()
         }
 
         binding.btnBuatAkun.setOnClickListener {
             //masuk fragment register
             Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+    }
+
+    private fun reqLogin() {
+        auth.loginUser(LoginRequest(
+            email = binding.editTextEmail.text.toString(),
+            password = binding.editTextPass.text.toString()
+        ))
+        auth.ambilLiveDataUser().observe(viewLifecycleOwner){
+            when(it){
+                is ApiResponse.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                is ApiResponse.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    saveToken(it.data!!.token)
+                    Toast.makeText(requireContext(), "Login Success!", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
+                }
+                is ApiResponse.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(requireContext(), it.msg, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun saveToken(token:String) {
+        GlobalScope.launch {
+            sharedPref.saveToken(token)
         }
     }
 }

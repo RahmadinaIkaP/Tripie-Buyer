@@ -16,14 +16,7 @@ import com.bumptech.glide.Glide
 
 class OnboardingAdapter(var fragment:Fragment) : FragmentStateAdapter(fragment) {
 
-        private val fragments= mutableListOf(
-                OnboardingFragment.newInstance(0),
-                OnboardingFragment.newInstance(1),
-                OnboardingFragment.newInstance(2))
-
         class ViewHolder(var binding: FragmentOnboardingBinding) : RecyclerView.ViewHolder(binding.root)
-
-//        override fun createFragment(position: Int): Fragment = fragments[position]
 
         override fun createFragment(position: Int): Fragment {
                 when(position){

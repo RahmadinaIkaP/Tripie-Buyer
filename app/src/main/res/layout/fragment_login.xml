@@ -89,7 +89,16 @@
             android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@+id/btnBuatAkun" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/imageButton"
+            app:layout_constraintTop_toBottomOf="@+id/btnMasuk" />
+
         <ImageButton
+            android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"

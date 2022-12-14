@@ -1,6 +1,8 @@
 package binar.academy.kelompok6.tripie_buyer.data.network
 
+import binar.academy.kelompok6.tripie_buyer.data.model.request.LoginRequest
 import binar.academy.kelompok6.tripie_buyer.data.model.request.RegisterRequest
+import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseLogin
 import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseRegister
 import retrofit2.Call
 import retrofit2.http.Body
@@ -10,5 +12,8 @@ interface ApiEndpoint {
 
     @POST("register")
     fun register(@Body registerRequest: RegisterRequest) : Call<ResponseRegister>
+
+    @POST("login")
+    fun login(@Body loginRequest: LoginRequest) : Call<ResponseLogin>
 
 }

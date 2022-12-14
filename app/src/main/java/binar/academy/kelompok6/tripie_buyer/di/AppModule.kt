@@ -1,6 +1,7 @@
 package binar.academy.kelompok6.tripie_buyer.di
 
 import binar.academy.kelompok6.tripie_buyer.Constant.Companion.BASE_URL
+import binar.academy.kelompok6.tripie_buyer.data.network.ApiEndpoint
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,6 +35,6 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideApi(retrofit: Retrofit) : ApiEndPoint =
-        retrofit.create(ApiEndPoint::class.java)
+    fun provideApi(retrofit: Retrofit) : ApiEndpoint =
+        retrofit.create(ApiEndpoint::class.java)
 }

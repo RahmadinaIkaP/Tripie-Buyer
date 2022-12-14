@@ -93,7 +93,8 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
-
+    //Espresso
+    implementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.2'
 
     //segmented progress bar
     implementation 'com.github.TOrnelas:SegmentedProgressBar:0.0.3'
