@@ -1,7 +1,6 @@
 package binar.academy.kelompok6.tripie_buyer.di
 
 import binar.academy.kelompok6.tripie_buyer.Constant.Companion.BASE_URL
-import binar.academy.kelompok6.tripie_buyer.data.network.ApiEndPoint
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
