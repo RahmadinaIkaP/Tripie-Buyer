@@ -7,11 +7,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.model.request.RegisterRequest
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentRegisterBinding
 import binar.academy.kelompok6.tripie_buyer.view.authentication.viewmodel.AuthenticationViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
@@ -50,16 +54,16 @@ class RegisterFragment : Fragment() {
                 auth.postDataRegister().observe(viewLifecycleOwner){
                     when(it){
                         is ApiResponse.Loading -> {
-//                            binding.progressBar.visibility = View.VISIBLE
-                            Toast.makeText(requireContext(), "Sabar Gan", Toast.LENGTH_SHORT).show()
+                            binding.progressBar.visibility = View.VISIBLE
+                            Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
                         }
                         is ApiResponse.Success -> {
-//                            binding.progressBar.visibility = View.GONE
+                            binding.progressBar.visibility = View.GONE
                             Toast.makeText(requireContext(), "Register Berhasil", Toast.LENGTH_SHORT).show()
-//                            findNavController().navigate(R.id.action_registerFragment_to_registerSuccessFragment)
+                            findNavController().navigate(R.id.action_registerFragment_to_registerSuccessFragment)
                         }
                         is ApiResponse.Error -> {
-//                            binding.progressBar.visibility = View.GONE
+                            binding.progressBar.visibility = View.GONE
                             Toast.makeText(requireContext(), "Register Gagal", Toast.LENGTH_SHORT).show()
                         }
                     }
