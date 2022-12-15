@@ -1,17 +1,21 @@
 package binar.academy.kelompok6.tripie_buyer.view.authentication.register
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import binar.academy.kelompok6.tripie_buyer.R
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import binar.academy.kelompok6.tripie_buyer.data.model.request.RegisterRequest
+import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentRegisterBinding
+import binar.academy.kelompok6.tripie_buyer.view.authentication.viewmodel.AuthenticationViewModel
 
 class RegisterFragment : Fragment() {
 
-    private var _binding : FragmentRegisterBinding?= null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentRegisterBinding
+    private val auth : AuthenticationViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -19,6 +23,50 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register, container, false)
+        binding = FragmentRegisterBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnDaftar.setOnClickListener {
+            postRegister()
+        }
+    }
+
+    fun postRegister(){
+        if (binding.etNamaLengkap.text.toString().isEmpty() || binding.etEmail.text.toString().isEmpty() || binding.etPassword.text.toString().isEmpty() || binding.etKonfirPass.text.toString().isEmpty()) {
+            Toast.makeText(requireContext(), "Data tidak boleh kosong", Toast.LENGTH_SHORT).show()
+        } else {
+            if (binding.etPassword.text.toString() == binding.etKonfirPass.text.toString()) {
+                auth.registerUser(
+                    RegisterRequest(
+                    name = binding.etNamaLengkap.text.toString(),
+                    email = binding.etEmail.text.toString(),
+                    password = binding.etPassword.text.toString()
+                )
+                )
+                auth.postDataRegister().observe(viewLifecycleOwner){
+                    when(it){
+                        is ApiResponse.Loading -> {
+//                            binding.progressBar.visibility = View.VISIBLE
+                            Toast.makeText(requireContext(), "Sabar Gan", Toast.LENGTH_SHORT).show()
+                        }
+                        is ApiResponse.Success -> {
+//                            binding.progressBar.visibility = View.GONE
+                            Toast.makeText(requireContext(), "Register Berhasil", Toast.LENGTH_SHORT).show()
+//                            findNavController().navigate(R.id.action_registerFragment_to_registerSuccessFragment)
+                        }
+                        is ApiResponse.Error -> {
+//                            binding.progressBar.visibility = View.GONE
+                            Toast.makeText(requireContext(), "Register Gagal", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            } else {
+                Toast.makeText(requireContext(), "Password tidak sama", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
