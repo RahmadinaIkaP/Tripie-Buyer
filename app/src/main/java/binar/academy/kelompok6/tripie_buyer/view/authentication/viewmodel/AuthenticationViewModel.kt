@@ -2,7 +2,7 @@ package binar.academy.kelompok6.tripie_buyer.view.authentication.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import binar.academy.kelompok6.tripie_buyer.EspressoIdlingResource
+import binar.academy.kelompok6.tripie_buyer.utils.EspressoIdlingResource
 import binar.academy.kelompok6.tripie_buyer.data.model.request.LoginRequest
 import binar.academy.kelompok6.tripie_buyer.data.model.request.RegisterRequest
 import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseLogin

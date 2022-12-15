@@ -1,4 +1,4 @@
-package binar.academy.kelompok6.tripie_buyer
+package binar.academy.kelompok6.tripie_buyer.utils
 
 import android.support.test.espresso.idling.CountingIdlingResource
 

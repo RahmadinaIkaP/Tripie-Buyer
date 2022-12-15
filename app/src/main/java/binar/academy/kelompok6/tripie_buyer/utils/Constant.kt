@@ -1,4 +1,4 @@
-package binar.academy.kelompok6.tripie_buyer
+package binar.academy.kelompok6.tripie_buyer.utils
 
 class Constant {
     companion object{
