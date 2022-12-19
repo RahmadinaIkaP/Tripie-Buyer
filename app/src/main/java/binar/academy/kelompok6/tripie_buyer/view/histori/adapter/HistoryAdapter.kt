@@ -1,10 +1,15 @@
 package binar.academy.kelompok6.tripie_buyer.view.histori.adapter
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.model.response.Booking
 import binar.academy.kelompok6.tripie_buyer.databinding.ItemHistoriBinding
+import binar.academy.kelompok6.tripie_buyer.view.histori.DetailHistoriFragment
 
 class HistoryAdapter(var listHistory: List<Booking>) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
@@ -31,5 +36,14 @@ class HistoryAdapter(var listHistory: List<Booking>) : RecyclerView.Adapter<Hist
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         holder.binding.tvBandaraAsal.text = listHistory[position].originAirport
         holder.binding.tvBandaraTujuan.text = listHistory[position].destinationAirport
+
+        holder.binding.btnDetails.setOnClickListener {
+            val bundle = Bundle()
+            val intent = Intent(holder.itemView.context, DetailHistoriFragment::class.java)
+            bundle.putString("originAirport", listHistory[position].originAirport)
+            bundle.putString("destinationAirport", listHistory[position].destinationAirport)
+            bundle.putInt("id", listHistory[position].id)
+            Navigation.findNavController(it).navigate(R.id.action_historiFragment_to_detailHistoriFragment, bundle)
+        }
     }
 }

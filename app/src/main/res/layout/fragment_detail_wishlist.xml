@@ -109,7 +109,7 @@
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:layout_below="@id/txtNamaBandara"
-                                android:background="transparent"
+                                android:background="@color/white"
                                 android:src="@drawable/ic_baseline_location_on_24" />
 
                             <TextView

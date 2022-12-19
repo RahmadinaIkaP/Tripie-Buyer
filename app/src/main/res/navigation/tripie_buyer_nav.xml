@@ -77,7 +77,11 @@
         android:id="@+id/detailHistoriFragment"
         android:name="binar.academy.kelompok6.tripie_buyer.view.histori.DetailHistoriFragment"
         android:label="fragment_detail_histori"
-        tools:layout="@layout/fragment_detail_histori" />
+        tools:layout="@layout/fragment_detail_histori" >
+        <action
+            android:id="@+id/action_detailHistoriFragment_to_historiFragment"
+            app:destination="@id/historiFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerSuccessFragment"
         android:name="binar.academy.kelompok6.tripie_buyer.view.authentication.register.RegisterSuccessFragment"
