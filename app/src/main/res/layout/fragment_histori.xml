@@ -36,7 +36,7 @@
         tools:ignore="Autofill,TextFields" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMovie"
+        android:id="@+id/rvHistory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"

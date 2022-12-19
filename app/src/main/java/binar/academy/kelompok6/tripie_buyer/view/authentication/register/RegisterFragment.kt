@@ -37,6 +37,10 @@ class RegisterFragment : Fragment() {
         binding.btnDaftar.setOnClickListener {
             postRegister()
         }
+
+        binding.buttonBack.setOnClickListener{
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
     }
 
     fun postRegister(){

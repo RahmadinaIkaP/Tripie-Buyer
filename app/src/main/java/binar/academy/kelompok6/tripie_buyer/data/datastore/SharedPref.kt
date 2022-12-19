@@ -16,16 +16,22 @@ class SharedPref (private val context: Context) {
 
     private val token = stringPreferencesKey("token")
     private val status = booleanPreferencesKey("status")
+    private val idUser = stringPreferencesKey("idUser")
 
-    suspend fun saveToken(tokens : String){
+    suspend fun saveToken(tokens : String,idUsers : String){
         context.dataStore.edit {
             it[token] = tokens
+            it[idUser] = idUsers
         }
     }
 
     val getToken : Flow<String> = context.dataStore.data
         .map {
             it[token] ?: "Undefined"
+        }
+    val getIdUser : Flow<String> = context.dataStore.data
+        .map {
+            it[idUser] ?: "Undefined"
         }
 
     suspend fun removeToken(){

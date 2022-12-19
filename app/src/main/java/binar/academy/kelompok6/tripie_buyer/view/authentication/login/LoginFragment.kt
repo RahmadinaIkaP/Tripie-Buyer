@@ -60,7 +60,7 @@ class LoginFragment : Fragment() {
                 }
                 is ApiResponse.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    saveToken(it.data!!.token)
+                    saveToken(it.data!!.token,it.data.id.toString())
                     Toast.makeText(requireContext(), "Login Success!", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
                 }
@@ -72,9 +72,9 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun saveToken(token:String) {
+    private fun saveToken(token:String, idUser:String) {
         GlobalScope.launch {
-            sharedPref.saveToken(token)
+            sharedPref.saveToken(token, idUser)
         }
     }
 }
