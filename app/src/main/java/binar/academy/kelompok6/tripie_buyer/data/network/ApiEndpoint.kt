@@ -2,9 +2,11 @@ package binar.academy.kelompok6.tripie_buyer.data.network
 
 import binar.academy.kelompok6.tripie_buyer.data.model.request.LoginRequest
 import binar.academy.kelompok6.tripie_buyer.data.model.request.RegisterRequest
+import binar.academy.kelompok6.tripie_buyer.data.model.request.SearchTicketRequest
 import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseHistory
 import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseLogin
 import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseRegister
+import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseSearchTicket
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -20,5 +22,8 @@ interface ApiEndpoint {
 
     @GET("history")
     fun getHistory() : Call<ResponseHistory>
+
+    @POST("search-ticket")
+    fun search(@Body searchRequest: SearchTicketRequest) : Call<ResponseSearchTicket>
 
 }

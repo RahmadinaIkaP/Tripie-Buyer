@@ -1,9 +1,10 @@
 package binar.academy.kelompok6.tripie_buyer.data.model.response
 
-
 import com.google.gson.annotations.SerializedName
 
-data class ResponseHistory(
+data class ResponseSearchTicket(
     @SerializedName("data")
-    val dataBooking : DataBooking
+    val data: List<DataSearch>,
+    @SerializedName("status")
+    val status: String
 )

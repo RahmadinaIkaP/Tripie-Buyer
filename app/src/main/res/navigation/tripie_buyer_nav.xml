@@ -39,7 +39,11 @@
         android:id="@+id/homeFragment"
         android:name="binar.academy.kelompok6.tripie_buyer.view.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_bookingDetailFragment"
+            app:destination="@id/bookingDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="binar.academy.kelompok6.tripie_buyer.view.authentication.register.RegisterFragment"
@@ -163,4 +167,18 @@
             android:id="@+id/action_onboardingFragment2_to_thirdOnboardingFragment"
             app:destination="@id/thirdOnboardingFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/bookingDetailFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.booking.BookingDetailFragment"
+        android:label="fragment_booking_detail"
+        tools:layout="@layout/fragment_booking_detail" >
+        <action
+            android:id="@+id/action_bookingDetailFragment_to_bookingPaymentFragment"
+            app:destination="@id/bookingPaymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookingPaymentFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.booking.BookingPaymentFragment"
+        android:label="fragment_booking_payment"
+        tools:layout="@layout/fragment_booking_payment" />
 </navigation>

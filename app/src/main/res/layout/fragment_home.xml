@@ -149,6 +149,7 @@
                             android:textSize="16sp" />
 
                         <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/editText_dari"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/edittext_border"
@@ -177,6 +178,7 @@
                             android:textSize="16sp" />
 
                         <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/editText_ke"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/edittext_border"
@@ -206,6 +208,7 @@
                             android:textSize="16sp" />
 
                         <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/editText_tanggal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/edittext_border"
@@ -339,6 +342,7 @@
                             android:weightSum="3">
 
                             <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnKelasEkonomi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="10dp"
@@ -349,6 +353,7 @@
                                 android:textColor="@color/white" />
 
                             <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnKelasBisnis"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="10dp"
@@ -359,6 +364,7 @@
                                 android:textColor="@color/soft_black" />
 
                             <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnKelasFirst"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="10dp"
@@ -373,6 +379,7 @@
                     </LinearLayout>
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSearch"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
@@ -384,6 +391,15 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/linearLayout12" />
+
+                    <ProgressBar
+                        android:id="@+id/progressbar"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:progressTint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@+id/btnSearch"
+                        tools:layout_editor_absoluteX="16dp" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -397,6 +413,7 @@
                     android:weightSum="2">
 
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnOneWay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -407,6 +424,7 @@
                         android:textColor="@color/white" />
 
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnRoundTrip"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
