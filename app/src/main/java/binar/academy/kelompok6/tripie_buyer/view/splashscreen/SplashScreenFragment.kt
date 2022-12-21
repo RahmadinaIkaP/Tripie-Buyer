@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.asLiveData
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentSplashScreenBinding
@@ -32,7 +34,9 @@ class SplashScreenFragment : Fragment() {
 
         sharedPref = SharedPref(requireContext())
 
-        startSplashScreen()
+        checkUser()
+
+
     }
 
     private fun startSplashScreen() {
@@ -40,6 +44,18 @@ class SplashScreenFragment : Fragment() {
             Handler(Looper.getMainLooper()).postDelayed({
                 if (it.equals(false)){
                     Navigation.findNavController(requireView()).navigate(R.id.action_splashScreenFragment_to_onboardingFragment2)
+                }else{
+                    Navigation.findNavController(requireView()).navigate(R.id.action_splashScreenFragment_to_homeFragment)
+                }
+            }, 1000)
+        }
+    }
+
+    private fun checkUser(){
+        sharedPref.getToken.asLiveData().observe(viewLifecycleOwner){
+            Handler(Looper.getMainLooper()).postDelayed({
+                if(it == "Undefined"){
+                    startSplashScreen()
                 }else{
                     Navigation.findNavController(requireView()).navigate(R.id.action_splashScreenFragment_to_homeFragment)
                 }

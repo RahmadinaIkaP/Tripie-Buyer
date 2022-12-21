@@ -14,7 +14,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class ViewModelTrippie @Inject constructor (private val api : ApiEndpoint): ViewModel(){
+class ViewModelHistory @Inject constructor (private val api : ApiEndpoint): ViewModel(){
     private var liveDataHistory : MutableLiveData<ApiResponse<ResponseHistory>> = MutableLiveData()
 
     fun getLiveDataHistory() : MutableLiveData<ApiResponse<ResponseHistory>> = liveDataHistory
