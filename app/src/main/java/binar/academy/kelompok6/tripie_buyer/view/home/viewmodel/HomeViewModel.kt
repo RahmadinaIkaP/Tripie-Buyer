@@ -17,10 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val api : ApiEndpoint) : ViewModel() {
     private var liveDataSearch : MutableLiveData<ApiResponse<ResponseSearchTicket>> = MutableLiveData()
-    private var postDataSearch : MutableLiveData<ApiResponse<ResponseSearchTicket>> = MutableLiveData()
 
     fun ambilLiveDataSearch() : MutableLiveData<ApiResponse<ResponseSearchTicket>> = liveDataSearch
-    fun postDataSearch() : MutableLiveData<ApiResponse<ResponseSearchTicket>> = postDataSearch
 
     fun searchData(request : SearchTicketRequest){
         liveDataSearch.postValue(ApiResponse.Loading())

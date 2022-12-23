@@ -32,4 +32,7 @@ interface ApiEndpoint {
     @GET("user/{id}")
     fun getProfile(@Path("id") id: Int) : Call<ResponseUser>
 
+    @GET("get-airport")
+    fun getAirport() : Call<AirportResponse>
+
 }
