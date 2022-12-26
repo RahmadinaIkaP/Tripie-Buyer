@@ -8,7 +8,6 @@ import binar.academy.kelompok6.tripie_buyer.data.network.ApiEndpoint
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.utils.EspressoIdlingResource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,10 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val api : ApiEndpoint) : ViewModel() {
     private var liveDataSearch : MutableLiveData<ApiResponse<ResponseSearchTicket>> = MutableLiveData()
-    private var postDataSearch : MutableLiveData<ApiResponse<ResponseSearchTicket>> = MutableLiveData()
 
     fun ambilLiveDataSearch() : MutableLiveData<ApiResponse<ResponseSearchTicket>> = liveDataSearch
-    fun postDataSearch() : MutableLiveData<ApiResponse<ResponseSearchTicket>> = postDataSearch
 
     fun searchData(request : SearchTicketRequest){
         liveDataSearch.postValue(ApiResponse.Loading())
@@ -37,8 +34,8 @@ class HomeViewModel @Inject constructor(private val api : ApiEndpoint) : ViewMod
                 else {
                     try {
                         response.errorBody()?.let {
-                            val jsonObject = JSONObject(it.string()).getString("message")
-                            liveDataSearch.postValue(ApiResponse.Error(jsonObject))
+//                            val jsonObject = JSONObject(it.string()).getString("data")
+                            liveDataSearch.postValue(ApiResponse.Error(it.toString()))
                         }
                     } catch (e: Exception) {
                         liveDataSearch.postValue(ApiResponse.Error("${e.message}"))

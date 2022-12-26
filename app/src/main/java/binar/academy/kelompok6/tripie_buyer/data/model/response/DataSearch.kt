@@ -1,28 +1,33 @@
 package binar.academy.kelompok6.tripie_buyer.data.model.response
 
+
 import com.google.gson.annotations.SerializedName
 
 data class DataSearch(
-    @SerializedName("Airline_Name")
+    @SerializedName("airline_name")
     val airlineName: String,
-    @SerializedName("Arrival_Hour")
+    @SerializedName("arrival_hour")
     val arrivalHour: String,
-    @SerializedName("createdAt")
-    val createdAt: String,
-    @SerializedName("Departure_Hour")
+    @SerializedName("capacity")
+    val capacity: Int,
+    @SerializedName("departure_hour")
     val departureHour: String,
-    @SerializedName("Destination_Airport")
-    val destinationAirport: String,
-    @SerializedName("flight_Date")
+    @SerializedName("destination_city")
+    val destinationCity: String,
+    @SerializedName("destination_code")
+    val destinationCode: String,
+    @SerializedName("destination_name")
+    val destinationName: String,
+    @SerializedName("flight_date")
     val flightDate: String,
-    @SerializedName("id")
-    val id: Int,
-    @SerializedName("Origin_Airport")
-    val originAirport: String,
-    @SerializedName("Plane_class")
+    @SerializedName("origin_city")
+    val originCity: String,
+    @SerializedName("origin_code")
+    val originCode: String,
+    @SerializedName("origin_name")
+    val originName: String,
+    @SerializedName("plane_class")
     val planeClass: String,
-    @SerializedName("Price")
-    val price: Int,
-    @SerializedName("updatedAt")
-    val updatedAt: String
+    @SerializedName("price")
+    val price: Int
 )

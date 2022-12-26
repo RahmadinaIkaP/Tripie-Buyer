@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
@@ -64,6 +65,10 @@ class OnboardingFragment : Fragment() {
                 binding.btnNextFirst.setOnClickListener {
                     binding.viewPager.setCurrentItem(binding.viewPager.currentItem + 1)
                 }
+
+                Handler().postDelayed({
+                    binding.viewPager.setCurrentItem(binding.viewPager.currentItem + 1)
+                                      }, 2000)
 
                 if (binding.viewPager.currentItem == 2) {
                     binding.btnNextFirst.text = "Get Started"

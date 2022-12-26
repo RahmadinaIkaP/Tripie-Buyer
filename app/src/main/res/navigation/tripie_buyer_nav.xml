@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_homeFragment_to_bookingDetailFragment"
             app:destination="@id/bookingDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_hasilSearchFragment"
+            app:destination="@id/hasilSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -181,4 +184,13 @@
         android:name="binar.academy.kelompok6.tripie_buyer.view.booking.BookingPaymentFragment"
         android:label="fragment_booking_payment"
         tools:layout="@layout/fragment_booking_payment" />
+    <fragment
+        android:id="@+id/hasilSearchFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.home.HasilSearchFragment"
+        android:label="fragment_hasil_search"
+        tools:layout="@layout/fragment_hasil_search" >
+        <action
+            android:id="@+id/action_hasilSearchFragment_to_bookingDetailFragment"
+            app:destination="@id/bookingDetailFragment" />
+    </fragment>
 </navigation>
