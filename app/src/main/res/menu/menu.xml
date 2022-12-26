@@ -22,7 +22,7 @@
         android:title="Favorite" />
 
     <item
-        android:id="@+id/loginFragment"
+        android:id="@+id/profileFragment"
         android:icon="@drawable/profile"
         android:orderInCategory="100"
         android:title="Profile" />

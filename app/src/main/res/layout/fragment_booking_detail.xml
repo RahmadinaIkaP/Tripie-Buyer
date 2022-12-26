@@ -48,115 +48,112 @@
 
     <RelativeLayout
         android:id="@+id/container"
-        android:layout_margin="25dp"
-        android:layout_below="@id/btn_back"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_back"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp">
 
-        <TextView
-            android:id="@+id/subHeaderDetailPemesan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Detail Pemesan"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
+<!--        <TextView-->
+<!--            android:id="@+id/subHeaderDetailPemesan"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Detail Pemesan"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="24sp"-->
+<!--            android:textStyle="bold"-->
 
-            />
+<!--            />-->
 
 
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/tfNamaLengkap"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/subHeaderDetailPemesan"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:ems="10"-->
+<!--            android:hint="Nama Lengkap"-->
+<!--            android:inputType="textPersonName"-->
+<!--            app:boxBackgroundColor="@color/white"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent">-->
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_below="@id/subHeaderDetailPemesan"
-            android:id="@+id/tfNamaLengkap"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:ems="10"
-            android:hint="Nama Lengkap"
-            android:inputType="textPersonName"
-            app:boxBackgroundColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            >
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/etNamaLengkap"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etNamaLengkap"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.google.android.material.textfield.TextInputLayout>
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/tfNomorTelepon"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/tfNamaLengkap"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:ems="10"-->
+<!--            android:hint="Nomor Telepon"-->
+<!--            android:inputType="phone"-->
+<!--            app:boxBackgroundColor="@color/white"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent">-->
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_below="@id/tfNamaLengkap"
-            android:id="@+id/tfNomorTelepon"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:ems="10"
-            android:hint="Nomor Telepon"
-            android:inputType="phone"
-            app:boxBackgroundColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            >
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/etNomorTelepon"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etNomorTelepon"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.google.android.material.textfield.TextInputLayout>
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/tfEmail"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/tfNomorTelepon"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:ems="10"-->
+<!--            android:hint="Email"-->
+<!--            android:inputType="textEmailAddress"-->
+<!--            app:boxBackgroundColor="@color/white"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent">-->
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_below="@id/tfNomorTelepon"
-            android:id="@+id/tfEmail"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:ems="10"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            app:boxBackgroundColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etEmail"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.google.android.material.textfield.TextInputLayout>
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/etEmail"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
         <TextView
             android:id="@+id/subHeaderDetailPenumpang"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:text="Detail Penumpang"
-            android:textStyle="bold"
-            android:textSize="24sp"
             android:textColor="@color/black"
-            android:layout_below="@id/tfEmail"
+            android:textSize="24sp"
 
-            />
+            android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_below="@id/subHeaderDetailPenumpang"
             android:id="@+id/tfNamaLengkapPenumpang"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/subHeaderDetailPenumpang"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="Nama Lengkap"
             android:inputType="textPersonName"
             app:boxBackgroundColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            >
+            app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etNamaLengkapPenumpang"
@@ -165,19 +162,18 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_below="@id/tfNamaLengkapPenumpang"
             android:id="@+id/tfNomorTeleponPenumpang"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/tfNamaLengkapPenumpang"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="Nomor Telepon"
             android:inputType="phone"
             app:boxBackgroundColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            >
+            app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etNomorTeleponPenumpang"
@@ -193,8 +189,7 @@
     <RelativeLayout
         android:layout_below="@id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/bottomBar"
@@ -202,8 +197,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="#FFFFFF">
-
-
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
@@ -217,9 +210,7 @@
                     android:layout_height="wrap_content"
                     android:text="Total : "
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-
-                    />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_centerVertical="true"
@@ -228,20 +219,15 @@
                     android:text="Rp. 1.152.580"
                     android:textColor="#FD5B1F"
                     android:textStyle="bold"
-                    android:layout_toRightOf="@id/subTextTotal"
-
-                    />
-
+                    android:layout_toEndOf="@id/subTextTotal" />
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:text="Metode Pembayaran"
+                    android:text="Bayar"
                     android:layout_gravity="end"
-                    android:layout_marginEnd="25dp"
-                    android:gravity="center_horizontal"
-                    />
-                    </androidx.appcompat.widget.Toolbar>
+                    android:layout_marginEnd="25dp"/>
+            </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
 

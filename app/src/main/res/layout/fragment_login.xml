@@ -31,6 +31,7 @@
             android:ems="10"
             android:inputType="textEmailAddress"
             app:boxBackgroundColor="@color/white"
+            app:boxStrokeColor="@color/grey"
             app:layout_constraintTop_toBottomOf="@+id/imageView_logotripie">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -48,6 +49,7 @@
             app:boxBackgroundColor="@color/white"
             android:layout_marginTop="25dp"
             app:endIconMode="password_toggle"
+            app:boxStrokeColor="@color/grey"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/layout_email">
@@ -55,7 +57,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editText_pass"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />/>
+                android:layout_height="match_parent" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,26 +70,30 @@
 <!--            android:textColor="#656565"-->
 <!--            app:layout_constraintTop_toBottomOf="@+id/layout_pass" />-->
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnMasuk"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/blue"
+            android:text="Masuk"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_pass" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBuatAkun"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:text="Buat Akun"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/layout_pass"
-            app:rippleColor="#C7E4FB" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnMasuk"
-            android:backgroundTint="@color/blue"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:text="Masuk"
-            android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@+id/btnBuatAkun" />
+            app:strokeColor="@color/blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnMasuk" />
 
         <ProgressBar
             android:id="@+id/progressBar"

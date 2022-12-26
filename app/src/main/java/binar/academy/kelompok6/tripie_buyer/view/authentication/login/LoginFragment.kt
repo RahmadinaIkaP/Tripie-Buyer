@@ -39,7 +39,11 @@ class LoginFragment : Fragment() {
         sharedPref = SharedPref(requireContext())
 
         binding.btnMasuk.setOnClickListener {
-            reqLogin()
+            if (binding.editTextEmail.text.toString().isEmpty() || binding.editTextPass.text.toString().isEmpty()) {
+                Toast.makeText(requireContext(), "Email dan Password tidak boleh kosong", Toast.LENGTH_SHORT).show()
+            } else {
+                reqLogin()
+            }
         }
 
         binding.btnBuatAkun.setOnClickListener {

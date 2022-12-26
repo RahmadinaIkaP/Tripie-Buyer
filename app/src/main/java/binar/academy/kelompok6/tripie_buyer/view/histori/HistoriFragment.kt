@@ -14,14 +14,14 @@ import binar.academy.kelompok6.tripie_buyer.data.model.response.Booking
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentHistoriBinding
 import binar.academy.kelompok6.tripie_buyer.view.histori.adapter.HistoryAdapter
-import binar.academy.kelompok6.tripie_buyer.view.viewmodel.ViewModelTrippie
+import binar.academy.kelompok6.tripie_buyer.view.viewmodel.ViewModelHistory
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HistoriFragment : Fragment() {
     lateinit var binding: FragmentHistoriBinding
     lateinit var adapterHistory: HistoryAdapter
-    private val viewModelHistory : ViewModelTrippie by viewModels()
+    private val viewModelHistory : ViewModelHistory by viewModels()
     lateinit var sharedPref : SharedPref
 
     override fun onCreateView(

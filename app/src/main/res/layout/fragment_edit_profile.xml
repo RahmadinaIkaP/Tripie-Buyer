@@ -178,8 +178,16 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="@id/btnUbahData"
+                />
+
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnMasuk"
+                android:id="@+id/btnUbahData"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="25dp"

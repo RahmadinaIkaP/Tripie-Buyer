@@ -44,8 +44,11 @@
             android:id="@+id/action_homeFragment_to_bookingDetailFragment"
             app:destination="@id/bookingDetailFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_hasilSearchFragment"
-            app:destination="@id/hasilSearchFragment" />
+            android:id="@+id/action_homeFragment_to_listAirportOriginFragment"
+            app:destination="@id/listAirportOriginFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_listAirportDestinationFragment"
+            app:destination="@id/listAirportDestinationFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -54,7 +57,9 @@
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/action_registerFragment_to_registerSuccessFragment"
-            app:destination="@id/registerSuccessFragment" />
+            app:destination="@id/registerSuccessFragment"
+            app:popUpTo="@id/registerFragment"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -96,13 +101,22 @@
         tools:layout="@layout/fragment_register_success" >
         <action
             android:id="@+id/action_registerSuccessFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/registerSuccessFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_registerSuccessFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="binar.academy.kelompok6.tripie_buyer.view.profile.EditProfileFragment"
         android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" />
+        tools:layout="@layout/fragment_edit_profile" >
+        <action
+            android:id="@+id/action_editProfileFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="binar.academy.kelompok6.tripie_buyer.view.profile.ProfileFragment"
@@ -111,6 +125,12 @@
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_homeFragment5"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailWishlistFragment"
@@ -174,23 +194,15 @@
         android:id="@+id/bookingDetailFragment"
         android:name="binar.academy.kelompok6.tripie_buyer.view.booking.BookingDetailFragment"
         android:label="fragment_booking_detail"
-        tools:layout="@layout/fragment_booking_detail" >
-        <action
-            android:id="@+id/action_bookingDetailFragment_to_bookingPaymentFragment"
-            app:destination="@id/bookingPaymentFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_booking_detail" />
     <fragment
-        android:id="@+id/bookingPaymentFragment"
-        android:name="binar.academy.kelompok6.tripie_buyer.view.booking.BookingPaymentFragment"
-        android:label="fragment_booking_payment"
-        tools:layout="@layout/fragment_booking_payment" />
+        android:id="@+id/listAirportDestinationFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.home.ListAirportDestinationFragment"
+        android:label="fragment_list_airport_destination"
+        tools:layout="@layout/fragment_list_airport_destination" />
     <fragment
-        android:id="@+id/hasilSearchFragment"
-        android:name="binar.academy.kelompok6.tripie_buyer.view.home.HasilSearchFragment"
-        android:label="fragment_hasil_search"
-        tools:layout="@layout/fragment_hasil_search" >
-        <action
-            android:id="@+id/action_hasilSearchFragment_to_bookingDetailFragment"
-            app:destination="@id/bookingDetailFragment" />
-    </fragment>
+        android:id="@+id/listAirportOriginFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.home.ListAirportOriginFragment"
+        android:label="fragment_list_airport_origin"
+        tools:layout="@layout/fragment_list_airport_origin" />
 </navigation>
