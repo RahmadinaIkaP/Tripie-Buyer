@@ -34,9 +34,7 @@ class SplashScreenFragment : Fragment() {
 
         sharedPref = SharedPref(requireContext())
 
-        checkUser()
-
-
+        startSplashScreen()
     }
 
     private fun startSplashScreen() {
@@ -51,15 +49,15 @@ class SplashScreenFragment : Fragment() {
         }
     }
 
-    private fun checkUser(){
-        sharedPref.getToken.asLiveData().observe(viewLifecycleOwner){
-            Handler(Looper.getMainLooper()).postDelayed({
-                if(it == "Undefined"){
-                    startSplashScreen()
-                }else{
-                    Navigation.findNavController(requireView()).navigate(R.id.action_splashScreenFragment_to_homeFragment)
-                }
-            }, 1000)
-        }
-    }
+//    private fun checkUser(){
+//        sharedPref.getToken.asLiveData().observe(viewLifecycleOwner){
+//            Handler(Looper.getMainLooper()).postDelayed({
+//                if(it == "Undefined"){
+//                    startSplashScreen()
+//                }else{
+//                    Navigation.findNavController(requireView()).navigate(R.id.action_splashScreenFragment_to_homeFragment)
+//                }
+//            }, 1000)
+//        }
+//    }
 }

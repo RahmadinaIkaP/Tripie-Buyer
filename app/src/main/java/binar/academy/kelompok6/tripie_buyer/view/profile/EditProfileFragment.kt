@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentEditProfileBinding
-import binar.academy.kelompok6.tripie_buyer.view.viewmodel.ViewModelUpdateProfile
+import binar.academy.kelompok6.tripie_buyer.view.profile.viewmodel.ViewModelProfile
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class EditProfileFragment : Fragment() {
     lateinit var binding : FragmentEditProfileBinding
     lateinit var sharedPref: SharedPref
-    private val auth : ViewModelUpdateProfile by viewModels()
+    private val vmProfile : ViewModelProfile by viewModels()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)

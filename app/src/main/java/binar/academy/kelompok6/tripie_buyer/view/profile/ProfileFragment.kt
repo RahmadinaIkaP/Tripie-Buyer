@@ -16,7 +16,7 @@ import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentProfileBinding
-import binar.academy.kelompok6.tripie_buyer.view.viewmodel.ViewModelProfile
+import binar.academy.kelompok6.tripie_buyer.view.profile.viewmodel.ViewModelProfile
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

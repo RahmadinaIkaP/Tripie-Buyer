@@ -28,32 +28,38 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/circleImageView"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:src="@drawable/ic_launcher_background"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvGreetUser"
+                <LinearLayout
+                    android:id="@+id/layoutGreet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:text="Halo, Bang Jono"
-                    android:textColor="@color/soft_black"
-                    android:textSize="16sp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/circleImageView"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/circleImageView"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@drawable/ic_launcher_background" />
+
+                    <TextView
+                        android:id="@+id/tvGreetUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Halo, Bang Jono"
+                        android:textColor="@color/soft_black"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+
 
                 <ImageButton
                     android:layout_width="30dp"
@@ -119,7 +125,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -134,10 +141,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:gravity="center_vertical"
-                        android:orientation="vertical"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -163,10 +167,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:gravity="center_vertical"
-                        android:orientation="vertical"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -193,10 +194,7 @@
                         android:layout_marginTop="16dp"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:visibility="visible"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+                        android:visibility="visible">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -208,7 +206,7 @@
                             android:textSize="16sp" />
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/editText_tanggal"
+                            android:id="@+id/etDepartureDateOw"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/edittext_border"
@@ -224,10 +222,7 @@
                         android:layout_marginTop="16dp"
                         android:orientation="horizontal"
                         android:visibility="gone"
-                        android:weightSum="2"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+                        android:weightSum="2">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -247,6 +242,7 @@
                                 android:textSize="16sp" />
 
                             <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/etDepartureDateRt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/edittext_border"
@@ -273,6 +269,7 @@
                                 android:textSize="16sp" />
 
                             <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/etArriveDateRt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/edittext_border"
@@ -289,10 +286,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -304,12 +298,13 @@
                             android:textSize="16sp" />
 
                         <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etJumlahPenumpangRt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/edittext_border"
                             android:enabled="false"
                             android:padding="8dp"
-                            android:text="1"
+                            android:inputType="number"
                             android:textAlignment="center"
                             android:textColor="@color/soft_black" />
 
@@ -321,10 +316,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:gravity="center"
-                        android:orientation="vertical"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -336,45 +328,59 @@
                             android:textColor="@color/soft_black"
                             android:textSize="16sp" />
 
-                        <LinearLayout
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:weightSum="3">
+                            android:hint="Pilih kelas pesawat">
 
-                            <com.google.android.material.button.MaterialButton
-                                android:id="@+id/btnKelasEkonomi"
-                                android:layout_width="wrap_content"
+                            <AutoCompleteTextView
+                                android:id="@+id/ActlistPlaneClass"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="10dp"
-                                android:layout_weight="1"
-                                android:backgroundTint="@color/blue"
-                                android:text="Ekonomi"
-                                android:textAllCaps="false"
-                                android:textColor="@color/white" />
+                                android:padding="8dp"/>
 
-                            <com.google.android.material.button.MaterialButton
-                                android:id="@+id/btnKelasBisnis"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="10dp"
-                                android:layout_weight="1"
-                                android:backgroundTint="@color/light_gray"
-                                android:text="Bisnis"
-                                android:textAllCaps="false"
-                                android:textColor="@color/soft_black" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                            <com.google.android.material.button.MaterialButton
-                                android:id="@+id/btnKelasFirst"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="10dp"
-                                android:layout_weight="1"
-                                android:backgroundTint="@color/light_gray"
-                                android:text="First Class"
-                                android:textAllCaps="false"
-                                android:textColor="@color/soft_black" />
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:weightSum="3">-->
 
-                        </LinearLayout>
+<!--                            <com.google.android.material.button.MaterialButton-->
+<!--                                android:id="@+id/btnKelasEkonomi"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginEnd="10dp"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:backgroundTint="@color/blue"-->
+<!--                                android:text="Ekonomi"-->
+<!--                                android:textAllCaps="false"-->
+<!--                                android:textColor="@color/white" />-->
+
+<!--                            <com.google.android.material.button.MaterialButton-->
+<!--                                android:id="@+id/btnKelasBisnis"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginEnd="10dp"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:backgroundTint="@color/light_gray"-->
+<!--                                android:text="Bisnis"-->
+<!--                                android:textAllCaps="false"-->
+<!--                                android:textColor="@color/soft_black" />-->
+
+<!--                            <com.google.android.material.button.MaterialButton-->
+<!--                                android:id="@+id/btnKelasFirst"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginEnd="10dp"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:backgroundTint="@color/light_gray"-->
+<!--                                android:text="First Class"-->
+<!--                                android:textAllCaps="false"-->
+<!--                                android:textColor="@color/soft_black" />-->
+
+<!--                        </LinearLayout>-->
 
                     </LinearLayout>
 
@@ -401,7 +407,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/btnSearch"
                         tools:layout_editor_absoluteX="16dp" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

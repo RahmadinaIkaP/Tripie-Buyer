@@ -6,12 +6,14 @@ import binar.academy.kelompok6.tripie_buyer.data.model.response.AirportResponse
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiEndpoint
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.utils.EspressoIdlingResource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
+@HiltViewModel
 class AirportViewModel @Inject constructor(private val api : ApiEndpoint) : ViewModel() {
     private val allAirportLiveData : MutableLiveData<ApiResponse<AirportResponse>> = MutableLiveData()
 

@@ -14,7 +14,7 @@ import binar.academy.kelompok6.tripie_buyer.data.model.response.Booking
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentHistoriBinding
 import binar.academy.kelompok6.tripie_buyer.view.histori.adapter.HistoryAdapter
-import binar.academy.kelompok6.tripie_buyer.view.viewmodel.ViewModelHistory
+import binar.academy.kelompok6.tripie_buyer.view.histori.viewmodel.ViewModelHistory
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -49,7 +49,7 @@ class ListAirportDestinationFragment : Fragment(), AirportAdapter.AirportInterfa
                 is ApiResponse.Success -> {
                     stopLoading()
                     response.data?.let {
-                        val sortedAirport = it.dataAirport.airport.sortedBy { data -> data.id }
+                        val sortedAirport = it.data.sortedBy { data -> data.id }
                         showRvDataAirport(sortedAirport)
                     }
                     Log.d("Success: ", response.toString())

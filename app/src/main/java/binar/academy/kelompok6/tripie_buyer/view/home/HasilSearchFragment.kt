@@ -25,7 +25,6 @@ class HasilSearchFragment : Fragment(), SearchHomeAdapter.HasilSearchInterface {
     private lateinit var adapter : SearchHomeAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
         binding = FragmentHasilSearchBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -33,10 +32,10 @@ class HasilSearchFragment : Fragment(), SearchHomeAdapter.HasilSearchInterface {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var destinationName = arguments?.getString("destinationName")
-        var flightDate = arguments?.getString("flightDate")
-        var originName = arguments?.getString("originName")
-        var planeClass = arguments?.getString("planeClass")
+        val destinationName = arguments?.getString("destinationName")
+        val flightDate = arguments?.getString("flightDate")
+        val originName = arguments?.getString("originName")
+        val planeClass = arguments?.getString("planeClass")
 
         homeVm.searchData(SearchTicketRequest(destinationName!!, flightDate!!, originName!!, planeClass!!, 1))
 

@@ -1,4 +1,4 @@
-package binar.academy.kelompok6.tripie_buyer.view.viewmodel
+package binar.academy.kelompok6.tripie_buyer.view.histori.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

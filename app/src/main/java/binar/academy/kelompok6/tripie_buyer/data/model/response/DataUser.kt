@@ -3,7 +3,7 @@ package binar.academy.kelompok6.tripie_buyer.data.model.response
 
 import com.google.gson.annotations.SerializedName
 
-data class Data(
+data class DataUser(
     @SerializedName("Address")
     val address: String,
     @SerializedName("createdAt")
