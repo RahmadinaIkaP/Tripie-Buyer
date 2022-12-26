@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_homeFragment_to_listAirportDestinationFragment"
             app:destination="@id/listAirportDestinationFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_hasilSearchFragment"
+            app:destination="@id/hasilSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -205,4 +208,13 @@
         android:name="binar.academy.kelompok6.tripie_buyer.view.home.ListAirportOriginFragment"
         android:label="fragment_list_airport_origin"
         tools:layout="@layout/fragment_list_airport_origin" />
+    <fragment
+        android:id="@+id/hasilSearchFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.home.HasilSearchFragment"
+        android:label="fragment_hasil_search"
+        tools:layout="@layout/fragment_hasil_search" >
+        <action
+            android:id="@+id/action_hasilSearchFragment_to_bookingDetailFragment"
+            app:destination="@id/bookingDetailFragment" />
+    </fragment>
 </navigation>
