@@ -3,11 +3,14 @@ package binar.academy.kelompok6.tripie_buyer.view.home.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import binar.academy.kelompok6.tripie_buyer.data.model.request.SearchTicketRequest
+import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseErrorSearchTicket
 import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseSearchTicket
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiEndpoint
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.utils.EspressoIdlingResource
+import com.google.gson.GsonBuilder
 import dagger.hilt.android.lifecycle.HiltViewModel
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,8 +37,9 @@ class HomeViewModel @Inject constructor(private val api : ApiEndpoint) : ViewMod
                 else {
                     try {
                         response.errorBody()?.let {
-//                            val jsonObject = JSONObject(it.string()).getString("data")
-                            liveDataSearch.postValue(ApiResponse.Error(it.toString()))
+                            val gson = GsonBuilder().create()
+                            val errorResponse = gson.fromJson(it.string(), ResponseErrorSearchTicket::class.java)
+                            liveDataSearch.postValue(ApiResponse.Error(errorResponse.data.message))
                         }
                     } catch (e: Exception) {
                         liveDataSearch.postValue(ApiResponse.Error("${e.message}"))

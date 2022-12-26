@@ -5,16 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import binar.academy.kelompok6.tripie_buyer.R
+import binar.academy.kelompok6.tripie_buyer.data.model.request.SearchTicketRequest
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentHomeBinding
 import binar.academy.kelompok6.tripie_buyer.view.home.adapter.PopularDestinationAdapter
-import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.AirportViewModel
 import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.HomeViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,8 +26,8 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val homeVm : HomeViewModel by viewModels()
-    private val vmAirport : AirportViewModel by viewModels()
     private lateinit var adapter : PopularDestinationAdapter
+    private lateinit var flightType : String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
     : View {
@@ -39,24 +38,30 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        flightType = "One Way Trip"
+
         binding.apply {
             editTextDari.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_listAirportOriginFragment)
             }
 
+            getNameOriginAirport()
+
             editTextKe.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_listAirportDestinationFragment)
             }
+
+            getNameDestinationAirport()
 
             etDepartureDateOw.setOnClickListener {
                 getDateFromDatePickerOneway()
             }
 
-            val listPlaneClass = arrayListOf("economy", "business", "first Class")
-            val planeClassAdapter = ArrayAdapter(requireContext(),
-                com.google.android.material.R.layout.support_simple_spinner_dropdown_item, listPlaneClass)
+            etPlaneClass.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_listPlaneClassFragment)
+            }
 
-            ActlistPlaneClass.setAdapter(planeClassAdapter)
+            getPlaneClass()
 
             btnOneWay.setOnClickListener {
                 linearLayout7.visibility = View.VISIBLE
@@ -65,6 +70,7 @@ class HomeFragment : Fragment() {
                 linearLayout8.visibility = View.GONE
                 btnRoundTrip.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue_purple))
                 btnRoundTrip.setTextColor(ContextCompat.getColor(requireContext(), R.color.soft_black))
+                flightType = "One Way Trip"
             }
 
             btnRoundTrip.setOnClickListener {
@@ -74,6 +80,7 @@ class HomeFragment : Fragment() {
                 linearLayout8.visibility = View.VISIBLE
                 btnRoundTrip.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue))
                 btnRoundTrip.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                flightType = "Round Trip"
             }
 
             etDepartureDateRt.setOnClickListener {
@@ -85,8 +92,32 @@ class HomeFragment : Fragment() {
             }
 
             btnSearch.setOnClickListener {
-                reqSearch()
+                reqSearch(flightType)
             }
+        }
+    }
+
+    private fun getNameOriginAirport() {
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(
+            "namaAirportOrigin"
+        )?.observe(viewLifecycleOwner) { name ->
+            binding.editTextDari.setText(name)
+        }
+    }
+
+    private fun getNameDestinationAirport() {
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(
+            "namaAirportDestination"
+        )?.observe(viewLifecycleOwner) { name ->
+            binding.editTextKe.setText(name)
+        }
+    }
+
+    private fun getPlaneClass() {
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(
+            "planeClassName"
+        )?.observe(viewLifecycleOwner){
+            binding.etPlaneClass.setText(it)
         }
     }
 
@@ -132,24 +163,29 @@ class HomeFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+    private fun reqSearch(checkTypeOw : String) {
+        if (checkTypeOw == "One Way Trip"){
+            homeVm.searchData(
+                SearchTicketRequest(
+                    originName = binding.editTextDari.text.toString(),
+                    destinationName = binding.editTextKe.text.toString(),
+                    planeClass = binding.etPlaneClass.text.toString(),
+                    flightDate = binding.etDepartureDateOw.text.toString(),
+                    totalPassenger = binding.etJumlahPenumpang.text.toString().toInt()
+                )
+            )
+        }else if (checkTypeOw == "Round Trip"){
+            homeVm.searchData(
+                SearchTicketRequest(
+                    originName = binding.editTextDari.text.toString(),
+                    destinationName = binding.editTextKe.text.toString(),
+                    planeClass = binding.etPlaneClass.text.toString(),
+                    flightDate = binding.etDepartureDateRt.text.toString(),
+                    totalPassenger = binding.etJumlahPenumpang.text.toString().toInt()
+                )
+            )
+        }
 
-    private fun reqSearch() {
-//        homeVm.searchData(
-//            SearchTicketRequest(
-//                origin = binding.editTextDari.text.toString(),
-//                destinasi = binding.editTextKe.text.toString(),
-//                planeClass =
-//                if(binding.btnKelasBisnis.isActivated) "Business"
-//                else if(binding.btnKelasEkonomi.isActivated) "Economy"
-//                else if (binding.btnKelasFirst.isActivated) "First Class"
-//                else "",
-//                flightDate = binding.editTextTanggal.text.toString()
-//            )
-//        )
         homeVm.ambilLiveDataSearch().observe(viewLifecycleOwner){response->
             when(response){
                 is ApiResponse.Loading -> {
@@ -157,7 +193,8 @@ class HomeFragment : Fragment() {
                 }
                 is ApiResponse.Success -> {
                     binding.progressbar.visibility = View.GONE
-                    response.data?.let {  }
+//                    response.data?.let {  }
+                    Toast.makeText(requireContext(), response.toString(), Toast.LENGTH_SHORT).show()
                 }
                 is ApiResponse.Error -> {
                     binding.progressbar.visibility = View.GONE
@@ -165,6 +202,11 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 //    private fun showData(listData: List<DataSearch>) {

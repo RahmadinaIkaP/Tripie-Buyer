@@ -89,7 +89,7 @@ class ListAirportDestinationFragment : Fragment(), AirportAdapter.AirportInterfa
     override fun onItemClick(airport: Airport) {
         findNavController().previousBackStackEntry?.savedStateHandle?.set(
             "namaAirportDestination",
-            airport
+            airport.airportName
         )
         findNavController().navigateUp()
     }

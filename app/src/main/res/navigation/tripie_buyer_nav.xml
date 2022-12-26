@@ -52,6 +52,9 @@
         <action
             android:id="@+id/action_homeFragment_to_hasilSearchFragment"
             app:destination="@id/hasilSearchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_listPlaneClassFragment"
+            app:destination="@id/listPlaneClassFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -217,4 +220,9 @@
             android:id="@+id/action_hasilSearchFragment_to_bookingDetailFragment"
             app:destination="@id/bookingDetailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/listPlaneClassFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.home.ListPlaneClassFragment"
+        android:label="fragment_list_plane_class"
+        tools:layout="@layout/fragment_list_plane_class" />
 </navigation>

@@ -157,7 +157,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/edittext_border"
-                            android:padding="8dp" />
+                            android:padding="10dp"
+                            android:textAlignment="center"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:hint="Klik untuk pilih bandara asal"/>
 
                     </LinearLayout>
 
@@ -183,7 +187,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/edittext_border"
-                            android:padding="8dp" />
+                            android:padding="10dp"
+                            android:textAlignment="center"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:hint="Klik untuk pilih tujuan"/>
 
                     </LinearLayout>
 
@@ -211,7 +219,9 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/edittext_border"
                             android:drawableEnd="@drawable/ic_calendar"
-                            android:padding="8dp" />
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:padding="10dp" />
 
                     </LinearLayout>
 
@@ -298,13 +308,12 @@
                             android:textSize="16sp" />
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/etJumlahPenumpangRt"
+                            android:id="@+id/etJumlahPenumpang"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/edittext_border"
-                            android:enabled="false"
-                            android:padding="8dp"
                             android:inputType="number"
+                            android:padding="10dp"
                             android:textAlignment="center"
                             android:textColor="@color/soft_black" />
 
@@ -328,19 +337,17 @@
                             android:textColor="@color/soft_black"
                             android:textSize="16sp" />
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etPlaneClass"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Pilih kelas pesawat">
-
-                            <AutoCompleteTextView
-                                android:id="@+id/ActlistPlaneClass"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="8dp"/>
-
-                        </com.google.android.material.textfield.TextInputLayout>
+                            android:background="@drawable/edittext_border"
+                            android:padding="8dp"
+                            android:textAlignment="center"
+                            android:textColor="@color/soft_black"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:hint="Klik untuk pilih kelas pesawat"/>
 
 <!--                        <LinearLayout-->
 <!--                            android:layout_width="match_parent"-->
