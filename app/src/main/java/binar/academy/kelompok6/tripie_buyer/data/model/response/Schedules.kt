@@ -3,13 +3,9 @@ package binar.academy.kelompok6.tripie_buyer.data.model.response
 
 import com.google.gson.annotations.SerializedName
 
-data class Booking(
+data class Schedules(
     @SerializedName("id")
     val id: Int,
-    @SerializedName("user_id")
-    val userId: Int,
-    @SerializedName("schedule_id")
-    val scheduleId: Int,
     @SerializedName("origin_code")
     val originCode: String,
     @SerializedName("origin_name")
@@ -24,14 +20,8 @@ data class Booking(
     val destinationCity: String,
     @SerializedName("plane_class")
     val planeClass: String,
-    @SerializedName("total_passenger")
-    val totalPassenger: Int,
-    @SerializedName("flight_type")
-    val flightType: String,
     @SerializedName("flight_date")
     val flightDate: String,
-    @SerializedName("flight_back_date")
-    val flightBackDate: String,
     @SerializedName("airline_name")
     val airlineName: String,
     @SerializedName("departure_hour")
@@ -40,16 +30,8 @@ data class Booking(
     val arrivalHour: String,
     @SerializedName("price")
     val price: Int,
-    @SerializedName("passenger_name")
-    val passengerName: String,
-    @SerializedName("phone_number")
-    val phoneNumber: String,
     @SerializedName("createdAt")
     val createdAt: String,
     @SerializedName("updatedAt")
-    val updatedAt: String,
-    @SerializedName("users")
-    val users: Users,
-    @SerializedName("schedules")
-    val schedules: Schedules
+    val updatedAt: String
 )

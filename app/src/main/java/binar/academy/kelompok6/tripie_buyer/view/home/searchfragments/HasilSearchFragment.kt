@@ -1,25 +1,22 @@
-package binar.academy.kelompok6.tripie_buyer.view.home
+package binar.academy.kelompok6.tripie_buyer.view.home.searchfragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
 import binar.academy.kelompok6.tripie_buyer.data.model.SearchBundle
-import binar.academy.kelompok6.tripie_buyer.data.model.request.SearchTicketRequest
 import binar.academy.kelompok6.tripie_buyer.data.model.response.DataSearch
-import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentHasilSearchBinding
 import binar.academy.kelompok6.tripie_buyer.view.home.adapter.SearchHomeAdapter
-import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HasilSearchFragment : Fragment(), SearchHomeAdapter.HasilSearchInterface {
 
     private lateinit var binding: FragmentHasilSearchBinding
@@ -37,6 +34,10 @@ class HasilSearchFragment : Fragment(), SearchHomeAdapter.HasilSearchInterface {
 
         sharedPref = SharedPref(requireContext())
         val data = arguments?.getParcelable<SearchBundle>("searchResult") as SearchBundle
+
+        binding.btnBackHome.setOnClickListener {
+            findNavController().navigateUp()
+        }
 
         setDataHasilSearch(data)
         setTextHasilSearch()
@@ -81,8 +82,10 @@ class HasilSearchFragment : Fragment(), SearchHomeAdapter.HasilSearchInterface {
     }
 
     override fun onItemClick(dataHome: DataSearch) {
-        val action = HasilSearchFragmentDirections.actionHasilSearchFragmentToBookingDetailFragment(/*dataHome*/)
-        findNavController().navigate(action)
+        val bundle = Bundle()
+        bundle.putParcelable("dataBuatBooking", arguments?.getParcelable<SearchBundle>("searchResult"))
+
+        findNavController().navigate(R.id.action_hasilSearchFragment_to_bookingDetailFragment, bundle)
     }
 
 }

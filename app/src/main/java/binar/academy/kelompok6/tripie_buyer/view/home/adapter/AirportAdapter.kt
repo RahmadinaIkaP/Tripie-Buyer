@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import binar.academy.kelompok6.tripie_buyer.data.model.response.Airport
 import binar.academy.kelompok6.tripie_buyer.databinding.ItemAirportBinding
 
+
 class AirportAdapter(private val onClick : AirportInterface) : RecyclerView.Adapter<AirportAdapter.ViewHolder>(){
 
     private val differCallback = object : DiffUtil.ItemCallback<Airport>(){

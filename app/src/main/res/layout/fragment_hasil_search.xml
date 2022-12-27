@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.home.HasilSearchFragment">
+    tools:context=".view.home.searchfragments.HasilSearchFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/layoutSearch"
@@ -20,6 +20,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageButton
+                    android:id="@+id/btnBackHome"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginStart="25dp"

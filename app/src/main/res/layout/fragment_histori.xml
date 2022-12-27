@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:layout_margin="25dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,36 +10,42 @@
     <TextView
         android:id="@+id/headerBooking"
         android:layout_marginTop="20dp"
+        android:layout_marginStart="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="History Booking Ticket"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:textSize="28sp"
-        />
+        android:textSize="28sp" />
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/etSearchTiket"
-        android:layout_width="360dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/headerBooking"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+    <LinearLayout
+        android:id="@+id/layoutSearch"
         android:background="@drawable/custom_input"
-        android:drawableEnd="@drawable/search_normal"
-        android:drawablePadding="12dp"
-        android:ems="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:gravity="center"
         android:padding="10dp"
-        app:queryHint="Cari tiket ..."
-        app:iconifiedByDefault="false"
-        tools:ignore="Autofill,TextFields" />
+        android:layout_below="@+id/headerBooking">
+
+        <SearchView
+            android:id="@+id/etSearchTiket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="Cari tiket"
+            android:iconifiedByDefault="false"
+            tools:ignore="Autofill,TextFields" />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHistory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_below="@id/etSearchTiket"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/layoutSearch"
         tools:listitem="@layout/item_histori" />
 
 

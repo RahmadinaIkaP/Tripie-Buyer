@@ -1,4 +1,4 @@
-package binar.academy.kelompok6.tripie_buyer.view.home
+package binar.academy.kelompok6.tripie_buyer.view.home.searchfragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

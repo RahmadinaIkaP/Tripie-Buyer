@@ -5,5 +5,5 @@ import com.google.gson.annotations.SerializedName
 
 data class ResponseHistory(
     @SerializedName("data")
-    val dataBooking : DataBooking
+    val data: DataHistory
 )

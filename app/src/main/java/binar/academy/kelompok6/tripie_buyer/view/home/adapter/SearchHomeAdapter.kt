@@ -31,10 +31,12 @@ class SearchHomeAdapter(private val onClick: HasilSearchInterface) : RecyclerVie
 //            binding.destinasiData = dataHome
 
             binding.apply {
-                btnDetails.text = "Booking"
+                btnDetails.text = "Pilih"
 
                 tvKodeBandaraAsal.text = dataHome.originCode
                 tvKodeBandaraTujuan.text = dataHome.destinationCode
+                tvKotaBandaraAsal.text = dataHome.originCity
+                tvKotaBandaraTujuan.text = dataHome.destinationCity
                 tvJamBerangkat.text = dataHome.departureHour
                 tvJamPulang.text = dataHome.arrivalHour
                 tvHargatiket.text = "IDR ${dataHome.price}"

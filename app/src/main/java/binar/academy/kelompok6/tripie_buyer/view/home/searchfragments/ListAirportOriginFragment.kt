@@ -1,4 +1,4 @@
-package binar.academy.kelompok6.tripie_buyer.view.home
+package binar.academy.kelompok6.tripie_buyer.view.home.searchfragments
 
 import android.os.Bundle
 import android.util.Log
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
 import binar.academy.kelompok6.tripie_buyer.data.model.response.Airport
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
-import binar.academy.kelompok6.tripie_buyer.databinding.FragmentListAirportDestinationBinding
+import binar.academy.kelompok6.tripie_buyer.databinding.FragmentListAirportOriginBinding
 import binar.academy.kelompok6.tripie_buyer.view.home.adapter.AirportAdapter
 import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.AirportViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,8 +21,8 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ListAirportDestinationFragment : Fragment(), AirportAdapter.AirportInterface {
-    private var _binding : FragmentListAirportDestinationBinding? = null
+class ListAirportOriginFragment : Fragment(), AirportAdapter.AirportInterface {
+    private var _binding : FragmentListAirportOriginBinding? = null
     private val binding get() = _binding!!
     private val airportViewModel : AirportViewModel by viewModels()
     private lateinit var adapter : AirportAdapter
@@ -32,7 +32,7 @@ class ListAirportDestinationFragment : Fragment(), AirportAdapter.AirportInterfa
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentListAirportDestinationBinding.inflate(inflater, container, false)
+        _binding = FragmentListAirportOriginBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -73,8 +73,8 @@ class ListAirportDestinationFragment : Fragment(), AirportAdapter.AirportInterfa
         adapter.setData(sortedAirport)
 
         binding.apply {
-            rvListDestionationAirport.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            rvListDestionationAirport.adapter = adapter
+            rvListOriginAirport.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            rvListOriginAirport.adapter = adapter
         }
     }
 
@@ -93,10 +93,10 @@ class ListAirportDestinationFragment : Fragment(), AirportAdapter.AirportInterfa
 
     override fun onItemClick(airport: Airport) {
         GlobalScope.launch {
-            sharedPref.saveDataDestAirport(airport.airportCode, airport.city)
+            sharedPref.saveDataOriginAirport(airport.airportCode, airport.city)
         }
         findNavController().previousBackStackEntry?.savedStateHandle?.set(
-            "namaAirportDestination",
+            "namaAirportOrigin",
             airport.airportName
         )
         findNavController().navigateUp()
