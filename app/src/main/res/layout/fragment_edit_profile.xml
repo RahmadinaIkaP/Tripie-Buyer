@@ -178,6 +178,59 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_password"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@drawable/custom_input"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textEmailAddress"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeColor="@color/blue"
+                app:hintTextColor="@color/blue"
+                app:layout_constraintTop_toBottomOf="@+id/layout_notelp"
+                app:startIconDrawable="@drawable/ic_baseline_phone_24"
+                app:startIconTint="@color/blue">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editText_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_ConfirmPassword"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@drawable/custom_input"
+                android:ems="10"
+                android:hint="Ulangi Password"
+                android:inputType="textEmailAddress"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeColor="@color/blue"
+                app:hintTextColor="@color/blue"
+                app:layout_constraintTop_toBottomOf="@+id/layout_password"
+                app:startIconDrawable="@drawable/ic_baseline_phone_24"
+                app:startIconTint="@color/blue">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editText_ConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="match_parent"
@@ -195,7 +248,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Edit Data"
                 android:textColor="@color/white"
-                app:layout_constraintTop_toBottomOf="@+id/layout_notelp" />
+                app:layout_constraintTop_toBottomOf="@+id/layout_ConfirmPassword" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

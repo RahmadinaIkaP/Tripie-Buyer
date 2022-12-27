@@ -51,9 +51,9 @@ class ViewModelProfile @Inject constructor(private val api : ApiEndpoint) : View
         })
     }
 
-    fun updateProfile(id : Int, Address : String,Email : String,Foto : String, Name : String,Phone_Number : String){
+    fun updateProfile(id : Int, Address : String,Email : String, encryptedPassword : String,Foto : String, Name : String,Phone_Number : String){
         api.updateProfile(id,
-            UpdateProfileRequest(Address,Email,Foto,Name,Phone_Number)
+            UpdateProfileRequest(Address,Email, encryptedPassword,Foto,Name,Phone_Number)
         ).enqueue(object : Callback<ResponseUpdateProfile>{
             override fun onResponse(call: Call<ResponseUpdateProfile>, response: Response<ResponseUpdateProfile>) {
                 if(response.isSuccessful){
