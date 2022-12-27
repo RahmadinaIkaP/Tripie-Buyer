@@ -219,6 +219,10 @@
         <action
             android:id="@+id/action_hasilSearchFragment_to_bookingDetailFragment"
             app:destination="@id/bookingDetailFragment" />
+        <argument
+            android:name="dataHasilSearch"
+            app:argType="binar.academy.kelompok6.tripie_buyer.data.model.SearchBundle"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/listPlaneClassFragment"

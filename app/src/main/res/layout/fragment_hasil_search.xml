@@ -22,7 +22,7 @@
                 <ImageButton
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:background="@android:color/transparent"
                     android:src="@drawable/ic_baseline_arrow_back_24" />
 
@@ -107,9 +107,9 @@
 
                 <TextView
                     android:id="@+id/tvJumlahPenumpang"
-                    android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
                     android:text="1 Penumpang"
                     android:textColor="@color/black" />
 
@@ -138,16 +138,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/layoutSearch"
-        android:layout_marginHorizontal="15dp"
         android:layout_marginTop="15dp"
         tools:listitem="@layout/item_histori" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/layoutSearch"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginTop="15dp" />
 
 </RelativeLayout>

@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
+import binar.academy.kelompok6.tripie_buyer.data.model.SearchBundle
 import binar.academy.kelompok6.tripie_buyer.data.model.request.SearchTicketRequest
 import binar.academy.kelompok6.tripie_buyer.data.model.response.DataSearch
-import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseSearchTicket
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentHasilSearchBinding
 import binar.academy.kelompok6.tripie_buyer.view.home.adapter.SearchHomeAdapter
@@ -21,8 +23,9 @@ import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.HomeViewModel
 class HasilSearchFragment : Fragment(), SearchHomeAdapter.HasilSearchInterface {
 
     private lateinit var binding: FragmentHasilSearchBinding
-    private val homeVm : HomeViewModel by viewModels()
+//    private val homeVm : HomeViewModel by viewModels()
     private lateinit var adapter : SearchHomeAdapter
+    private lateinit var sharedPref: SharedPref
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHasilSearchBinding.inflate(inflater, container, false)
@@ -32,28 +35,38 @@ class HasilSearchFragment : Fragment(), SearchHomeAdapter.HasilSearchInterface {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val destinationName = arguments?.getString("destinationName")
-        val flightDate = arguments?.getString("flightDate")
-        val originName = arguments?.getString("originName")
-        val planeClass = arguments?.getString("planeClass")
+        sharedPref = SharedPref(requireContext())
+        val data = arguments?.getParcelable<SearchBundle>("searchResult") as SearchBundle
 
-        homeVm.searchData(SearchTicketRequest(destinationName!!, flightDate!!, originName!!, planeClass!!, 1))
+        setDataHasilSearch(data)
+        setTextHasilSearch()
+        showData(data.dataResponse.data)
+    }
 
-        homeVm.ambilLiveDataSearch().observe(viewLifecycleOwner){response->
-            when(response){
-                is ApiResponse.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
+    private fun setTextHasilSearch() {
+        binding.apply {
+            sharedPref.apply {
+                getOriginCode.asLiveData().observe(viewLifecycleOwner){
+                    tvBandaraAsal.text = it
                 }
-                is ApiResponse.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                    Toast.makeText(requireContext(), response.data!!.data.toString(), Toast.LENGTH_SHORT).show()
-                    response.data?.let { showData(response.data.data) }
+                getOriginCity.asLiveData().observe(viewLifecycleOwner){
+                    tvKotaAsal.text = it
                 }
-                is ApiResponse.Error -> {
-                    binding.progressBar.visibility = View.GONE
-                    Toast.makeText(requireContext(), response.msg, Toast.LENGTH_SHORT).show()
+                getDestCode.asLiveData().observe(viewLifecycleOwner){
+                    tvBandaraTujuan.text = it
+                }
+                getDestCity.asLiveData().observe(viewLifecycleOwner){
+                    tvKotaTujuan.text = it
                 }
             }
+        }
+    }
+
+    private fun setDataHasilSearch(data: SearchBundle) {
+        binding.apply {
+            tvTanggal.text = data.dataRequest.flightDate
+            tvJumlahPenumpang.text = "${data.dataRequest.totalPassenger} Penumpang"
+            tvKelas.text = data.dataRequest.planeClass
         }
     }
 

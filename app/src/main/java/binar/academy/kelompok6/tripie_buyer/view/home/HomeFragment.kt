@@ -1,6 +1,7 @@
 package binar.academy.kelompok6.tripie_buyer.view.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +11,18 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import binar.academy.kelompok6.tripie_buyer.R
+import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
+import binar.academy.kelompok6.tripie_buyer.data.model.SearchBundle
 import binar.academy.kelompok6.tripie_buyer.data.model.request.SearchTicketRequest
+import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseSearchTicket
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentHomeBinding
 import binar.academy.kelompok6.tripie_buyer.view.home.adapter.PopularDestinationAdapter
 import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.HomeViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -26,8 +32,9 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val homeVm : HomeViewModel by viewModels()
+    private lateinit var sharedPref: SharedPref
     private lateinit var adapter : PopularDestinationAdapter
-    private lateinit var flightType : String
+    private var flightType = "One Way Trip"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
     : View {
@@ -38,30 +45,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        flightType = "One Way Trip"
+        sharedPref = SharedPref(requireContext())
 
         binding.apply {
-            editTextDari.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_listAirportOriginFragment)
-            }
-
-            getNameOriginAirport()
-
-            editTextKe.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_listAirportDestinationFragment)
-            }
-
-            getNameDestinationAirport()
-
-            etDepartureDateOw.setOnClickListener {
-                getDateFromDatePickerOneway()
-            }
-
-            etPlaneClass.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_listPlaneClassFragment)
-            }
-
-            getPlaneClass()
 
             btnOneWay.setOnClickListener {
                 linearLayout7.visibility = View.VISIBLE
@@ -83,6 +69,28 @@ class HomeFragment : Fragment() {
                 flightType = "Round Trip"
             }
 
+            editTextDari.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_listAirportOriginFragment)
+            }
+
+            getNameOriginAirport(flightType)
+
+            editTextKe.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_listAirportDestinationFragment)
+            }
+
+            getNameDestinationAirport(flightType)
+
+            etDepartureDateOw.setOnClickListener {
+                getDateFromDatePickerOneway()
+            }
+
+            etPlaneClass.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_listPlaneClassFragment)
+            }
+
+            getPlaneClass(flightType)
+
             etDepartureDateRt.setOnClickListener {
                 getDateFromDatePickerRtDeparture()
             }
@@ -97,26 +105,50 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun getNameOriginAirport() {
+    private fun getNameOriginAirport(checkTypeOw: String) {
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(
             "namaAirportOrigin"
         )?.observe(viewLifecycleOwner) { name ->
+
+            if (checkTypeOw == "One Way Trip"){
+                binding.linearLayout7.visibility = View.VISIBLE
+                binding.linearLayout8.visibility = View.GONE
+            }else if (checkTypeOw == "Round Trip"){
+                binding.linearLayout7.visibility = View.GONE
+                binding.linearLayout8.visibility = View.VISIBLE
+            }
             binding.editTextDari.setText(name)
         }
     }
 
-    private fun getNameDestinationAirport() {
+    private fun getNameDestinationAirport(checkTypeOw: String) {
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(
             "namaAirportDestination"
         )?.observe(viewLifecycleOwner) { name ->
+
+            if (checkTypeOw == "One Way Trip"){
+                binding.linearLayout7.visibility = View.VISIBLE
+                binding.linearLayout8.visibility = View.GONE
+            }else if (checkTypeOw == "Round Trip"){
+                binding.linearLayout7.visibility = View.GONE
+                binding.linearLayout8.visibility = View.VISIBLE
+            }
             binding.editTextKe.setText(name)
         }
     }
 
-    private fun getPlaneClass() {
+    private fun getPlaneClass(checkTypeOw: String) {
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(
             "planeClassName"
         )?.observe(viewLifecycleOwner){
+
+            if (checkTypeOw == "One Way Trip"){
+                binding.linearLayout7.visibility = View.VISIBLE
+                binding.linearLayout8.visibility = View.GONE
+            }else if (checkTypeOw == "Round Trip"){
+                binding.linearLayout7.visibility = View.GONE
+                binding.linearLayout8.visibility = View.VISIBLE
+            }
             binding.etPlaneClass.setText(it)
         }
     }
@@ -186,21 +218,67 @@ class HomeFragment : Fragment() {
             )
         }
 
-        homeVm.ambilLiveDataSearch().observe(viewLifecycleOwner){response->
+        homeVm.ambilLiveDataSearch().observe(viewLifecycleOwner){ response->
             when(response){
                 is ApiResponse.Loading -> {
                     binding.progressbar.visibility = View.VISIBLE
+                    Log.d("Loading: ", response.toString())
                 }
                 is ApiResponse.Success -> {
                     binding.progressbar.visibility = View.GONE
-//                    response.data?.let {  }
+                    response.data?.let {
+                        Log.d("flightType: ", checkTypeOw)
+                        saveDataPref(binding.etJumlahPenumpang.text.toString().toInt(), checkTypeOw)
+                        saveBundle(checkTypeOw, it)
+                    }
                     Toast.makeText(requireContext(), response.toString(), Toast.LENGTH_SHORT).show()
+                    Log.d("Success: ", response.toString())
                 }
                 is ApiResponse.Error -> {
                     binding.progressbar.visibility = View.GONE
                     Toast.makeText(requireContext(), response.msg, Toast.LENGTH_SHORT).show()
+                    Log.d("Error: ", response.toString())
+                    Log.d("flightType: ", checkTypeOw)
                 }
             }
+        }
+    }
+
+    private fun saveBundle(checkTypeOw: String, responseSearchTicket: ResponseSearchTicket) {
+        val bundle = Bundle()
+        if (checkTypeOw == "One Way Trip"){
+            bundle.putParcelable("searchResult", SearchBundle(
+                dataRequest = SearchTicketRequest(
+                    originName = binding.editTextDari.text.toString(),
+                    destinationName = binding.editTextKe.text.toString(),
+                    planeClass = binding.etPlaneClass.text.toString(),
+                    flightDate = binding.etDepartureDateOw.text.toString(),
+                    totalPassenger = binding.etJumlahPenumpang.text.toString().toInt()
+                ),
+                dataResponse = responseSearchTicket,
+                flight_back_date = "00-00-0000",
+                flight_type = "One Way Trip"
+            ))
+        }else if (checkTypeOw == "Round Trip"){
+            bundle.putParcelable("searchResult", SearchBundle(
+                dataRequest = SearchTicketRequest(
+                    originName = binding.editTextDari.text.toString(),
+                    destinationName = binding.editTextKe.text.toString(),
+                    planeClass = binding.etPlaneClass.text.toString(),
+                    flightDate = binding.etDepartureDateOw.text.toString(),
+                    totalPassenger = binding.etJumlahPenumpang.text.toString().toInt()
+                ),
+                dataResponse = responseSearchTicket,
+                flight_back_date = binding.etArriveDateRt.text.toString(),
+                flight_type = "One Way Trip"
+            ))
+        }
+        findNavController().navigate(R.id.action_homeFragment_to_hasilSearchFragment, bundle)
+    }
+
+    private fun saveDataPref(tpass: Int, checkTypeOw: String) {
+        GlobalScope.launch {
+            sharedPref.saveSearch(tpass, checkTypeOw)
         }
     }
 

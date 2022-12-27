@@ -10,12 +10,15 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
 import binar.academy.kelompok6.tripie_buyer.data.model.response.Airport
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentListAirportDestinationBinding
 import binar.academy.kelompok6.tripie_buyer.view.home.adapter.AirportAdapter
 import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.AirportViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ListAirportDestinationFragment : Fragment(), AirportAdapter.AirportInterface {
@@ -23,6 +26,7 @@ class ListAirportDestinationFragment : Fragment(), AirportAdapter.AirportInterfa
     private val binding get() = _binding!!
     private val airportViewModel : AirportViewModel by viewModels()
     private lateinit var adapter : AirportAdapter
+    private lateinit var sharedPref: SharedPref
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +39,7 @@ class ListAirportDestinationFragment : Fragment(), AirportAdapter.AirportInterfa
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        sharedPref = SharedPref(requireContext())
         setFlightDataAirport()
     }
 
@@ -87,6 +92,9 @@ class ListAirportDestinationFragment : Fragment(), AirportAdapter.AirportInterfa
     }
 
     override fun onItemClick(airport: Airport) {
+        GlobalScope.launch {
+            sharedPref.saveDataDestAirport(airport.airportCode, airport.city)
+        }
         findNavController().previousBackStackEntry?.savedStateHandle?.set(
             "namaAirportDestination",
             airport.airportName

@@ -15,8 +15,8 @@ class HistoryAdapter(var listHistory: List<Booking>) : RecyclerView.Adapter<Hist
 
     class HistoryViewHolder(val binding : ItemHistoriBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(booking: Booking) {
-            binding.tvBandaraAsal.text = booking.originAirport
-            binding.tvBandaraTujuan.text = booking.destinationAirport
+            binding.tvKodeBandaraAsal.text = booking.originAirport
+            binding.tvKodeBandaraTujuan.text = booking.destinationAirport
         }
     }
 
@@ -34,8 +34,8 @@ class HistoryAdapter(var listHistory: List<Booking>) : RecyclerView.Adapter<Hist
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        holder.binding.tvBandaraAsal.text = listHistory[position].originAirport
-        holder.binding.tvBandaraTujuan.text = listHistory[position].destinationAirport
+        holder.binding.tvKodeBandaraAsal.text = listHistory[position].originAirport
+        holder.binding.tvKodeBandaraTujuan.text = listHistory[position].destinationAirport
 
         holder.binding.btnDetails.setOnClickListener {
             val bundle = Bundle()
