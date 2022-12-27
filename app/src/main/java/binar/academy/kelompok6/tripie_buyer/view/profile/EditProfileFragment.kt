@@ -50,14 +50,7 @@ class EditProfileFragment : Fragment() {
         binding.editTextAlamat.setText(address)
         Glide.with(this).load(gambar).into(binding.ivProfile)
 
-
         binding.btnUbahData.setOnClickListener{
-//            var token = sharedPref.getToken.asLiveData().value
-//            var id = arguments?.getInt("id")
-//            var name = binding.editTextNama.text.toString()
-//            var email = binding.editTextEmail.text.toString()
-//            var phone = binding.editTextNotelp.text.toString()
-//            var address = binding.editTextAlamat.text.toString()
             var id = arguments?.getInt("id",0)
             var name = binding.editTextNama.text.toString()
             var email = binding.editTextEmail.text.toString()
@@ -67,8 +60,13 @@ class EditProfileFragment : Fragment() {
             var confirmPassword = binding.editTextConfirmPassword.text.toString()
             var foto = "https://asset.kompas.com/crops/EGMctjIuF5J2LA8UR-dpVUGsGMQ=/0x0:590x393/750x500/data/photo/2022/02/25/62185810cdf80.jpg"
 
-            ubahData(id.toString().toInt(), address, email, confirmPassword, foto, name, phone)
-//            viewModel.updateProfile(id.toString().toInt(), address, email, confirmPassword,foto,name, phone)
+            if (binding.editTextNama.text.toString().isEmpty() || binding.editTextEmail.text.toString().isEmpty() || binding.editTextNotelp.text.toString().isEmpty() || binding.editTextAlamat.text.toString().isEmpty() || binding.editTextPassword.text.toString().isEmpty() || binding.editTextConfirmPassword.text.toString().isEmpty()){
+                Toast.makeText(requireContext(), "Data tidak boleh kosong", Toast.LENGTH_SHORT).show()
+            } else if (binding.editTextPassword.text.toString() != binding.editTextConfirmPassword.text.toString()){
+                Toast.makeText(requireContext(), "Password tidak sama", Toast.LENGTH_SHORT).show()
+            } else {
+                ubahData(id.toString().toInt(), address, email, confirmPassword, foto, name, phone)
+            }
         }
     }
 
@@ -77,13 +75,16 @@ class EditProfileFragment : Fragment() {
         viewModel.updateLiveDataProfile().observe(viewLifecycleOwner){ response ->
             when(response){
                 is ApiResponse.Loading -> {
+                    Toast.makeText(context, "Logout berhasil", Toast.LENGTH_SHORT).show()
                     Log.d("Loading: ", response.toString())
                 }
                 is ApiResponse.Success -> {
+                    Toast.makeText(context, "Edit Data berhasil", Toast.LENGTH_SHORT).show()
                     Log.d("Success: ", response.toString())
                     findNavController().navigate(R.id.action_editProfileFragment_to_profileFragment)
                 }
                 is ApiResponse.Error -> {
+                    Toast.makeText(context, "Error, Ubah Data Gagal!", Toast.LENGTH_SHORT).show()
                     Log.d("Error: ", response.toString())
                     Toast.makeText(requireContext(), response.msg, Toast.LENGTH_SHORT).show()
                 }
