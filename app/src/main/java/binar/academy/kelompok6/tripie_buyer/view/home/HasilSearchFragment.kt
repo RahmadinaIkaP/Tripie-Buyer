@@ -71,5 +71,4 @@ class HasilSearchFragment : Fragment(), SearchHomeAdapter.HasilSearchInterface {
         val action = HasilSearchFragmentDirections.actionHasilSearchFragmentToBookingDetailFragment(/*dataHome*/)
         findNavController().navigate(action)
     }
-
 }
