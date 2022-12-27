@@ -5,18 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import binar.academy.kelompok6.tripie_buyer.data.model.response.Airport
+import binar.academy.kelompok6.tripie_buyer.data.model.PlaneClass
 import binar.academy.kelompok6.tripie_buyer.databinding.ItemAirportBinding
 
+class PlaneClassAdapter(private val onClick : PlaneClassInterface) : RecyclerView.Adapter<PlaneClassAdapter.ViewHolder>() {
 
-class AirportAdapter(private val onClick : AirportInterface) : RecyclerView.Adapter<AirportAdapter.ViewHolder>(){
-
-    private val differCallback = object : DiffUtil.ItemCallback<Airport>(){
-        override fun areItemsTheSame(oldItem: Airport, newItem: Airport): Boolean {
-            return oldItem.id == newItem.id
+    private val differCallback = object : DiffUtil.ItemCallback<PlaneClass>(){
+        override fun areItemsTheSame(oldItem: PlaneClass, newItem: PlaneClass): Boolean {
+            return oldItem.kelasPesawat == newItem.kelasPesawat
         }
 
-        override fun areContentsTheSame(oldItem: Airport, newItem: Airport): Boolean {
+        override fun areContentsTheSame(oldItem: PlaneClass, newItem: PlaneClass): Boolean {
             return oldItem == newItem
         }
 
@@ -25,18 +24,18 @@ class AirportAdapter(private val onClick : AirportInterface) : RecyclerView.Adap
     private val differ = AsyncListDiffer(this, differCallback)
 
     inner class ViewHolder(private val binding : ItemAirportBinding) :
-        RecyclerView.ViewHolder(binding.root){
-            fun bind(airport: Airport){
-                binding.tvAirport.text = airport.airportName
+        RecyclerView.ViewHolder(binding.root) {
+            fun bind(planeClass: PlaneClass){
+                binding.tvAirport.text = planeClass.kelasPesawat
 
                 itemView.setOnClickListener {
-                    onClick.onItemClick(airport)
+                    onClick.onItemClick(planeClass)
                 }
             }
     }
 
-    interface AirportInterface {
-        fun onItemClick(airport: Airport)
+    interface PlaneClassInterface {
+        fun onItemClick(planeClass: PlaneClass)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -51,7 +50,7 @@ class AirportAdapter(private val onClick : AirportInterface) : RecyclerView.Adap
 
     override fun getItemCount(): Int = differ.currentList.size
 
-    fun setData(data : List<Airport>){
+    fun setData(data : List<PlaneClass>){
         differ.submitList(data)
     }
 }

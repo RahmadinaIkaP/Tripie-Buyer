@@ -52,9 +52,6 @@
         <action
             android:id="@+id/action_homeFragment_to_hasilSearchFragment"
             app:destination="@id/hasilSearchFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_notificationFragment"
-            app:destination="@id/notificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -219,14 +216,5 @@
         <action
             android:id="@+id/action_hasilSearchFragment_to_bookingDetailFragment"
             app:destination="@id/bookingDetailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/notificationFragment"
-        android:name="binar.academy.kelompok6.tripie_buyer.view.notifikasi.NotificationFragment"
-        android:label="fragment_notification"
-        tools:layout="@layout/fragment_notification" >
-        <action
-            android:id="@+id/action_notificationFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

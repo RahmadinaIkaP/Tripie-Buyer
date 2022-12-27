@@ -14,25 +14,38 @@
 
         <ImageView
             android:id="@+id/imageView_logotripie"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="35dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/tripie_logo"
             app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/tripie_logo" />
 
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/HeaderText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_logotripie" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout_email"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="Email"
+            android:layout_marginTop="8dp"
             android:ems="10"
+            android:hint="Email"
             android:inputType="textEmailAddress"
             app:boxBackgroundColor="@color/white"
             app:boxStrokeColor="@color/grey"
-            app:layout_constraintTop_toBottomOf="@+id/imageView_logotripie">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editText_email"
@@ -82,37 +95,114 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_pass" />
 
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnMasuk">
+
+            <View
+                android:layout_width="100dp"
+                android:layout_height="2dp"
+                android:background="#C1C1C1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="Atau login dengan"
+                android:textColor="@color/grey"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="100dp"
+                android:layout_height="2dp"
+                android:background="#C1C1C1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnLoginWithGoogle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/button_bordered"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/google_logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Google"
+                android:textColor="@color/grey"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btnToRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins"
+            android:text="Belum punya akun?"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnLoginWithGoogle" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBuatAkun"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="Buat Akun"
             android:textColor="@color/black"
-            app:strokeColor="@color/blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnMasuk" />
+            app:layout_constraintTop_toBottomOf="@+id/btnToRegister"
+            app:strokeColor="@color/blue" />
 
         <ProgressBar
             android:id="@+id/progressBar"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/imageButton"
-            app:layout_constraintTop_toBottomOf="@+id/btnMasuk" />
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/white"
-            android:src="@drawable/logo_google"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/imageButton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:backgroundTint="@color/white"-->
+<!--            android:src="@drawable/logo_google"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent" />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

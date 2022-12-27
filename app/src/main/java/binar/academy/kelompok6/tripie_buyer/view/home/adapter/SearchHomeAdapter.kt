@@ -16,7 +16,7 @@ class SearchHomeAdapter(private val onClick: HasilSearchInterface) : RecyclerVie
 
     private val differCallback = object : DiffUtil.ItemCallback<DataSearch>(){
         override fun areItemsTheSame(oldItem: DataSearch, newItem: DataSearch): Boolean {
-            return oldItem.originCode == newItem.originCode
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: DataSearch, newItem: DataSearch): Boolean {
@@ -30,16 +30,23 @@ class SearchHomeAdapter(private val onClick: HasilSearchInterface) : RecyclerVie
         fun bind(dataHome: DataSearch){
 //            binding.destinasiData = dataHome
 
-            binding.btnDetails.setText("Booking")
-            binding.tvBandaraAsal.setText("Bandara Juanda")
-            binding.tvBandaraTujuan.setText("Bandara Soekarno-Hatta")
-            binding.tvJamBerangkat.setText("07:00 AM")
-            binding.tvJamPulang.setText("12:00 AM")
-            binding.tvHargatiket.setText("Rp1.000.000")
+            binding.apply {
+                btnDetails.text = "Pilih"
 
-            itemView.setOnClickListener {
-                onClick.onItemClick(dataHome)
+                tvKodeBandaraAsal.text = dataHome.originCode
+                tvKodeBandaraTujuan.text = dataHome.destinationCode
+                tvKotaBandaraAsal.text = dataHome.originCity
+                tvKotaBandaraTujuan.text = dataHome.destinationCity
+                tvJamBerangkat.text = dataHome.departureHour
+                tvJamPulang.text = dataHome.arrivalHour
+                tvHargatiket.text = "IDR ${dataHome.price}"
+
+                btnDetails.setOnClickListener {
+                    onClick.onItemClick(dataHome)
+                }
             }
+
+
         }
     }
 

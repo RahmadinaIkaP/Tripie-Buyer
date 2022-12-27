@@ -3,7 +3,7 @@ package binar.academy.kelompok6.tripie_buyer.data.model.response
 
 import com.google.gson.annotations.SerializedName
 
-data class Booking(
+data class DataBookingTicket(
     @SerializedName("id")
     val id: Int,
     @SerializedName("user_id")
@@ -44,12 +44,8 @@ data class Booking(
     val passengerName: String,
     @SerializedName("phone_number")
     val phoneNumber: String,
-    @SerializedName("createdAt")
-    val createdAt: String,
     @SerializedName("updatedAt")
     val updatedAt: String,
-    @SerializedName("users")
-    val users: Users,
-    @SerializedName("schedules")
-    val schedules: Schedules
+    @SerializedName("createdAt")
+    val createdAt: String
 )

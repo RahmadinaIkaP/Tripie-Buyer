@@ -1,9 +1,6 @@
 package binar.academy.kelompok6.tripie_buyer.data.network
 
-import binar.academy.kelompok6.tripie_buyer.data.model.request.LoginRequest
-import binar.academy.kelompok6.tripie_buyer.data.model.request.RegisterRequest
-import binar.academy.kelompok6.tripie_buyer.data.model.request.SearchTicketRequest
-import binar.academy.kelompok6.tripie_buyer.data.model.request.UpdateProfileRequest
+import binar.academy.kelompok6.tripie_buyer.data.model.request.*
 import binar.academy.kelompok6.tripie_buyer.data.model.response.*
 import retrofit2.Call
 import retrofit2.http.Body
@@ -34,5 +31,8 @@ interface ApiEndpoint {
 
     @GET("get-airport")
     fun getAirport() : Call<AirportResponse>
+
+    @POST("booking-ticket")
+    fun bookingTicket(@Body bookingTicketRequest: BookingTicketRequest) : Call<ResponseBookingTicket>
 
 }

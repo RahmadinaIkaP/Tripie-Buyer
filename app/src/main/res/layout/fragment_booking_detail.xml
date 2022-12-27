@@ -8,7 +8,7 @@
     tools:context=".view.booking.BookingDetailFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/btn_back"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
@@ -21,6 +21,7 @@
             android:layout_height="wrap_content">
 
             <ImageButton
+                android:id="@+id/btnBacktoResult"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginLeft="25dp"
@@ -50,7 +51,7 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_back"
+        android:layout_below="@id/toolbar"
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
@@ -203,30 +204,35 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:paddingStart="10dp"
-                    android:layout_centerVertical="true"
                     android:id="@+id/subTextTotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_centerVertical="true"
                     android:text="Total : "
                     android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textSize="15sp"/>
 
                 <TextView
-                    android:layout_centerVertical="true"
+                    android:id="@+id/tvHargaTiket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/subTextTotal"
                     android:text="Rp. 1.152.580"
                     android:textColor="#FD5B1F"
                     android:textStyle="bold"
-                    android:layout_toEndOf="@id/subTextTotal" />
+                    android:textSize="15sp"/>
 
                 <Button
+                    android:id="@+id/btnBookingTiket"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:text="Bayar"
                     android:layout_gravity="end"
-                    android:layout_marginEnd="25dp"/>
+                    android:layout_marginEnd="25dp"
+                    android:text="Booking" />
+
             </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -234,17 +240,12 @@
 
     </RelativeLayout>
 
-
-
-
-
-
-
-
-
-
-
-
-
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>
