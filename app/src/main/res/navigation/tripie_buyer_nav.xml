@@ -87,7 +87,7 @@
         <action
             android:id="@+id/action_whistlistFragment_to_detailWishlistFragment"
             app:destination="@id/detailWishlistFragment" />
-    </fragment>
+        </fragment>
     <fragment
         android:id="@+id/detailHistoriFragment"
         android:name="binar.academy.kelompok6.tripie_buyer.view.histori.DetailHistoriFragment"
@@ -197,24 +197,37 @@
         android:id="@+id/bookingDetailFragment"
         android:name="binar.academy.kelompok6.tripie_buyer.view.booking.BookingDetailFragment"
         android:label="fragment_booking_detail"
-        tools:layout="@layout/fragment_booking_detail" />
+        tools:layout="@layout/fragment_booking_detail" >
+        <action
+            android:id="@+id/action_bookingDetailFragment_to_bookingSuccessFragment"
+            app:destination="@id/bookingSuccessFragment" />
+    </fragment>
     <fragment
         android:id="@+id/listAirportDestinationFragment"
-        android:name="binar.academy.kelompok6.tripie_buyer.view.home.ListAirportDestinationFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.home.searchfragments.ListAirportDestinationFragment"
         android:label="fragment_list_airport_destination"
         tools:layout="@layout/fragment_list_airport_destination" />
     <fragment
         android:id="@+id/listAirportOriginFragment"
-        android:name="binar.academy.kelompok6.tripie_buyer.view.home.ListAirportOriginFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.home.searchfragments.ListAirportOriginFragment"
         android:label="fragment_list_airport_origin"
         tools:layout="@layout/fragment_list_airport_origin" />
     <fragment
         android:id="@+id/hasilSearchFragment"
-        android:name="binar.academy.kelompok6.tripie_buyer.view.home.HasilSearchFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.home.searchfragments.HasilSearchFragment"
         android:label="fragment_hasil_search"
         tools:layout="@layout/fragment_hasil_search" >
         <action
             android:id="@+id/action_hasilSearchFragment_to_bookingDetailFragment"
             app:destination="@id/bookingDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookingSuccessFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.booking.BookingSuccessFragment"
+        android:label="fragment_booking_success"
+        tools:layout="@layout/fragment_booking_success" >
+        <action
+            android:id="@+id/action_bookingSuccessFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

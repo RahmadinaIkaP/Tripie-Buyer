@@ -28,6 +28,7 @@
         <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/activity_main.xml" value="0.10364583333333334" />
         <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_booking_detail.xml" value="0.11231884057971014" />
         <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_booking_payment.xml" value="0.11231884057971014" />
+        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_booking_success.xml" value="0.2" />
         <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_detail_histori.xml" value="0.10834088848594742" />
         <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_detail_wishlist.xml" value="0.25" />
         <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_edit_profile.xml" value="0.16417272338606242" />
@@ -35,6 +36,7 @@
         <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_hasil_search.xml" value="0.25" />
         <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_histori.xml" value="0.1082427536231884" />
         <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_home.xml" value="0.2" />
+        <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_list_airport_destination.xml" value="0.10208333333333333" />
         <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_login.xml" value="0.10869565217391304" />
         <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_notification.xml" value="0.2" />
         <entry key="..\:/Users/aghni/AndroidStudioProjects/Tripie-Buyer/app/src/main/res/layout/fragment_onboarding.xml" value="0.25" />

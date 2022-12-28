@@ -10,18 +10,17 @@ abstract class FavoritDatabase : RoomDatabase() {
 
     abstract fun favoritDao() : FavoritDAO
 
-    companion object{
-        private var INSTANCE : FavoritDatabase? = null
-
-        fun getInstance(context : Context):FavoritDatabase? {
-            if (INSTANCE == null){
-                synchronized(FavoritDatabase::class){
-                    INSTANCE = Room.databaseBuilder(context.applicationContext,
-                        FavoritDatabase::class.java,"TripieFavApp.db").build()
-                }
-            }
-            return INSTANCE
-        }
-
-    }
+//    companion object{
+//        private var INSTANCE : FavoritDatabase? = null
+//
+//        fun getInstance(context : Context):FavoritDatabase? {
+//            if (INSTANCE == null){
+//                synchronized(FavoritDatabase::class){
+//                    INSTANCE = Room.databaseBuilder(context.applicationContext,
+//                        FavoritDatabase::class.java,"TripieFavApp.db").build()
+//                }
+//            }
+//            return INSTANCE
+//        }
+//    }
 }

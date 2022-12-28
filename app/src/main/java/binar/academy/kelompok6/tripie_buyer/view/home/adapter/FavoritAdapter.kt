@@ -32,7 +32,7 @@ class FavoritAdapter(private val onClick : FavoritInterface) : RecyclerView.Adap
         fun bind(favorit: Favorit){
             binding.txtNamaBandara.text = favorit.airportName
             binding.txtLokasiBandara.text = favorit.city
-            Glide.with(this.itemView.context).load(favorit.foto).into(binding.imageView2)
+            Glide.with(itemView).load(favorit.foto).into(binding.imageView2)
 
             itemView.setOnClickListener {
                 onClick.onItemClick(favorit)

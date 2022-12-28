@@ -2,6 +2,7 @@ package binar.academy.kelompok6.tripie_buyer.view.home.adapter
 
 import android.app.Application
 import android.content.Context
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
@@ -64,7 +65,7 @@ class PopularDestinationAdapter (private val onClick : PopularInterface, private
     }
 
     private var dbFav : FavoritDatabase? = null
-    private var isClicked = false
+    private lateinit var isClicked : Array<Boolean> /*= false*/
     lateinit var sharedPref: SharedPref
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -72,10 +73,12 @@ class PopularDestinationAdapter (private val onClick : PopularInterface, private
 
         sharedPref = SharedPref(context)
 
+        isClicked = Array(differ.currentList.size, {false})
+
         GlobalScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main){
-                val count = vmFav.cekFav(differ.currentList[position].id)
-                isClicked = if (count > 0){
+                var count = vmFav.cekFav(differ.currentList[position].id)
+                isClicked[position] = if (count > 0){
                     holder.binding.btnFavorit.setImageResource(R.drawable.ic_favorite)
                     true
                 }else{
@@ -85,28 +88,27 @@ class PopularDestinationAdapter (private val onClick : PopularInterface, private
             }
         }
 
-        holder.binding.btnFavorit.setOnClickListener {
-            dbFav = FavoritDatabase.getInstance(it.context)
-
-            var data = Favorit(id = 0,
-                airportCode = differ.currentList[position].airportCode,
-                airportName = differ.currentList[position].airportName,
-                city = differ.currentList[position].city,
-                description = differ.currentList[position].description,
-                foto = differ.currentList[position].foto)
-
-            isClicked = !isClicked
-
-            if (sharedPref.getIdUser != null){
-                vmFav.insertFav(data)
-                holder.binding.btnFavorit.setImageResource(R.drawable.ic_favorite)
-            }
-
-            else{
-                vmFav.deleteFav(data)
-                holder.binding.btnFavorit.setImageResource(R.drawable.ic_unfavorite)
-            }
-        }
+//        holder.binding.btnFavorit.setOnClickListener {
+//            dbFav = FavoritDatabase.getInstance(it.context)
+//
+//            isClicked[position] = !isClicked[position]
+//
+//            var data = Favorit(id = 0,
+//                airportCode = differ.currentList[position].airportCode,
+//                airportName = differ.currentList[position].airportName,
+//                city = differ.currentList[position].city,
+//                description = differ.currentList[position].description,
+//                foto = differ.currentList[position].foto)
+//
+//            if (isClicked[position]){
+//                vmFav.insertFav(data)
+//                holder.binding.btnFavorit.setImageResource(R.drawable.ic_favorite)
+//            }
+//            else{
+//                vmFav.deleteFav(data)
+//                holder.binding.btnFavorit.setImageResource(R.drawable.ic_unfavorite)
+//            }
+//        }
     }
 
     override fun getItemCount(): Int = differ.currentList.size

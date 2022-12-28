@@ -6,19 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.room.Favorit
-import binar.academy.kelompok6.tripie_buyer.databinding.FragmentHomeBinding
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentWhistlistBinding
 import binar.academy.kelompok6.tripie_buyer.view.home.adapter.FavoritAdapter
-import binar.academy.kelompok6.tripie_buyer.view.home.adapter.PopularDestinationAdapter
 import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.FavoritViewModel
-import binar.academy.kelompok6.tripie_buyer.view.profile.viewmodel.ViewModelProfile
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WhistlistFragment : Fragment(), FavoritAdapter.FavoritInterface  {
 
     private val vmFav : FavoritViewModel by viewModels()
@@ -34,21 +31,28 @@ class WhistlistFragment : Fragment(), FavoritAdapter.FavoritInterface  {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = FavoritAdapter(this)
-        vmFav.getAllFavObserver().observe(viewLifecycleOwner) {
-            adapter.setData(it as ArrayList<Favorit>)
-        }
-
-        binding.apply {
-            rvFavorit.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            rvFavorit.adapter = adapter
-        }
+        showDataFavorit()
 
     }
 
+    private fun showDataFavorit() {
+        adapter = FavoritAdapter(this)
+
+        binding.apply {
+            vmFav.getAllFav()
+            vmFav.getAllFavObserver().observe(viewLifecycleOwner){
+                adapter.setData(it)
+            }
+
+            rvFavorit.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            rvFavorit.adapter = adapter
+        }
+    }
+
     override fun onItemClick(favorit: Favorit) {
-        val action = WhistlistFragmentDirections.actionWhistlistFragmentToDetailWishlistFragment()
-        findNavController().navigate(action)
+        val bundle = Bundle()
+        bundle.putParcelable("dataWishlist", favorit)
+        findNavController().navigate(R.id.action_whistlistFragment_to_detailWishlistFragment, bundle)
     }
 
 }

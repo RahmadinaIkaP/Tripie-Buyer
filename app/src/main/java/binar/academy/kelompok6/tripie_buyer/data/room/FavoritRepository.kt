@@ -4,11 +4,13 @@ import javax.inject.Inject
 
 class FavoritRepository @Inject constructor(private val favDAO: FavoritDAO){
 
-    fun getAllFav() : List<Favorit> = favDAO.getData()
+    suspend fun getAllFav() : List<Favorit> = favDAO.getData()
 
-    fun cekFav(id : Int) = favDAO.checkFav(id)
+    suspend fun cekFav(id : Int) = favDAO.checkFav(id)
 
-    fun insertFav(favorit: Favorit) = favDAO.insertFav(favorit)
+    suspend fun getFav(id : Int) = favDAO.getFav(id)
 
-    fun deleteFav(favorit: Favorit) = favDAO.deleteFav(favorit)
+    suspend fun insertFav(favorit: Favorit) = favDAO.insertFav(favorit)
+
+    suspend fun deleteFav(favorit: Favorit) = favDAO.deleteFav(favorit)
 }

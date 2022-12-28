@@ -1,6 +1,7 @@
 package binar.academy.kelompok6.tripie_buyer.view.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,10 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import binar.academy.kelompok6.tripie_buyer.R
+import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
+import binar.academy.kelompok6.tripie_buyer.data.model.response.Airport
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentHomeBinding
 import binar.academy.kelompok6.tripie_buyer.view.home.adapter.PopularDestinationAdapter
@@ -23,7 +27,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -32,6 +36,7 @@ class HomeFragment : Fragment() {
     private val vmFav : FavoritViewModel by viewModels()
     private lateinit var adapter : PopularDestinationAdapter
     private var flightType = "One Way Trip"
+    private lateinit var sharedPref: SharedPref
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
     : View {
@@ -41,6 +46,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setDestinasiPopuler()
 
         binding.apply {
             editTextDari.setOnClickListener {
@@ -59,7 +66,7 @@ class HomeFragment : Fragment() {
             val planeClassAdapter = ArrayAdapter(requireContext(),
                 com.google.android.material.R.layout.support_simple_spinner_dropdown_item, listPlaneClass)
 
-            ActlistPlaneClass.setAdapter(planeClassAdapter)
+//            ActlistPlaneClass.setAdapter(planeClassAdapter)
 
             btnOneWay.setOnClickListener {
                 linearLayout7.visibility = View.VISIBLE
@@ -171,14 +178,44 @@ class HomeFragment : Fragment() {
         }
     }
 
-//    private fun showData(listData: List<DataSearch>) {
-//        adapter = PopularDestinationAdapter(this)
-//        adapter.setData(listData)
-//
-//        binding.apply {
-//            rvDestPopular.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-//            rvDestPopular.adapter = adapter
-//        }
-//    }
+    private fun setDestinasiPopuler() {
+        vmAirport.getAllAirport()
+        vmAirport.getAllAirportObserver().observe(viewLifecycleOwner){ response ->
+            when(response){
+                is ApiResponse.Loading -> {
+                    binding.progressbar.visibility = View.VISIBLE
+                    Log.d("Loading: ", response.toString())
+                }
+                is ApiResponse.Success -> {
+                    binding.progressbar.visibility = View.GONE
+                    response.data?.let {
+                        showRvDataAirport(it.data)
+                    }
+                    Log.d("Success: ", response.toString())
+                }
+                is ApiResponse.Error -> {
+                    binding.progressbar.visibility = View.GONE
+                    Toast.makeText(requireContext(), response.msg, Toast.LENGTH_SHORT).show()
+                    Log.d("Error: ", response.toString())
+                }
+            }
+        }
+    }
+
+    private fun showRvDataAirport(airport: List<Airport>) {
+        adapter = PopularDestinationAdapter(this, vmFav, requireContext())
+        adapter.setData(airport)
+
+        binding.apply {
+            rvDestPopular.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            rvDestPopular.adapter = adapter
+        }
+    }
+
+    override fun onItemClick(airport: Airport) {
+//        val action = HomeFragmentDirections.actionHomeFragmentToBookingDetailFragment()
+//        findNavController().navigate(action)
+    }
     
 }

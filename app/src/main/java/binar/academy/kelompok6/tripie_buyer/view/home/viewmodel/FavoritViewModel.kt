@@ -18,18 +18,26 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FavoritViewModel @Inject constructor(private val api : ApiEndpoint, private val repository: FavoritRepository) : ViewModel() {
+class FavoritViewModel @Inject constructor (private val repository: FavoritRepository) : ViewModel() {
 
     private var allFav : MutableLiveData<List<Favorit>> = MutableLiveData()
-    private val liveDataFav : MutableLiveData<List<Favorit>> = MutableLiveData()
+    private val liveDataFav : MutableLiveData<Favorit> = MutableLiveData()
 
-    fun cekFav(id : Int) = repository.cekFav(id)
-    fun getAllFavObserver() : MutableLiveData<List<Favorit>> = liveDataFav
+    suspend fun cekFav(id : Int) = repository.cekFav(id)
+    fun getAllFavObserver() : MutableLiveData<List<Favorit>> = allFav
+    fun getFavObserver() : MutableLiveData<Favorit> = liveDataFav
 
-    private fun getAllFav() {
+    fun getAllFav() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.getAllFav()
-            liveDataFav.postValue(repository.getAllFav())
+            allFav.postValue(repository.getAllFav())
+        }
+    }
+
+    fun getSingleFav(id:Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getFav(id)
+            liveDataFav.postValue(repository.getFav(id))
         }
     }
 
