@@ -23,13 +23,14 @@ import binar.academy.kelompok6.tripie_buyer.data.room.Favorit
 import binar.academy.kelompok6.tripie_buyer.data.room.FavoritDAO
 import binar.academy.kelompok6.tripie_buyer.data.room.FavoritDatabase
 import binar.academy.kelompok6.tripie_buyer.databinding.ItemAirportBinding
+import binar.academy.kelompok6.tripie_buyer.databinding.ItemDestinasiAllBinding
 import binar.academy.kelompok6.tripie_buyer.databinding.ItemDestinasiPopularBinding
 import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.FavoritViewModel
 import binar.academy.kelompok6.tripie_buyer.view.whistlist.WhistlistFragment
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
 
-class PopularDestinationAdapter (private val onClick : PopularInterface) : RecyclerView.Adapter<PopularDestinationAdapter.ViewHolder>(){
+class AllPopularDestinationAdapter (private val onClick : PopularInterface) : RecyclerView.Adapter<AllPopularDestinationAdapter.ViewHolder>(){
 
     private val differCallback = object : DiffUtil.ItemCallback<Airport>(){
         override fun areItemsTheSame(oldItem: Airport, newItem: Airport): Boolean {
@@ -44,7 +45,7 @@ class PopularDestinationAdapter (private val onClick : PopularInterface) : Recyc
 
     private val differ = AsyncListDiffer(this, differCallback)
 
-    inner class ViewHolder(val binding : ItemDestinasiPopularBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class ViewHolder(val binding : ItemDestinasiAllBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(airport: Airport){
             binding.txtNamaBandara.text = airport.airportName
             binding.txtLokasiBandara.text = airport.city
@@ -60,7 +61,7 @@ class PopularDestinationAdapter (private val onClick : PopularInterface) : Recyc
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = ItemDestinasiPopularBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val view = ItemDestinasiAllBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
 

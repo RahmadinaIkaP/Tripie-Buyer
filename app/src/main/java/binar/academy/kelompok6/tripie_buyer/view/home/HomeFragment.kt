@@ -10,12 +10,14 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
 import binar.academy.kelompok6.tripie_buyer.data.model.response.Airport
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
+import binar.academy.kelompok6.tripie_buyer.data.room.Favorit
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentHomeBinding
 import binar.academy.kelompok6.tripie_buyer.view.home.adapter.PopularDestinationAdapter
 import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.AirportViewModel
@@ -49,7 +51,13 @@ class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
 
         setDestinasiPopuler()
 
+        sharedPref = SharedPref(requireContext())
+
         binding.apply {
+            tvLihatSemuaDestPopular.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_popularDestinationFragment)
+            }
+
             editTextDari.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_listAirportOriginFragment)
             }
@@ -203,7 +211,7 @@ class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
     }
 
     private fun showRvDataAirport(airport: List<Airport>) {
-        adapter = PopularDestinationAdapter(this, vmFav, requireContext())
+        adapter = PopularDestinationAdapter(this)
         adapter.setData(airport)
 
         binding.apply {
@@ -214,8 +222,12 @@ class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
     }
 
     override fun onItemClick(airport: Airport) {
-//        val action = HomeFragmentDirections.actionHomeFragmentToBookingDetailFragment()
-//        findNavController().navigate(action)
+        sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailWishlistFragment(
+                Favorit(airport.id, it, airport.airportCode, airport.airportName, airport.city, airport.foto, airport.description)
+            )
+            findNavController().navigate(action)
+        }
     }
     
 }

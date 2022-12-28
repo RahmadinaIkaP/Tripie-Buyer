@@ -52,6 +52,12 @@
         <action
             android:id="@+id/action_homeFragment_to_hasilSearchFragment"
             app:destination="@id/hasilSearchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailWishlistFragment"
+            app:destination="@id/detailWishlistFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_popularDestinationFragment"
+            app:destination="@id/popularDestinationFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -137,9 +143,19 @@
     </fragment>
     <fragment
         android:id="@+id/detailWishlistFragment"
-        android:name="binar.academy.kelompok6.tripie_buyer.view.whistlist.DetailWishlistFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.whistlist.DetailFlightFragment"
         android:label="fragment_detail_wishlist"
-        tools:layout="@layout/fragment_detail_wishlist" />
+        tools:layout="@layout/fragment_detail_wishlist" >
+        <action
+            android:id="@+id/action_detailWishlistFragment_to_whistlistFragment"
+            app:destination="@id/whistlistFragment" />
+        <argument
+            android:name="dataAirport"
+            app:argType="binar.academy.kelompok6.tripie_buyer.data.room.Favorit" />
+        <action
+            android:id="@+id/action_detailWishlistFragment_to_popularDestinationFragment"
+            app:destination="@id/popularDestinationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/firstOnboardingFragment"
         android:name="binar.academy.kelompok6.tripie_buyer.view.onboarding.fragment.FirstOnboardingFragment"
@@ -229,5 +245,17 @@
         <action
             android:id="@+id/action_bookingSuccessFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/popularDestinationFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.home.PopularDestinationFragment"
+        android:label="fragment_popular_destination"
+        tools:layout="@layout/fragment_popular_destination" >
+        <action
+            android:id="@+id/action_popularDestinationFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_popularDestinationFragment_to_detailWishlistFragment"
+            app:destination="@id/detailWishlistFragment" />
     </fragment>
 </navigation>

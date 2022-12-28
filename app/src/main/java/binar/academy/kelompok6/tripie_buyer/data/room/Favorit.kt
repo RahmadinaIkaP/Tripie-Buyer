@@ -13,6 +13,7 @@ import java.io.Serializable
 @Parcelize
 data class Favorit(
     @PrimaryKey(autoGenerate = true) var id:Int,
+    var idUser : String,
     val airportCode: String,
     val airportName: String,
     val city: String,
