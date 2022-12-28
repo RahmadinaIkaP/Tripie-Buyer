@@ -2,12 +2,10 @@ package binar.academy.kelompok6.tripie_buyer.data.network
 
 import binar.academy.kelompok6.tripie_buyer.data.model.request.*
 import binar.academy.kelompok6.tripie_buyer.data.model.response.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface ApiEndpoint {
 
@@ -24,7 +22,16 @@ interface ApiEndpoint {
     fun search(@Body searchRequest: SearchTicketRequest) : Call<ResponseSearchTicket>
 
     @PUT("user/{id}/update")
-    fun updateProfile(@Path("id") id: Int, @Body updateProfileRequest: UpdateProfileRequest) : Call<ResponseUpdateProfile>
+    @Multipart
+    fun updateProfile(
+        @Path("id") id: Int,
+        @Part("name") Name: RequestBody,
+        @Part("email") Email: RequestBody,
+        @Part("encrypted_password") Encrypted_Password: RequestBody,
+        @Part("phone_number") Phone_Number: RequestBody,
+        @Part("address") Address: RequestBody,
+        @Part Foto: MultipartBody.Part
+        ) : Call<ResponseUpdateProfile>
 
     @GET("user/{id}")
     fun getProfile(@Path("id") id: Int) : Call<ResponseUser>

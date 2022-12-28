@@ -2,12 +2,13 @@ package binar.academy.kelompok6.tripie_buyer.view.profile.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import binar.academy.kelompok6.tripie_buyer.data.model.request.UpdateProfileRequest
 import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseUpdateProfile
 import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseUser
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiEndpoint
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -51,10 +52,8 @@ class ViewModelProfile @Inject constructor(private val api : ApiEndpoint) : View
         })
     }
 
-    fun updateProfile(id : Int, Address : String,Email : String, encryptedPassword : String,Foto : String, Name : String,Phone_Number : String){
-        api.updateProfile(id,
-            UpdateProfileRequest(Address,Email, encryptedPassword,Foto,Name,Phone_Number)
-        ).enqueue(object : Callback<ResponseUpdateProfile>{
+    fun updateProfile(id : Int, Address : RequestBody,Email : RequestBody, encryptedPassword : RequestBody,Foto : MultipartBody.Part, Name : RequestBody,Phone_Number : RequestBody){
+        api.updateProfile(id,Address,Email,encryptedPassword,Phone_Number,Name,Foto).enqueue(object : Callback<ResponseUpdateProfile> {
             override fun onResponse(call: Call<ResponseUpdateProfile>, response: Response<ResponseUpdateProfile>) {
                 if(response.isSuccessful){
                     val data = response.body()
