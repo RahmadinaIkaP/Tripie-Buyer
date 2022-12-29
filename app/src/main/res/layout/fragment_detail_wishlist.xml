@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="#594040"
-    tools:context=".view.whistlist.DetailWishlistFragment">
+    tools:context=".view.whistlist.DetailFlightFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,7 +13,6 @@
 
         <!-- TODO: Update blank fragment layout -->
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/btn_back"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF">
@@ -23,6 +22,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageButton
+                    android:id="@+id/btn_back"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginLeft="25dp"
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:text="Favorite Flight"
+                android:text="Flight Detail"
                 android:textColor="@color/black"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -118,10 +118,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/txtNamaBandara"
                                 android:layout_toRightOf="@id/icLocation"
-                                android:text="Jakarta, Indonesia"
-
-
-                                />
+                                android:text="Jakarta, Indonesia" />
 
                             <TextView
                                 android:id="@+id/txtDescFavorit"
@@ -136,6 +133,35 @@
                         </RelativeLayout>
 
                     </ScrollView>
+
+                    <RelativeLayout
+                        android:id="@+id/cardFavorit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true" >
+
+                        <ImageButton
+                            android:id="@+id/btnFavorit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/background_circle_white"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_unfavorite" />
+
+                        <TextView
+                            android:id="@+id/txtfav"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:textColor="@color/red"
+                            android:layout_toEndOf="@id/btnFavorit"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="Favorit" />
+
+                    </RelativeLayout>
+
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>

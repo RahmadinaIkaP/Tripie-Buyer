@@ -24,12 +24,13 @@
             android:src="@drawable/bg_onboarding_2" />
 
         <TextView
+            android:id="@+id/txtNamaBandara"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_bold"
             android:lineHeight="20dp"
             android:text="Bandar Udara Internasional Soekarno –Hatta"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="16sp"
             android:layout_marginLeft="15dp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout" />
@@ -49,12 +50,13 @@
                 android:src="@drawable/ic_baseline_location_on_24" />
 
             <TextView
+                android:id="@+id/txtLokasiBandara"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:fontFamily="@font/poppins"
                 android:text="Jakarta, Indonesia"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="14sp" />
         </LinearLayout>
 
