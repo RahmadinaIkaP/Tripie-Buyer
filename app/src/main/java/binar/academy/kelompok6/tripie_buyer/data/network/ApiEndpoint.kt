@@ -25,13 +25,13 @@ interface ApiEndpoint {
     @Multipart
     fun updateProfile(
         @Path("id") id: Int,
-        @Part("name") Name: RequestBody,
-        @Part("email") Email: RequestBody,
-        @Part("encrypted_password") Encrypted_Password: RequestBody,
-        @Part("phone_number") Phone_Number: RequestBody,
-        @Part("address") Address: RequestBody,
-        @Part Foto: MultipartBody.Part
-        ) : Call<ResponseUpdateProfile>
+        @Part("Name") Name: RequestBody,
+        @Part("Email") Email: RequestBody,
+        @Part("Encrypted_Password") Encrypted_Password: RequestBody,
+        @Part Foto: MultipartBody.Part,
+        @Part("Address") Address: RequestBody,
+        @Part("Phone_Number") Phone_Number: RequestBody
+        ) : Call<DataUpdateUser>
 
     @GET("user/{id}")
     fun getProfile(@Path("id") id: Int) : Call<ResponseUser>

@@ -4,16 +4,16 @@ package binar.academy.kelompok6.tripie_buyer.data.model.response
 import com.google.gson.annotations.SerializedName
 
 data class DataUpdateUser(
-    @field:SerializedName("Name")
+    @SerializedName("Name")
     val name: String,
-    @field:SerializedName("Email")
+    @SerializedName("Email")
     val email: String,
-    @field:SerializedName("Encrypted_Password")
+    @SerializedName("Encrypted_Password")
     val encryptedPassword: String,
-    @field:SerializedName("Foto")
+    @SerializedName("Foto")
     val foto: String,
-    @field:SerializedName("Address")
+    @SerializedName("Address")
     val address: String,
-    @field:SerializedName("Phone_Number")
+    @SerializedName("Phone_Number")
     val phoneNumber: String
 )
