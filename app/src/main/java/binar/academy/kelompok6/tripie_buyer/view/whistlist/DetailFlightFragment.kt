@@ -5,20 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
 import binar.academy.kelompok6.tripie_buyer.data.room.Favorit
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentDetailWishlistBinding
-import binar.academy.kelompok6.tripie_buyer.databinding.FragmentWhistlistBinding
-import binar.academy.kelompok6.tripie_buyer.view.home.adapter.FavoritAdapter
-import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.AirportViewModel
-import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.FavoritViewModel
+import binar.academy.kelompok6.tripie_buyer.view.whistlist.viewmodel.FavoritViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,7 +28,6 @@ import kotlinx.coroutines.withContext
 class DetailFlightFragment : Fragment() {
 
     private val vmFav : FavoritViewModel by viewModels()
-    private lateinit var adapter : FavoritAdapter
     private var _binding: FragmentDetailWishlistBinding? = null
     private val binding get() = _binding!!
     private val args : DetailFlightFragmentArgs by navArgs()
@@ -49,7 +45,7 @@ class DetailFlightFragment : Fragment() {
         sharedPref = SharedPref(requireContext())
 
         binding.btnBack.setOnClickListener{
-            findNavController().navigate(R.id.action_detailWishlistFragment_to_popularDestinationFragment)
+            findNavController().navigateUp()
         }
 
         getDetail()
@@ -59,7 +55,9 @@ class DetailFlightFragment : Fragment() {
         val data = args.dataAirport
 
         binding.apply {
-            Glide.with(requireContext()).load(data.foto).into(ivFavorit)
+            Glide.with(requireContext())
+                .load(data.foto)
+                .into(ivFavorit)
             txtJudulFavorit.text = data.airportName
             txtNamaBandara.text = data.airportCode
             lokasiTempat.text = data.city
@@ -68,7 +66,7 @@ class DetailFlightFragment : Fragment() {
 
         GlobalScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main){
-                val count = vmFav.cekFav(data.id)
+                val count = data.let { vmFav.cekFav(it.id) }
                 isClicked = if (count > 0){
                     binding.btnFavorit.setImageResource(R.drawable.ic_favorite)
                     true
@@ -83,7 +81,9 @@ class DetailFlightFragment : Fragment() {
         binding.btnFavorit.setOnClickListener {
             isClicked = !isClicked
             sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){
-                if (it != null){
+                if (it == "Undefined"){
+                    Toast.makeText(requireContext(), "Error, User tidak ditemukan silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
+                }else{
                     checkButtonClicked(isClicked, Favorit(data.id, it, data.airportCode, data.airportName, data.city, data.foto, data.description))
                 }
             }
@@ -93,7 +93,11 @@ class DetailFlightFragment : Fragment() {
     private fun checkButtonClicked(isClicked : Boolean, data: Favorit) {
         if (isClicked){
             sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){
-                vmFav.insertFav(Favorit(data.id, it, data.airportCode, data.airportName, data.city, data.foto, data.description))
+                if (it == "Undefined"){
+                    Toast.makeText(requireContext(), "Error, User tidak ditemukan silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
+                }else{
+                    vmFav.insertFav(Favorit(data.id, it, data.airportCode, data.airportName, data.city, data.foto, data.description))
+                }
             }
             binding.btnFavorit.setImageResource(R.drawable.ic_favorite)
             Snackbar.make(binding.root, "Favorit Berhasil Ditambahkan!", Snackbar.LENGTH_SHORT)

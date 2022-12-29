@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
@@ -38,6 +39,10 @@ class NotificationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         sharedPref = SharedPref(requireContext())
+
+        binding.btnBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
 
         setRvNotif()
     }

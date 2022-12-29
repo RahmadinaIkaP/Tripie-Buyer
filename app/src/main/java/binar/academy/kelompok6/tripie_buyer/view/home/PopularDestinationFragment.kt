@@ -11,18 +11,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
 import binar.academy.kelompok6.tripie_buyer.data.model.response.Airport
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.data.room.Favorit
-import binar.academy.kelompok6.tripie_buyer.databinding.FragmentHomeBinding
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentPopularDestinationBinding
 import binar.academy.kelompok6.tripie_buyer.view.home.adapter.AllPopularDestinationAdapter
-import binar.academy.kelompok6.tripie_buyer.view.home.adapter.PopularDestinationAdapter
 import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.AirportViewModel
-import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.FavoritViewModel
-import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,11 +25,8 @@ class PopularDestinationFragment : Fragment(), AllPopularDestinationAdapter.Popu
 
     private var _binding: FragmentPopularDestinationBinding? = null
     private val binding get() = _binding!!
-    private val homeVm : HomeViewModel by viewModels()
     private val vmAirport : AirportViewModel by viewModels()
-    private val vmFav : FavoritViewModel by viewModels()
     private lateinit var adapter : AllPopularDestinationAdapter
-    private var flightType = "One Way Trip"
     private lateinit var sharedPref: SharedPref
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
@@ -51,7 +43,7 @@ class PopularDestinationFragment : Fragment(), AllPopularDestinationAdapter.Popu
 
         binding.apply {
             buttonBack.setOnClickListener {
-                findNavController().navigate(R.id.action_popularDestinationFragment_to_homeFragment)
+                findNavController().navigateUp()
             }
         }
 
@@ -94,9 +86,13 @@ class PopularDestinationFragment : Fragment(), AllPopularDestinationAdapter.Popu
 
     override fun onItemClick(airport: Airport) {
         sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){
-            val action = PopularDestinationFragmentDirections.actionPopularDestinationFragmentToDetailWishlistFragment(
-                Favorit(airport.id, it, airport.airportCode, airport.airportName, airport.city, airport.foto, airport.description))
-            findNavController().navigate(action)
+            if (it != "Undefined"){
+                val action = PopularDestinationFragmentDirections.actionPopularDestinationFragmentToDetailFlightFragment(
+                    Favorit(airport.id, it, airport.airportCode, airport.airportName, airport.city, airport.foto, airport.description))
+                findNavController().navigate(action)
+            }else{
+                Toast.makeText(requireContext(),"Tidak bisa menambahkan favorit silahkan login terlebih dahulu!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

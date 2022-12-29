@@ -1,4 +1,4 @@
-package binar.academy.kelompok6.tripie_buyer.view.home.viewmodel
+package binar.academy.kelompok6.tripie_buyer.view.whistlist.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

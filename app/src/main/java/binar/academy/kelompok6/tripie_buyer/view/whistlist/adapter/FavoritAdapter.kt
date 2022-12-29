@@ -1,14 +1,11 @@
-package binar.academy.kelompok6.tripie_buyer.view.home.adapter
+package binar.academy.kelompok6.tripie_buyer.view.whistlist.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import binar.academy.kelompok6.tripie_buyer.data.model.response.Airport
 import binar.academy.kelompok6.tripie_buyer.data.room.Favorit
-import binar.academy.kelompok6.tripie_buyer.data.room.FavoritDatabase
-import binar.academy.kelompok6.tripie_buyer.databinding.ItemAirportBinding
 import binar.academy.kelompok6.tripie_buyer.databinding.ItemWishlistBinding
 import com.bumptech.glide.Glide
 
@@ -32,7 +29,9 @@ class FavoritAdapter(private val onClick : FavoritInterface) : RecyclerView.Adap
         fun bind(favorit: Favorit){
             binding.txtNamaBandara.text = favorit.airportName
             binding.txtLokasiBandara.text = favorit.city
-            Glide.with(itemView).load(favorit.foto).into(binding.imageView2)
+            Glide.with(itemView)
+                .load(favorit.foto)
+                .into(binding.ivFavorit)
 
             itemView.setOnClickListener {
                 onClick.onItemClick(favorit)

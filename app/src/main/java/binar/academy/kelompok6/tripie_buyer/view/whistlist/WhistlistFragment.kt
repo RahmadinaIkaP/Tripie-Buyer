@@ -9,14 +9,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
-import binar.academy.kelompok6.tripie_buyer.data.model.response.Airport
 import binar.academy.kelompok6.tripie_buyer.data.room.Favorit
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentWhistlistBinding
-import binar.academy.kelompok6.tripie_buyer.view.home.PopularDestinationFragmentDirections
-import binar.academy.kelompok6.tripie_buyer.view.home.adapter.FavoritAdapter
-import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.FavoritViewModel
+import binar.academy.kelompok6.tripie_buyer.view.whistlist.adapter.FavoritAdapter
+import binar.academy.kelompok6.tripie_buyer.view.whistlist.viewmodel.FavoritViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -58,7 +55,7 @@ class WhistlistFragment : Fragment(), FavoritAdapter.FavoritInterface  {
 
     override fun onItemClick(favorit: Favorit) {
         sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){
-            val action = WhistlistFragmentDirections.actionWhistlistFragmentToDetailWishlistFragment(
+            val action = WhistlistFragmentDirections.actionWhistlistFragmentToDetailFlightFragment(
                 Favorit(favorit.id, it, favorit.airportCode, favorit.airportName, favorit.city, favorit.foto, favorit.description))
             findNavController().navigate(action)
         }

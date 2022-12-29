@@ -1,34 +1,13 @@
 package binar.academy.kelompok6.tripie_buyer.view.home.adapter
 
-import android.app.Application
-import android.content.Context
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
-import androidx.lifecycle.asLiveData
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import binar.academy.kelompok6.tripie_buyer.R
-import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
 import binar.academy.kelompok6.tripie_buyer.data.model.response.Airport
-import binar.academy.kelompok6.tripie_buyer.data.room.Favorit
-import binar.academy.kelompok6.tripie_buyer.data.room.FavoritDAO
-import binar.academy.kelompok6.tripie_buyer.data.room.FavoritDatabase
-import binar.academy.kelompok6.tripie_buyer.databinding.ItemAirportBinding
 import binar.academy.kelompok6.tripie_buyer.databinding.ItemDestinasiAllBinding
-import binar.academy.kelompok6.tripie_buyer.databinding.ItemDestinasiPopularBinding
-import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.FavoritViewModel
-import binar.academy.kelompok6.tripie_buyer.view.whistlist.WhistlistFragment
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.*
+import com.bumptech.glide.Glide
 
 class AllPopularDestinationAdapter (private val onClick : PopularInterface) : RecyclerView.Adapter<AllPopularDestinationAdapter.ViewHolder>(){
 
@@ -49,6 +28,9 @@ class AllPopularDestinationAdapter (private val onClick : PopularInterface) : Re
         fun bind(airport: Airport){
             binding.txtNamaBandara.text = airport.airportName
             binding.txtLokasiBandara.text = airport.city
+            Glide.with(itemView)
+                .load(airport.foto)
+                .into(binding.ivAllPopular)
 
             itemView.setOnClickListener {
                 onClick.onItemClick(airport)
