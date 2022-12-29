@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import binar.academy.kelompok6.tripie_buyer.data.model.response.Airport
-import binar.academy.kelompok6.tripie_buyer.databinding.ItemDestinasiPopularBinding
+import binar.academy.kelompok6.tripie_buyer.databinding.ItemDestinasiAllBinding
 import com.bumptech.glide.Glide
 
-class PopularDestinationAdapter (private val onClick : PopularInterface) : RecyclerView.Adapter<PopularDestinationAdapter.ViewHolder>(){
+class AllPopularDestinationAdapter (private val onClick : PopularInterface) : RecyclerView.Adapter<AllPopularDestinationAdapter.ViewHolder>(){
 
     private val differCallback = object : DiffUtil.ItemCallback<Airport>(){
         override fun areItemsTheSame(oldItem: Airport, newItem: Airport): Boolean {
@@ -24,13 +24,13 @@ class PopularDestinationAdapter (private val onClick : PopularInterface) : Recyc
 
     private val differ = AsyncListDiffer(this, differCallback)
 
-    inner class ViewHolder(val binding : ItemDestinasiPopularBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class ViewHolder(val binding : ItemDestinasiAllBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(airport: Airport){
             binding.txtNamaBandara.text = airport.airportName
             binding.txtLokasiBandara.text = airport.city
-            Glide.with(itemView.context)
+            Glide.with(itemView)
                 .load(airport.foto)
-                .into(binding.ivBandaraPopular)
+                .into(binding.ivAllPopular)
 
             itemView.setOnClickListener {
                 onClick.onItemClick(airport)
@@ -43,7 +43,7 @@ class PopularDestinationAdapter (private val onClick : PopularInterface) : Recyc
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = ItemDestinasiPopularBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val view = ItemDestinasiAllBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
 

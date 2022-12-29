@@ -9,15 +9,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
 import binar.academy.kelompok6.tripie_buyer.data.model.SearchBundle
 import binar.academy.kelompok6.tripie_buyer.data.model.request.SearchTicketRequest
+import binar.academy.kelompok6.tripie_buyer.data.model.response.Airport
 import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseSearchTicket
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
+import binar.academy.kelompok6.tripie_buyer.data.room.Favorit
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentHomeBinding
 import binar.academy.kelompok6.tripie_buyer.view.home.adapter.PopularDestinationAdapter
+import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.AirportViewModel
 import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.HomeViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,11 +32,12 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val homeVm : HomeViewModel by viewModels()
+    private val vmAirport : AirportViewModel by viewModels()
     private lateinit var sharedPref: SharedPref
     private lateinit var adapter : PopularDestinationAdapter
     private var flightType = "One Way Trip"
@@ -47,7 +53,12 @@ class HomeFragment : Fragment() {
 
         sharedPref = SharedPref(requireContext())
 
+        setDestinasiPopuler()
+
         binding.apply {
+            btnToNotif.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_notificationFragment)
+            }
 
             btnOneWay.setOnClickListener {
                 linearLayout7.visibility = View.VISIBLE
@@ -102,6 +113,10 @@ class HomeFragment : Fragment() {
             btnSearch.setOnClickListener {
                 reqSearch(flightType)
             }
+
+            tvLihatSemuaDestPopular.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_popularDestinationFragment)
+            }
         }
     }
 
@@ -113,9 +128,11 @@ class HomeFragment : Fragment() {
             if (checkTypeOw == "One Way Trip"){
                 binding.linearLayout7.visibility = View.VISIBLE
                 binding.linearLayout8.visibility = View.GONE
+                flightType = "One Way Trip"
             }else if (checkTypeOw == "Round Trip"){
                 binding.linearLayout7.visibility = View.GONE
                 binding.linearLayout8.visibility = View.VISIBLE
+                flightType = "Round Trip"
             }
             binding.editTextDari.setText(name)
         }
@@ -129,9 +146,11 @@ class HomeFragment : Fragment() {
             if (checkTypeOw == "One Way Trip"){
                 binding.linearLayout7.visibility = View.VISIBLE
                 binding.linearLayout8.visibility = View.GONE
+                flightType = "One Way Trip"
             }else if (checkTypeOw == "Round Trip"){
                 binding.linearLayout7.visibility = View.GONE
                 binding.linearLayout8.visibility = View.VISIBLE
+                flightType = "Round Trip"
             }
             binding.editTextKe.setText(name)
         }
@@ -145,9 +164,11 @@ class HomeFragment : Fragment() {
             if (checkTypeOw == "One Way Trip"){
                 binding.linearLayout7.visibility = View.VISIBLE
                 binding.linearLayout8.visibility = View.GONE
+                flightType = "One Way Trip"
             }else if (checkTypeOw == "Round Trip"){
                 binding.linearLayout7.visibility = View.GONE
                 binding.linearLayout8.visibility = View.VISIBLE
+                flightType = "Round Trip"
             }
             binding.etPlaneClass.setText(it)
         }
@@ -282,19 +303,54 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun setDestinasiPopuler() {
+        vmAirport.getAllAirport()
+        vmAirport.getAllAirportObserver().observe(viewLifecycleOwner){ response ->
+            when(response){
+                is ApiResponse.Loading -> {
+                    binding.progressbar.visibility = View.VISIBLE
+                    Log.d("Loading: ", response.toString())
+                }
+                is ApiResponse.Success -> {
+                    binding.progressbar.visibility = View.GONE
+                    response.data?.let {
+                        showRvDataAirport(it.data)
+                    }
+                    Log.d("Success: ", response.toString())
+                }
+                is ApiResponse.Error -> {
+                    binding.progressbar.visibility = View.GONE
+                    Toast.makeText(requireContext(), response.msg, Toast.LENGTH_SHORT).show()
+                    Log.d("Error: ", response.toString())
+                }
+            }
+        }
+    }
+
+    private fun showRvDataAirport(airport: List<Airport>) {
+        adapter = PopularDestinationAdapter(this)
+        adapter.setData(airport)
+
+        binding.apply {
+            rvDestPopular.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            rvDestPopular.adapter = adapter
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
-//    private fun showData(listData: List<DataSearch>) {
-//        adapter = PopularDestinationAdapter(this)
-//        adapter.setData(listData)
-//
-//        binding.apply {
-//            rvDestPopular.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-//            rvDestPopular.adapter = adapter
-//        }
-//    }
-    
+    override fun onItemClick(airport: Airport) {
+        sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailFlightFragment(
+                Favorit(airport.id, it, airport.airportCode, airport.airportName, airport.city, airport.foto, airport.description)
+            )
+            findNavController().navigate(action)
+        }
+    }
+
+
 }

@@ -9,7 +9,7 @@
     app:cardCornerRadius="8dp"
     app:cardElevation="6dp"
     app:cardUseCompatPadding="true"
-    app:contentPadding="0dp"
+    android:layout_margin="8dp"
     app:cardPreventCornerOverlap="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,13 +17,14 @@
         android:layout_height="110dp">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/ivFavorit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/bg_onboarding_2" />
 
         <TextView
+            android:id="@+id/txtNamaBandara"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_bold"
@@ -40,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintBottom_toBottomOf="@+id/ivFavorit"
             tools:layout_editor_absoluteX="10dp">
 
             <ImageView
@@ -49,6 +50,7 @@
                 android:src="@drawable/ic_baseline_location_on_24" />
 
             <TextView
+                android:id="@+id/txtLokasiBandara"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
