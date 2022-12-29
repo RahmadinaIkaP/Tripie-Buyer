@@ -48,6 +48,9 @@ class HomeFragment : Fragment() {
         sharedPref = SharedPref(requireContext())
 
         binding.apply {
+            btnToNotif.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_notificationFragment)
+            }
 
             btnOneWay.setOnClickListener {
                 linearLayout7.visibility = View.VISIBLE
@@ -113,9 +116,11 @@ class HomeFragment : Fragment() {
             if (checkTypeOw == "One Way Trip"){
                 binding.linearLayout7.visibility = View.VISIBLE
                 binding.linearLayout8.visibility = View.GONE
+                flightType = "One Way Trip"
             }else if (checkTypeOw == "Round Trip"){
                 binding.linearLayout7.visibility = View.GONE
                 binding.linearLayout8.visibility = View.VISIBLE
+                flightType = "Round Trip"
             }
             binding.editTextDari.setText(name)
         }
@@ -129,9 +134,11 @@ class HomeFragment : Fragment() {
             if (checkTypeOw == "One Way Trip"){
                 binding.linearLayout7.visibility = View.VISIBLE
                 binding.linearLayout8.visibility = View.GONE
+                flightType = "One Way Trip"
             }else if (checkTypeOw == "Round Trip"){
                 binding.linearLayout7.visibility = View.GONE
                 binding.linearLayout8.visibility = View.VISIBLE
+                flightType = "Round Trip"
             }
             binding.editTextKe.setText(name)
         }
@@ -145,9 +152,11 @@ class HomeFragment : Fragment() {
             if (checkTypeOw == "One Way Trip"){
                 binding.linearLayout7.visibility = View.VISIBLE
                 binding.linearLayout8.visibility = View.GONE
+                flightType = "One Way Trip"
             }else if (checkTypeOw == "Round Trip"){
                 binding.linearLayout7.visibility = View.GONE
                 binding.linearLayout8.visibility = View.VISIBLE
+                flightType = "Round Trip"
             }
             binding.etPlaneClass.setText(it)
         }

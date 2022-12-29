@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_homeFragment_to_listPlaneClassFragment"
             app:destination="@id/listPlaneClassFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -246,4 +249,9 @@
             app:popUpTo="@id/bookingSuccessFragment"
             app:popUpToInclusive="true"/>
     </fragment>
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="binar.academy.kelompok6.tripie_buyer.view.notifikasi.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" />
 </navigation>

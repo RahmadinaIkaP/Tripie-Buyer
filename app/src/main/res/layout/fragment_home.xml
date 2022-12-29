@@ -62,6 +62,7 @@
 
 
                 <ImageButton
+                    android:id="@+id/btnToNotif"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="16dp"

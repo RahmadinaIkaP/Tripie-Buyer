@@ -10,6 +10,7 @@ import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.utils.EspressoIdlingResource
 import com.google.gson.GsonBuilder
 import dagger.hilt.android.lifecycle.HiltViewModel
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,9 +37,8 @@ class HomeViewModel @Inject constructor(private val api : ApiEndpoint) : ViewMod
                 else {
                     try {
                         response.errorBody()?.let {
-                            val gson = GsonBuilder().create()
-                            val errorResponse = gson.fromJson(it.string(), ResponseErrorSearchTicket::class.java)
-                            liveDataSearch.postValue(ApiResponse.Error(errorResponse.data.message))
+                            val jsonObject = JSONObject(it.string()).getString("message")
+                            liveDataSearch.postValue(ApiResponse.Error(jsonObject))
                         }
                     } catch (e: Exception) {
                         liveDataSearch.postValue(ApiResponse.Error("${e.message}"))

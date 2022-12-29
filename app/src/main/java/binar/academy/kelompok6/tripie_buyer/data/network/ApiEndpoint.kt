@@ -35,4 +35,7 @@ interface ApiEndpoint {
     @POST("booking-ticket")
     fun bookingTicket(@Body bookingTicketRequest: BookingTicketRequest) : Call<ResponseBookingTicket>
 
+    @GET("notification/{id}")
+    fun getNotification(@Path("id") id: Int) : Call<GetNotificationResponse>
+
 }
