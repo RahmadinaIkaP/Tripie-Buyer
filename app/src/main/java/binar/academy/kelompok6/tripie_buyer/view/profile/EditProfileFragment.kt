@@ -1,24 +1,18 @@
 package binar.academy.kelompok6.tripie_buyer.view.profile
 
 import android.Manifest
-import android.app.Activity
-import android.content.ContentResolver
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
@@ -33,7 +27,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
@@ -43,22 +36,20 @@ class EditProfileFragment : Fragment() {
     lateinit var binding : FragmentEditProfileBinding
     lateinit var sharedPref: SharedPref
     private val viewModel : ViewModelProfile by viewModels()
-
     companion object {
-
-        const val PERMISSION_CODE = 101
+        const val REQUEST_CODE_PERMISSIONS = 101
 
         const val KEY_PERMISSIONS_REQUEST_COUNT = "KEY_PERMISSIONS_REQUEST_COUNT"
 
         const val MAX_NUMBER_REQUEST_PERMISSIONS = 2
     }
 
-    private val permission = arrayOf(
+    private val permissions = arrayOf(
         Manifest.permission.READ_EXTERNAL_STORAGE,
         Manifest.permission.WRITE_EXTERNAL_STORAGE
     )
 
-    private var getFile : File? = null
+    private var getFile: File? = null
     private val imagePic =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri : Uri? ->
             if (uri != null) {
@@ -68,16 +59,18 @@ class EditProfileFragment : Fragment() {
             }
         }
 
-    private var permissionRequestCount : Int = 0
-
+    private var permissionRequestCount: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
     : View? {
         // Inflate the layout for this fragment
         binding = FragmentEditProfileBinding.inflate(inflater, container, false)
+        // Make sure the app has correct permissions to run
         requestPermissionsIfNecessary()
 
+        // When activity is reloaded after configuration change
         savedInstanceState?.let {
+            // Restore the permission request count
             permissionRequestCount = it.getInt(KEY_PERMISSIONS_REQUEST_COUNT, 0)
         }
 
@@ -101,30 +94,54 @@ class EditProfileFragment : Fragment() {
         Glide.with(this).load(gambar_).into(binding.ivProfile)
 
         binding.btnUbahData.setOnClickListener{
-            sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){
+            sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner) {
                 val name = binding.editTextNama.text.toString()
                 val email = binding.editTextEmail.text.toString()
-                val address = binding.editTextAlamat.text.toString()
                 val phone = binding.editTextNotelp.text.toString()
-                var password = binding.editTextPassword.text.toString()
+                val address = binding.editTextAlamat.text.toString()
+                val password = binding.editTextPassword.text.toString()
                 val confirmPassword = binding.editTextConfirmPassword.text.toString()
 
-                if (binding.editTextNama.text.toString().isEmpty() || binding.editTextEmail.text.toString().isEmpty() || binding.editTextNotelp.text.toString().isEmpty() || binding.editTextAlamat.text.toString().isEmpty() || binding.editTextPassword.text.toString().isEmpty() || binding.editTextConfirmPassword.text.toString().isEmpty()){
-                    Toast.makeText(requireContext(), "Data tidak boleh kosong", Toast.LENGTH_SHORT).show()
-                } else if (binding.editTextPassword.text.toString() != binding.editTextConfirmPassword.text.toString()){
-                    Toast.makeText(requireContext(), "Password tidak sama", Toast.LENGTH_SHORT).show()
-                } else {
-                    val requestFile = getFile!!.asRequestBody("image/jpg".toMediaTypeOrNull())
-                    var imageMultipart : MultipartBody.Part = MultipartBody.Part.createFormData(
-                        "image",
+                if (getFile != null) {
+                    val requestFile = getFile!!.asRequestBody("image/jpeg".toMediaTypeOrNull())
+                    val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                        "Foto",
                         getFile!!.name,
                         requestFile
                     )
-                    if (it != null){
-                        viewModel.updateProfile(it.toInt(),name.toRequestBody("text/plain".toMediaTypeOrNull()),email.toRequestBody("text/plain".toMediaTypeOrNull()),confirmPassword.toRequestBody("text/plain".toMediaTypeOrNull()),imageMultipart,address.toRequestBody("text/plain".toMediaTypeOrNull()),phone.toRequestBody("text/plain".toMediaTypeOrNull()))
-                        Toast.makeText(requireContext(), "Update Profile Berhasil", Toast.LENGTH_SHORT).show()
-                    }else{
-                        Toast.makeText(requireContext(), "Update Profile Gagal", Toast.LENGTH_SHORT).show()
+
+                    viewModel.updateProfile(
+                        it.toInt(),
+                        name.toRequestBody("multipart/form-data".toMediaType()),
+                        email.toRequestBody("multipart/form-data".toMediaType()),
+                        confirmPassword.toRequestBody("multipart/form-data".toMediaType()),
+                        imageMultipart,
+                        address.toRequestBody("multipart/form-data".toMediaType()),
+                        phone.toRequestBody("multipart/form-data".toMediaType())
+                    )
+                    viewModel.updateLiveDataProfile().observe(viewLifecycleOwner) {
+                        when (it) {
+                            is ApiResponse.Success -> {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Berhasil Update Profile",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                findNavController().navigate(R.id.action_editProfileFragment_to_profileFragment)
+                            }
+                            is ApiResponse.Error -> {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Gagal Update Profile",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                Log.d("Error", "$imageMultipart")
+                            }
+                            is ApiResponse.Loading -> {
+                                Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                        }
                     }
                 }
             }
@@ -136,42 +153,17 @@ class EditProfileFragment : Fragment() {
         }
     }
 
-//    fun ubahData(id : Int, Address : RequestBody,Email : RequestBody, encryptedPassword : RequestBody,Foto : MultipartBody.Part, Name : RequestBody,Phone_Number : RequestBody){
-//        viewModel.updateProfile(id, Address, Email, encryptedPassword,Foto,Name, Phone_Number)
-//        viewModel.updateLiveDataProfile().observe(viewLifecycleOwner){ response ->
-//            when(response){
-//                is ApiResponse.Loading -> {
-//                    Toast.makeText(context, "Logout berhasil", Toast.LENGTH_SHORT).show()
-//                    Log.d("Loading: ", response.toString())
-//                }
-//                is ApiResponse.Success -> {
-//                    Toast.makeText(context, "Edit Data berhasil", Toast.LENGTH_SHORT).show()
-//                    Log.d("Success: ", response.toString())
-//                    findNavController().navigate(R.id.action_editProfileFragment_to_profileFragment)
-//                }
-//                is ApiResponse.Error -> {
-//                    Toast.makeText(context, "Error, Ubah Data Gagal!", Toast.LENGTH_SHORT).show()
-//                    Log.d("Error: ", response.toString())
-////                    Toast.makeText(requireContext(), response.msg, Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
-//    }
-
     //Request Permissions
     private fun requestPermissionsIfNecessary() {
-        // Check if all required permissions are granted
         if (!checkAllPermissions()) {
-            // When all required permissions are not granted yet
-
             if (permissionRequestCount < MAX_NUMBER_REQUEST_PERMISSIONS) {
                 // When the number of permission request retried is less than the max limit set
                 permissionRequestCount += 1 // Increment the number of permission requests done
                 // Request the required permissions for external storage access
                 ActivityCompat.requestPermissions(
                     requireActivity(),
-                    permission,
-                    PERMISSION_CODE
+                    permissions,
+                    REQUEST_CODE_PERMISSIONS
                 )
             } else {
                 // Disable the "Select Image" button when access is denied by the user
@@ -191,7 +183,7 @@ class EditProfileFragment : Fragment() {
         // Boolean state to indicate all permissions are granted
         var hasPermissions = true
         // Verify all permissions are granted
-        for (permission in permission) {
+        for (permission in permissions) {
             hasPermissions = hasPermissions && isPermissionGranted(permission)
         }
         // Return the state of all permissions granted
@@ -200,5 +192,4 @@ class EditProfileFragment : Fragment() {
 
     private fun isPermissionGranted(permission: String) = ContextCompat.checkSelfPermission(requireContext(), permission) ==
             PackageManager.PERMISSION_GRANTED
-
 }

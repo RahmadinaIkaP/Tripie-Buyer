@@ -31,7 +31,7 @@ interface ApiEndpoint {
         @Part Foto: MultipartBody.Part,
         @Part("Address") Address: RequestBody,
         @Part("Phone_Number") Phone_Number: RequestBody
-        ) : Call<DataUpdateUser>
+        ) : Call<ResponseUpdateProfile>
 
     @GET("user/{id}")
     fun getProfile(@Path("id") id: Int) : Call<ResponseUser>

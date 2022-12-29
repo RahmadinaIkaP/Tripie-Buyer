@@ -4,10 +4,10 @@ package binar.academy.kelompok6.tripie_buyer.data.model.response
 import com.google.gson.annotations.SerializedName
 
 data class ResponseUpdateProfile(
-    @SerializedName("status")
+    @field:SerializedName("status")
     val status: String,
-    @SerializedName("message")
+    @field:SerializedName("message")
     val message: String,
-    @SerializedName("data")
+    @field:SerializedName("data")
     val data: List<DataUpdateUser>
 )

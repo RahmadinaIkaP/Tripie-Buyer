@@ -20,10 +20,10 @@ import javax.inject.Inject
 @HiltViewModel
 class ViewModelProfile @Inject constructor(private val api : ApiEndpoint) : ViewModel() {
     private var profile : MutableLiveData<ApiResponse<ResponseUser>> = MutableLiveData()
-    private var updateProfile : MutableLiveData<DataUpdateUser?> = MutableLiveData()
+    private var updateProfile : MutableLiveData<ApiResponse<ResponseUpdateProfile>> = MutableLiveData()
 
     fun getLiveDataProfile() : MutableLiveData<ApiResponse<ResponseUser>> = profile
-    fun updateLiveDataProfile() : MutableLiveData<DataUpdateUser?> = updateProfile
+    fun updateLiveDataProfile() : MutableLiveData<ApiResponse<ResponseUpdateProfile>> = updateProfile
 
     fun getProfile(id : Int){
         api.getProfile(id).enqueue(object : Callback<ResponseUser> {
@@ -55,25 +55,30 @@ class ViewModelProfile @Inject constructor(private val api : ApiEndpoint) : View
     }
 
     fun updateProfile(id : Int, Name : RequestBody, Email : RequestBody, Encrypted_Password : RequestBody, Foto : MultipartBody.Part, Address : RequestBody, Phone_Number : RequestBody){
-        api.updateProfile(id,Name, Email, Encrypted_Password, Foto, Address, Phone_Number)
-            .enqueue(object : Callback<DataUpdateUser>{
-                override fun onResponse(
-                    call: Call<DataUpdateUser>,
-                    response: Response<DataUpdateUser>
-                ) {
-                    val body = response.body()
-                    if (response.isSuccessful){
-                        updateProfile.postValue(body)
-                        Log.d("SUCCESS UPDATE", "$body")
-                    }else{
-                        updateProfile.postValue(null)
-                        Log.d("FAILED UPDATE", "$body")
+        api.updateProfile(id, Name, Email, Encrypted_Password, Foto, Address, Phone_Number)
+            .enqueue(object : Callback<ResponseUpdateProfile> {
+                override fun onResponse(call: Call<ResponseUpdateProfile>, response: Response<ResponseUpdateProfile>) {
+                    if(response.isSuccessful){
+                        val data = response.body()
+
+                        data?.let {
+                            updateProfile.postValue(ApiResponse.Success(it))
+                        }
+                    }
+                    else {
+                        try {
+                            response.errorBody()?.let {
+                                val jsonObject = JSONObject(it.string()).getString("message")
+                                updateProfile.postValue(ApiResponse.Error(jsonObject))
+                            }
+                        } catch (e: Exception) {
+                            updateProfile.postValue(ApiResponse.Error("${e.message}"))
+                        }
                     }
                 }
 
-                override fun onFailure(call: Call<DataUpdateUser>, t: Throwable) {
-                    updateProfile.postValue(null)
-                    Log.d("FAILED UPDATE", "${t.message}")
+                override fun onFailure(call: Call<ResponseUpdateProfile>, t: Throwable) {
+                    updateProfile.postValue(ApiResponse.Error("${t.message}"))
                 }
 
             })
