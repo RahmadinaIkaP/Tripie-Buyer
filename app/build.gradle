@@ -101,6 +101,9 @@ dependencies {
     //segmented progress bar
     implementation 'com.github.TOrnelas:SegmentedProgressBar:0.0.3'
 
+    //testing
+    testImplementation "io.mockk:mockk:1.13.1"
+
     //firebase
     implementation platform('com.google.firebase:firebase-bom:31.1.1')
     implementation 'com.google.firebase:firebase-analytics-ktx'
