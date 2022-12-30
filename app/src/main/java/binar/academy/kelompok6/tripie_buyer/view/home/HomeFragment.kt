@@ -296,30 +296,37 @@ class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
     }
 
     private fun reqSearch(checkTypeOw : String) {
-        if (binding.editTextDari.text.toString().isEmpty() || binding.editTextKe.text.toString().isEmpty() || binding.etPlaneClass.text.toString().isEmpty() || binding.etDepartureDateOw.text.toString().isEmpty() ||
-            binding.etJumlahPenumpang.text.toString().isEmpty() || binding.etDepartureDateRt.text.toString().isEmpty() ||  binding.etArriveDateRt.text.toString().isEmpty()){
+        if (binding.editTextDari.text.toString().isEmpty() || binding.editTextKe.text.toString().isEmpty() || binding.etPlaneClass.text.toString().isEmpty() || binding.etJumlahPenumpang.text.toString().isEmpty()){
             Toast.makeText(requireContext(), "Tidak bisa melakukan search, data kosong!", Toast.LENGTH_SHORT).show()
         }else{
             if (checkTypeOw == "One Way Trip"){
-                homeVm.searchData(
-                    SearchTicketRequest(
-                        originName = binding.editTextDari.text.toString(),
-                        destinationName = binding.editTextKe.text.toString(),
-                        planeClass = binding.etPlaneClass.text.toString(),
-                        flightDate = binding.etDepartureDateOw.text.toString(),
-                        totalPassenger = binding.etJumlahPenumpang.text.toString().toInt()
+                if (binding.etDepartureDateOw.text.toString().isEmpty()){
+                    Toast.makeText(requireContext(), "Tidak bisa melakukan search, data kosong!", Toast.LENGTH_SHORT).show()
+                }else{
+                    homeVm.searchData(
+                        SearchTicketRequest(
+                            originName = binding.editTextDari.text.toString(),
+                            destinationName = binding.editTextKe.text.toString(),
+                            planeClass = binding.etPlaneClass.text.toString(),
+                            flightDate = binding.etDepartureDateOw.text.toString(),
+                            totalPassenger = binding.etJumlahPenumpang.text.toString().toInt()
+                        )
                     )
-                )
+                }
             }else if (checkTypeOw == "Round Trip"){
-                homeVm.searchData(
-                    SearchTicketRequest(
-                        originName = binding.editTextDari.text.toString(),
-                        destinationName = binding.editTextKe.text.toString(),
-                        planeClass = binding.etPlaneClass.text.toString(),
-                        flightDate = binding.etDepartureDateRt.text.toString(),
-                        totalPassenger = binding.etJumlahPenumpang.text.toString().toInt()
+                if (binding.etDepartureDateRt.text.toString().isEmpty() ||  binding.etArriveDateRt.text.toString().isEmpty()){
+                    Toast.makeText(requireContext(), "Tidak bisa melakukan search, data kosong!", Toast.LENGTH_SHORT).show()
+                }else{
+                    homeVm.searchData(
+                        SearchTicketRequest(
+                            originName = binding.editTextDari.text.toString(),
+                            destinationName = binding.editTextKe.text.toString(),
+                            planeClass = binding.etPlaneClass.text.toString(),
+                            flightDate = binding.etDepartureDateRt.text.toString(),
+                            totalPassenger = binding.etJumlahPenumpang.text.toString().toInt()
+                        )
                     )
-                )
+                }
             }
 
             homeVm.ambilLiveDataSearch().observe(viewLifecycleOwner){ response->
@@ -335,7 +342,6 @@ class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
                             saveDataPref(binding.etJumlahPenumpang.text.toString().toInt(), checkTypeOw)
                             saveBundle(checkTypeOw, it)
                         }
-                        Toast.makeText(requireContext(), response.toString(), Toast.LENGTH_SHORT).show()
                         Log.d("Success: ", response.toString())
                     }
                     is ApiResponse.Error -> {

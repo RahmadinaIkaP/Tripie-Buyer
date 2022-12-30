@@ -258,7 +258,9 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/edittext_border"
                                 android:drawableEnd="@drawable/ic_calendar"
-                                android:padding="8dp" />
+                                android:padding="8dp"
+                                android:focusable="false"
+                                android:clickable="false"/>
 
                         </LinearLayout>
 
@@ -274,7 +276,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
                                 android:fontFamily="@font/poppins_semibold"
-                                android:text="Tanggal\nTiba"
+                                android:text="Tanggal\nPulang"
                                 android:textAlignment="center"
                                 android:textColor="@color/soft_black"
                                 android:textSize="16sp" />
@@ -285,7 +287,9 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/edittext_border"
                                 android:drawableEnd="@drawable/ic_calendar"
-                                android:padding="8dp" />
+                                android:padding="8dp"
+                                android:focusable="false"
+                                android:clickable="false"/>
 
                         </LinearLayout>
 
@@ -316,7 +320,8 @@
                             android:inputType="number"
                             android:padding="10dp"
                             android:textAlignment="center"
-                            android:textColor="@color/soft_black" />
+                            android:textColor="@color/soft_black"
+                            android:hint="Masukkan jumlah penumpang"/>
 
                     </LinearLayout>
 

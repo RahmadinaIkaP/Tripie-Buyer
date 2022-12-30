@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import binar.academy.kelompok6.tripie_buyer.data.model.response.DataSearch
 import binar.academy.kelompok6.tripie_buyer.databinding.ItemHistoriBinding
+import binar.academy.kelompok6.tripie_buyer.utils.RupiahConverter
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SearchHomeAdapter(private val onClick: HasilSearchInterface) : RecyclerView.Adapter<SearchHomeAdapter.ViewHolder>() {
 
@@ -29,6 +32,15 @@ class SearchHomeAdapter(private val onClick: HasilSearchInterface) : RecyclerVie
     inner class ViewHolder(var binding:ItemHistoriBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(dataHome: DataSearch){
 //            binding.destinasiData = dataHome
+            val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+            val convertedDepartHour = timeFormat.parse(dataHome.departureHour)?.let {
+                SimpleDateFormat("HH:mm",
+                    Locale.getDefault()).format(it)
+            }
+            val convertedArriveHour = timeFormat.parse(dataHome.arrivalHour)?.let {
+                SimpleDateFormat("HH:mm",
+                    Locale.getDefault()).format(it)
+            }
 
             binding.apply {
                 btnDetails.text = "Pilih"
@@ -37,9 +49,9 @@ class SearchHomeAdapter(private val onClick: HasilSearchInterface) : RecyclerVie
                 tvKodeBandaraTujuan.text = dataHome.destinationCode
                 tvKotaBandaraAsal.text = dataHome.originCity
                 tvKotaBandaraTujuan.text = dataHome.destinationCity
-                tvJamBerangkat.text = dataHome.departureHour
-                tvJamPulang.text = dataHome.arrivalHour
-                tvHargatiket.text = "IDR ${dataHome.price}"
+                tvJamBerangkat.text = convertedDepartHour
+                tvJamPulang.text = convertedArriveHour
+                tvHargatiket.text = RupiahConverter.rupiah(dataHome.price)
 
                 btnDetails.setOnClickListener {
                     onClick.onItemClick(dataHome)

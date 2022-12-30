@@ -16,6 +16,7 @@ import binar.academy.kelompok6.tripie_buyer.data.model.SearchBundle
 import binar.academy.kelompok6.tripie_buyer.data.model.request.BookingTicketRequest
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentBookingDetailBinding
+import binar.academy.kelompok6.tripie_buyer.utils.RupiahConverter
 import binar.academy.kelompok6.tripie_buyer.view.booking.viewmodel.BookingTiketViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -50,7 +51,7 @@ class BookingDetailFragment : Fragment() {
             totalPrice = it.price * data.dataRequest.totalPassenger
         }
 
-        binding.tvHargaTiket.text = "IDR. $totalPrice"
+        binding.tvHargaTiket.text = RupiahConverter.rupiah(totalPrice)
 
         binding.btnBookingTiket.setOnClickListener {
             bookingTiket(data, totalPrice)

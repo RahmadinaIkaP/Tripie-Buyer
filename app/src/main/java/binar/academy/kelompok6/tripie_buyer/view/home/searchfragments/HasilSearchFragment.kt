@@ -20,6 +20,8 @@ import binar.academy.kelompok6.tripie_buyer.databinding.FragmentHasilSearchBindi
 import binar.academy.kelompok6.tripie_buyer.utils.Constant
 import binar.academy.kelompok6.tripie_buyer.view.home.adapter.SearchHomeAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class HasilSearchFragment : Fragment(), SearchHomeAdapter.HasilSearchInterface {
@@ -62,7 +64,7 @@ class HasilSearchFragment : Fragment(), SearchHomeAdapter.HasilSearchInterface {
             val data = arguments?.getParcelable<SearchBundle>("searchResult") as SearchBundle
 
             binding.btnBackHome.setOnClickListener {
-                findNavController().navigate(R.id.action_hasilSearchFragment_to_bookingDetailFragment)
+                findNavController().navigate(R.id.action_hasilSearchFragment_to_homeFragment)
             }
 
             setDataHasilSearch(data)
@@ -93,7 +95,11 @@ class HasilSearchFragment : Fragment(), SearchHomeAdapter.HasilSearchInterface {
 
     private fun setDataHasilSearch(data: SearchBundle) {
         binding.apply {
-            tvTanggal.text = data.dataRequest.flightDate
+            val dateFormat = SimpleDateFormat("MM-dd-yyyy", Locale.getDefault())
+            val flightDate = SimpleDateFormat("d MMMM y",
+                Locale.getDefault()).format(dateFormat.parse(data.dataRequest.flightDate)!!)
+
+            tvTanggal.text = flightDate
             tvJumlahPenumpang.text = "${data.dataRequest.totalPassenger} Penumpang"
             tvKelas.text = data.dataRequest.planeClass
         }

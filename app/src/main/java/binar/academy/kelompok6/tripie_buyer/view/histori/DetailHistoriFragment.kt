@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.model.response.Booking
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentDetailHistoriBinding
+import binar.academy.kelompok6.tripie_buyer.utils.RupiahConverter
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
@@ -60,36 +61,19 @@ class DetailHistoriFragment : Fragment() {
                 Locale.getDefault()).format(it)
         }
 
-
         binding.apply {
-            if (data.flightType.lowercase() == "one way trip"){
-                tvNamaPenumpang.text = data.passengerName
-                tvBandaraAsal.text = "${data.originCode}, ${data.originCity}"
-                tvBandaraTujuan.text = "${data.destinationCode}, ${data.destinationCity}"
-                tvTanggalBerangkat.text = flightDate
-                tvTanggalSampai.text = flightDate
-                tvJamBerangkat.text = convertedDepartHour
-                tvJamSampai.text = convertedArriveHour
-                tvHargatiket.text = "IDR. ${data.price}"
-                tvTipePenerbangan.text = data.flightType
-                tvBookingID.text = data.id.toString()
-                tvKelas.text = data.planeClass
-                tvSubHeaderMaskapai.text = data.airlineName
-
-            }else if(data.flightType.lowercase() == "round trip"){
-                tvNamaPenumpang.text = data.passengerName
-                tvBandaraAsal.text = "${data.originCode}, ${data.originCity}"
-                tvBandaraTujuan.text = "${data.destinationCode}, ${data.destinationCity}"
-                tvTanggalBerangkat.text = flightDate
-                tvTanggalSampai.text = flightBackDate
-                tvJamBerangkat.text = convertedDepartHour
-                tvJamSampai.text = convertedArriveHour
-                tvHargatiket.text = "IDR. ${data.price}"
-                tvTipePenerbangan.text = data.flightType
-                tvBookingID.text = data.id.toString()
-                tvKelas.text = data.planeClass
-                tvSubHeaderMaskapai.text = data.airlineName
-            }
+            tvNamaPenumpang.text = data.passengerName
+            tvBandaraAsal.text = "${data.originCode}, ${data.originCity}"
+            tvBandaraTujuan.text = "${data.destinationCode}, ${data.destinationCity}"
+            tvTanggalBerangkat.text = flightDate
+            tvTanggalSampai.text = flightDate
+            tvJamBerangkat.text = convertedDepartHour
+            tvJamSampai.text = convertedArriveHour
+            tvHargatiket.text = RupiahConverter.rupiah(data.price)
+            tvTipePenerbangan.text = data.flightType
+            tvBookingID.text = data.id.toString()
+            tvKelas.text = data.planeClass
+            tvSubHeaderMaskapai.text = data.airlineName
         }
     }
 }
