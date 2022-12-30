@@ -1,9 +1,7 @@
 package binar.academy.kelompok6.tripie_buyer.view.profile.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import binar.academy.kelompok6.tripie_buyer.data.model.response.DataUpdateUser
 import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseUpdateProfile
 import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseUser
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiEndpoint
