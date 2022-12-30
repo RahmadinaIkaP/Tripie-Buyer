@@ -1,5 +1,6 @@
 package binar.academy.kelompok6.tripie_buyer.view.splashscreen
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -16,6 +17,7 @@ import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentSplashScreenBinding
 
+@SuppressLint("CustomSplashScreen")
 class SplashScreenFragment : Fragment() {
     private var _binding : FragmentSplashScreenBinding? = null
     private val binding get() = _binding!!
@@ -40,7 +42,7 @@ class SplashScreenFragment : Fragment() {
     private fun startSplashScreen() {
         sharedPref.getStatus.asLiveData().observe(viewLifecycleOwner){
             Handler(Looper.getMainLooper()).postDelayed({
-                if (it.equals(false)){
+                if (it == false){
                     Navigation.findNavController(requireView()).navigate(R.id.action_splashScreenFragment_to_onboardingFragment2)
                 }else{
                     Navigation.findNavController(requireView()).navigate(R.id.action_splashScreenFragment_to_homeFragment)

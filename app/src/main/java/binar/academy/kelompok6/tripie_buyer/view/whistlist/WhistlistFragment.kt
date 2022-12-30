@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
@@ -40,17 +41,27 @@ class WhistlistFragment : Fragment(), FavoritAdapter.FavoritInterface  {
     }
 
     private fun showDataFavorit() {
-        adapter = FavoritAdapter(this)
+        vmFav.getAllFav()
+        vmFav.getAllFavObserver().observe(viewLifecycleOwner){
+            adapter = FavoritAdapter(it as ArrayList<Favorit>,this)
+            adapter.setData(it)
 
-        binding.apply {
-            vmFav.getAllFav()
-            vmFav.getAllFavObserver().observe(viewLifecycleOwner){
-                adapter.setData(it)
-            }
+            binding.rvFavorit.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            binding.rvFavorit.adapter = adapter
 
-            rvFavorit.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            rvFavorit.adapter = adapter
+            binding.etSearchFavorite.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    adapter.filter.filter(query)
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    adapter.filter.filter(newText)
+                    return true
+                }
+            })
         }
+
     }
 
     override fun onItemClick(favorit: Favorit) {

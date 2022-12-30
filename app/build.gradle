@@ -21,7 +21,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -43,6 +45,7 @@ android {
 
 dependencies {
 
+    //noinspection GradleDependency
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
@@ -68,6 +71,7 @@ dependencies {
     // viewModel
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+    //noinspection GradleDependency
     implementation "androidx.activity:activity-ktx:1.5.1"
 
     // retrofit
@@ -105,6 +109,11 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:31.1.1')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    //noinspection GradleDependency
+    implementation 'com.google.android.gms:play-services-auth:20.3.0'
 
-
+    // mockk
+    implementation "io.mockk:mockk:1.13.1"
+    testImplementation "io.mockk:mockk:1.13.1"
 }

@@ -11,6 +11,8 @@ import com.bumptech.glide.Glide
 
 class PopularDestinationAdapter (private val onClick : PopularInterface) : RecyclerView.Adapter<PopularDestinationAdapter.ViewHolder>(){
 
+    private val limit = 5
+
     private val differCallback = object : DiffUtil.ItemCallback<Airport>(){
         override fun areItemsTheSame(oldItem: Airport, newItem: Airport): Boolean {
             return oldItem.id == newItem.id
@@ -51,7 +53,13 @@ class PopularDestinationAdapter (private val onClick : PopularInterface) : Recyc
         holder.bind(differ.currentList[position])
     }
 
-    override fun getItemCount(): Int = differ.currentList.size
+    override fun getItemCount(): Int {
+        return if (differ.currentList.size > limit){
+            limit
+        }else{
+            differ.currentList.size
+        }
+    }
 
     fun setData(data : List<Airport>){
         differ.submitList(data)

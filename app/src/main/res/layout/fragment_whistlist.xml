@@ -19,8 +19,8 @@
         android:layout_marginStart="20dp"
         />
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/etSearchTiket"
+    <SearchView
+        android:id="@+id/etSearchFavorite"
         android:layout_width="370dp"
         android:layout_height="50dp"
         android:layout_below="@+id/headerFavorit"
@@ -30,8 +30,8 @@
         android:drawableEnd="@drawable/search_normal"
         android:drawablePadding="12dp"
         android:ems="10"
-        app:queryHint="Cari favorit ..."
-        app:iconifiedByDefault="false"
+        android:queryHint="Cari tiket"
+        android:iconifiedByDefault="false"
         tools:ignore="Autofill,TextFields" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/etSearchTiket"
+        android:layout_below="@id/etSearchFavorite"
         tools:listitem="@layout/item_wishlist" />
 
     <ProgressBar

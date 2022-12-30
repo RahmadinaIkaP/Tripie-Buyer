@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,8 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import pt.tornelas.segmentedprogressbar.SegmentedProgressBar
@@ -63,22 +66,22 @@ class OnboardingFragment : Fragment() {
                 super.onPageSelected(position)
 
                 binding.btnNextFirst.setOnClickListener {
-                    binding.viewPager.setCurrentItem(binding.viewPager.currentItem + 1)
+                    binding.viewPager.currentItem = binding.viewPager.currentItem + 1
                 }
 
-                Handler().postDelayed({
-                    binding.viewPager.setCurrentItem(binding.viewPager.currentItem + 1)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    binding.viewPager.currentItem = binding.viewPager.currentItem + 1
                                       }, 2000)
 
                 if (binding.viewPager.currentItem == 2) {
-                    binding.btnNextFirst.text = "Get Started"
+                    binding.btnNextFirst.text = "Mulai"
                     binding.btnNextFirst.setOnClickListener{
                         statusTrue()
                         Navigation.findNavController(view).navigate(R.id.action_onboardingFragment2_to_homeFragment2)
                     }
                 }
                 else{
-                    binding.btnNextFirst.text = "Next"
+                    binding.btnNextFirst.text = "Selanjutnya"
                 }
             }
 
@@ -89,7 +92,7 @@ class OnboardingFragment : Fragment() {
     }
 
     private fun statusTrue() {
-        GlobalScope.launch{
+        CoroutineScope(Dispatchers.IO).launch{
             sharedPref.saveStatus(true)
         }
     }

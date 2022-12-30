@@ -116,6 +116,7 @@ class HistoriFragment : Fragment(), HistoryAdapter.HistoryInterface {
 
             etSearchTiket.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
+                    adapterHistory.filter.filter(query)
                     return false
                 }
 
@@ -129,7 +130,8 @@ class HistoriFragment : Fragment(), HistoryAdapter.HistoryInterface {
     }
 
     override fun onItemClick(booking: Booking) {
-        Log.d("History", "Clicked!")
+        val action = HistoriFragmentDirections.actionHistoriFragmentToDetailHistoriFragment(booking)
+        findNavController().navigate(action)
     }
 
     override fun onDestroyView() {

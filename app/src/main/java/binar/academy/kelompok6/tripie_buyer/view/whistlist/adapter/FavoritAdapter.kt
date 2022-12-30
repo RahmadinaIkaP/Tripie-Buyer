@@ -2,14 +2,22 @@ package binar.academy.kelompok6.tripie_buyer.view.whistlist.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import binar.academy.kelompok6.tripie_buyer.data.model.response.Booking
 import binar.academy.kelompok6.tripie_buyer.data.room.Favorit
 import binar.academy.kelompok6.tripie_buyer.databinding.ItemWishlistBinding
 import com.bumptech.glide.Glide
 
-class FavoritAdapter(private val onClick : FavoritInterface) : RecyclerView.Adapter<FavoritAdapter.ViewHolder>(){
+class FavoritAdapter(
+    private var listFavorit : List<Favorit>,
+    private val onClick : FavoritInterface) :
+    RecyclerView.Adapter<FavoritAdapter.ViewHolder>(), Filterable{
+
+    private var filteredFav : List<Favorit> = listFavorit
 
     private val differCallback = object : DiffUtil.ItemCallback<Favorit>(){
         override fun areItemsTheSame(oldItem: Favorit, newItem: Favorit): Boolean {
@@ -57,5 +65,40 @@ class FavoritAdapter(private val onClick : FavoritInterface) : RecyclerView.Adap
 
     fun setData(data : List<Favorit>){
         differ.submitList(data)
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter(){
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charString = constraint.toString()
+
+                if (charString.isEmpty()){
+                    filteredFav = listFavorit
+                }else{
+                    val filtered = ArrayList<Favorit>()
+                    for (row in listFavorit){
+                        if (row.airportName.lowercase().contains(constraint.toString().lowercase()) || row.city.lowercase().contains(constraint.toString().lowercase())){
+                            filtered.add(row)
+                        }
+                        filteredFav = filtered
+                    }
+                }
+
+                val result = FilterResults()
+                result.values = filteredFav
+                return result
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                filteredFav =
+                    if (results?.values == null){
+                        ArrayList()
+                    }else{
+                        results.values as ArrayList<Favorit>
+                    }
+                differ.submitList(filteredFav)
+            }
+
+        }
     }
 }

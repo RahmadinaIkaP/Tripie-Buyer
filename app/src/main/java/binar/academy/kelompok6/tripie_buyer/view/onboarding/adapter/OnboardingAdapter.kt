@@ -19,11 +19,11 @@ class OnboardingAdapter(var fragment:Fragment) : FragmentStateAdapter(fragment) 
         class ViewHolder(var binding: FragmentOnboardingBinding) : RecyclerView.ViewHolder(binding.root)
 
         override fun createFragment(position: Int): Fragment {
-                when(position){
-                        0 -> return FirstOnboardingFragment()
-                        1 -> return SecondOnboardingFragment()
-                        2 -> return ThirdOnboardingFragment()
-                        else -> return FirstOnboardingFragment()
+                return when(position){
+                        0 -> FirstOnboardingFragment()
+                        1 -> SecondOnboardingFragment()
+                        2 -> ThirdOnboardingFragment()
+                        else -> FirstOnboardingFragment()
                 }
         }
 

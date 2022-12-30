@@ -48,27 +48,31 @@ class NotificationFragment : Fragment() {
     }
 
     private fun setRvNotif() {
-        sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){ userId ->
-            if (userId != "Undefined"){
-                vmNotifikasi.getNotifikasi(userId.toInt())
-                vmNotifikasi.getNotifikasiObserver().observe(viewLifecycleOwner){ response ->
-                    when(response){
-                        is ApiResponse.Loading -> {
-                            showLoading()
-                            Log.d("Loading: ", response.toString())
-                        }
-                        is ApiResponse.Success -> {
-                            stopLoading()
-                            response.data?.let {
-                                val sortedNotif = it.data.sortedByDescending { data-> data.id }
-                                showRvDataNotif(sortedNotif)
+        sharedPref.getStatusGoogle.asLiveData().observe(viewLifecycleOwner){ status ->
+            if (status.equals(false)){
+                sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){ userId ->
+                    if (userId != "Undefined"){
+                        vmNotifikasi.getNotifikasi(userId.toInt())
+                        vmNotifikasi.getNotifikasiObserver().observe(viewLifecycleOwner){ response ->
+                            when(response){
+                                is ApiResponse.Loading -> {
+                                    showLoading()
+                                    Log.d("Loading: ", response.toString())
+                                }
+                                is ApiResponse.Success -> {
+                                    stopLoading()
+                                    response.data?.let {
+                                        val sortedNotif = it.data.sortedByDescending { data-> data.id }
+                                        showRvDataNotif(sortedNotif)
+                                    }
+                                    Log.d("Success: ", response.toString())
+                                }
+                                is ApiResponse.Error -> {
+                                    stopLoading()
+                                    Toast.makeText(requireContext(), response.msg, Toast.LENGTH_SHORT).show()
+                                    Log.d("Error: ", response.toString())
+                                }
                             }
-                            Log.d("Success: ", response.toString())
-                        }
-                        is ApiResponse.Error -> {
-                            stopLoading()
-                            Toast.makeText(requireContext(), response.msg, Toast.LENGTH_SHORT).show()
-                            Log.d("Error: ", response.toString())
                         }
                     }
                 }

@@ -80,10 +80,7 @@
                     android:layout_height="wrap_content"
                     android:text="Penumpang"
                     android:textColor="#9F9A9A"
-                    android:textStyle="bold"
-
-
-                    />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvNamaPenumpang"
@@ -93,9 +90,7 @@
                     android:text="Jamal Agung"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:layout_below="@id/tvSubHeaderPenumpang"
-
-                    />
+                    android:layout_below="@id/tvSubHeaderPenumpang" />
 
                 <ImageView
                     android:labelFor="@id/tvNamaPenumpang"
@@ -119,51 +114,49 @@
                         android:layout_marginTop="25dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:maxWidth="90dp"
                         android:text="CGK, Jakarta"
                         android:textStyle="bold"
-                        android:textColor="@color/black"
-
-                        />
+                        android:textColor="@color/black" />
                     <TextView
                         android:id="@+id/tvBandaraTujuan"
                         android:layout_marginTop="14dp"
                         android:layout_below="@id/tvBandaraAsal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:maxWidth="90dp"
                         android:text="DPS, Bali"
                         android:textStyle="bold"
-                        android:textColor="@color/black"
-
-                        />
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:id="@+id/tvTanggalBerangkat"
-                        android:layout_toLeftOf="@id/tvJamBerangkat"
-                        android:layout_marginTop="25dp"
-                        android:paddingEnd="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
+                        android:layout_marginTop="25dp"
+                        android:layout_toStartOf="@id/tvJamBerangkat"
+                        android:layout_toEndOf="@+id/tvBandaraAsal"
+                        android:paddingEnd="20dp"
                         android:text="26 Nov, 2022"
-
-
-                        />
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        tools:ignore="RtlSymmetry" />
 
                     <TextView
                         android:id="@+id/tvTanggalSampai"
-                        android:paddingEnd="20dp"
-                        android:layout_marginTop="14dp"
-                        android:layout_below="@id/tvBandaraAsal"
-                        android:layout_toLeftOf="@id/tvJamSampai"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
+                        android:layout_below="@id/tvBandaraAsal"
+                        android:layout_marginTop="14dp"
+                        android:layout_toStartOf="@+id/tvJamSampai"
+                        android:layout_toEndOf="@+id/tvBandaraTujuan"
+                        android:paddingEnd="20dp"
                         android:text="26 Nov, 2022"
-
-
-                        />
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        tools:ignore="RtlSymmetry" />
 
                     <TextView
                         android:id="@+id/tvJamBerangkat"
@@ -173,11 +166,7 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:textColor="@color/black"
-                        android:text="07:40"
-
-
-
-                        />
+                        android:text="07:40" />
 
 
                     <TextView
@@ -231,7 +220,7 @@
                     android:id="@+id/tvSubHeaderPembayaran1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pembayaran : "
+                    android:text="Tipe Penerbangan : "
                     android:textColor="#9F9A9A"
                     android:textStyle="bold"
                     />
@@ -248,16 +237,15 @@
                     />
 
                 <TextView
+                    android:id="@+id/tvTipePenerbangan"
                     android:layout_below="@id/tvSubHeaderPembayaran"
                     android:layout_marginTop="10dp"
                     android:layout_alignParentEnd="true"
-                    android:id="@+id/tvMetodePembayaran"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BCA"
+                    android:text="Tipe"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-
                     />
 
 
@@ -318,8 +306,6 @@
                     android:text="12345"
                     android:layout_below="@id/tvSubHeaderBookingID"
                     android:layout_marginTop="10dp"
-
-
                     />
 
                 <TextView
@@ -332,7 +318,6 @@
                     android:textColor="#0066B3"
                     android:textStyle="bold"
                     android:text="Ekonomi"
-
                     />
 
                 <TextView
@@ -344,9 +329,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#0066B3"
                     android:textStyle="bold"
-                    android:text="Batik Air"
-
-                    />
+                    android:text="Batik Air" />
 
 
             </RelativeLayout>

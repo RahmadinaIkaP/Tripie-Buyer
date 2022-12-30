@@ -19,10 +19,7 @@ import binar.academy.kelompok6.tripie_buyer.view.whistlist.viewmodel.FavoritView
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 @AndroidEntryPoint
 class DetailFlightFragment : Fragment() {
@@ -64,7 +61,7 @@ class DetailFlightFragment : Fragment() {
             txtDescFavorit.text = data.description
         }
 
-        GlobalScope.launch(Dispatchers.IO) {
+        CoroutineScope(Dispatchers.IO).launch {
             withContext(Dispatchers.Main){
                 val count = data.let { vmFav.cekFav(it.id) }
                 isClicked = if (count > 0){
@@ -100,17 +97,11 @@ class DetailFlightFragment : Fragment() {
                 }
             }
             binding.btnFavorit.setImageResource(R.drawable.ic_favorite)
-            Snackbar.make(binding.root, "Favorit Berhasil Ditambahkan!", Snackbar.LENGTH_SHORT)
-                .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.light_gray))
-                .setTextColor(ContextCompat.getColor(requireContext(), R.color.blue))
-                .show()
+            Toast.makeText(requireContext(), "Favorit Berhasil Ditambahkan!", Toast.LENGTH_SHORT).show()
         }else{
             vmFav.deleteFav(data)
             binding.btnFavorit.setImageResource(R.drawable.ic_unfavorite)
-            Snackbar.make(binding.root, "Favorit Terhapus!", Snackbar.LENGTH_SHORT)
-                .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.light_gray))
-                .setTextColor(ContextCompat.getColor(requireContext(), R.color.blue))
-                .show()
+            Toast.makeText(requireContext(), "Favorit Terhapus!", Toast.LENGTH_SHORT).show()
         }
 
     }

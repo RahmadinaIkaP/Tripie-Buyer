@@ -14,18 +14,28 @@ class SharedPref (private val context: Context) {
     private val token = stringPreferencesKey("token")
     private val status = booleanPreferencesKey("status")
     private val idUser = stringPreferencesKey("idUser")
+    private val username = stringPreferencesKey("username")
+    private val email = stringPreferencesKey("email")
     private val totalPassenger = intPreferencesKey("tpass")
     private val typeFlight = stringPreferencesKey("typeflight")
+
+    private val isSignInGoogle = booleanPreferencesKey("isGoogle")
+    private val urlImg = stringPreferencesKey("urlImg")
 
     private val originCode = stringPreferencesKey("ogCode")
     private val destCode = stringPreferencesKey("destCode")
     private val originCity = stringPreferencesKey("ogCity")
     private val destCity = stringPreferencesKey("destCity")
 
-    suspend fun saveToken(tokens : String,idUsers : String){
+    suspend fun saveToken(tokens : String,idUsers : String, usernames : String,
+                          isGoogle : Boolean, url : String, emails : String){
         context.dataStore.edit {
             it[token] = tokens
             it[idUser] = idUsers
+            it[username] = usernames
+            it[isSignInGoogle] = isGoogle
+            it[urlImg] = url
+            it[email] = emails
         }
     }
 
@@ -50,6 +60,12 @@ class SharedPref (private val context: Context) {
         }
     }
 
+    suspend fun saveStatus(statuss:Boolean){
+        context.dataStore.edit {
+            it[status] = statuss
+        }
+    }
+
     val getToken : Flow<String> = context.dataStore.data
         .map {
             it[token] ?: "Undefined"
@@ -57,6 +73,31 @@ class SharedPref (private val context: Context) {
     val getIdUser : Flow<String> = context.dataStore.data
         .map {
             it[idUser] ?: "Undefined"
+        }
+
+    val getUsername : Flow<String> = context.dataStore.data
+        .map {
+            it[username] ?: "Undefined"
+        }
+
+    val getEmail : Flow<String> = context.dataStore.data
+        .map {
+            it[email] ?: "Undefined"
+        }
+
+    val getStatus : Flow<Boolean> = context.dataStore.data
+        .map {
+            it[status] ?: false
+        }
+
+    val getStatusGoogle : Flow<Boolean> = context.dataStore.data
+        .map {
+            it[isSignInGoogle] ?: false
+        }
+
+    val getUrlImg : Flow<String> = context.dataStore.data
+        .map {
+            it[urlImg] ?: "Undefined"
         }
 
     val getTotalPassenger : Flow<Int> = context.dataStore.data
@@ -72,6 +113,7 @@ class SharedPref (private val context: Context) {
         .map {
             it[originCode] ?: "Undefined"
         }
+
     val getOriginCity : Flow<String> = context.dataStore.data
         .map {
             it[originCity] ?: "Undefined"
@@ -81,6 +123,7 @@ class SharedPref (private val context: Context) {
         .map {
             it[destCode] ?: "Undefined"
         }
+
     val getDestCity : Flow<String> = context.dataStore.data
         .map {
             it[destCity] ?: "Undefined"
@@ -90,23 +133,16 @@ class SharedPref (private val context: Context) {
         context.dataStore.edit {
             it.remove(token)
             it.remove(idUser)
+            it.remove(username)
             it.remove(totalPassenger)
             it.remove(typeFlight)
             it.remove(originCode)
             it.remove(originCity)
             it.remove(destCode)
             it.remove(destCity)
+            it.remove(isSignInGoogle)
+            it.remove(urlImg)
+            it.remove(email)
         }
     }
-
-    suspend fun saveStatus(statuss:Boolean){
-        context.dataStore.edit {
-            it[status] = statuss
-        }
-    }
-
-    val getStatus : Flow<Boolean> = context.dataStore.data
-        .map {
-            it[status] ?: false
-        }
 }

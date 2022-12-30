@@ -62,7 +62,7 @@ class EditProfileFragment : Fragment() {
     private var permissionRequestCount: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
-    : View? {
+    : View {
         // Inflate the layout for this fragment
         binding = FragmentEditProfileBinding.inflate(inflater, container, false)
         // Make sure the app has correct permissions to run
@@ -81,65 +81,77 @@ class EditProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         sharedPref = SharedPref(requireContext())
-        var name_ = arguments?.getString("name")
-        var email_ = arguments?.getString("email")
-        var phone_= arguments?.getString("phone")
-        var gambar_ = arguments?.getString("gambar")
-        var address_ = arguments?.getString("address")
+        val name_ = arguments?.getString("name")
+        val email_ = arguments?.getString("email")
+        val phone_= arguments?.getString("phone")
+        val gambar_ = arguments?.getString("gambar")
+        val address_ = arguments?.getString("address")
 
         binding.editTextNama.setText(name_)
         binding.editTextEmail.setText(email_)
         binding.editTextNotelp.setText(phone_)
         binding.editTextAlamat.setText(address_)
-        Glide.with(this).load(gambar_).into(binding.ivProfile)
+        Glide.with(this)
+            .load(gambar_)
+            .placeholder(R.drawable.shape_round_imageview)
+            .into(binding.ivProfile)
 
         binding.btnUbahData.setOnClickListener{
             sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner) {
-                val name = binding.editTextNama.text.toString()
-                val email = binding.editTextEmail.text.toString()
-                val phone = binding.editTextNotelp.text.toString()
-                val address = binding.editTextAlamat.text.toString()
-                val password = binding.editTextPassword.text.toString()
-                val confirmPassword = binding.editTextConfirmPassword.text.toString()
+                if (it != "Undefined"){
+                    val name = binding.editTextNama.text.toString()
+                    val email = binding.editTextEmail.text.toString()
+                    val phone = binding.editTextNotelp.text.toString()
+                    val address = binding.editTextAlamat.text.toString()
+                    val password = binding.editTextPassword.text.toString()
+                    val confirmPassword = binding.editTextConfirmPassword.text.toString()
 
-                if (getFile != null) {
-                    val requestFile = getFile!!.asRequestBody("image/jpeg".toMediaTypeOrNull())
-                    val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-                        "Foto",
-                        getFile!!.name,
-                        requestFile
-                    )
+                    if (password != confirmPassword){
+                        Toast.makeText(requireContext(), "Password tidak sama!", Toast.LENGTH_SHORT).show()
+                    }else{
+                        if (getFile != null) {
+                            val requestFile = getFile!!.asRequestBody("image/jpeg".toMediaTypeOrNull())
+                            val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                                "Foto",
+                                getFile!!.name,
+                                requestFile
+                            )
 
-                    viewModel.updateProfile(
-                        it.toInt(),
-                        name.toRequestBody("multipart/form-data".toMediaType()),
-                        email.toRequestBody("multipart/form-data".toMediaType()),
-                        confirmPassword.toRequestBody("multipart/form-data".toMediaType()),
-                        imageMultipart,
-                        address.toRequestBody("multipart/form-data".toMediaType()),
-                        phone.toRequestBody("multipart/form-data".toMediaType())
-                    )
-                    viewModel.updateLiveDataProfile().observe(viewLifecycleOwner) {
-                        when (it) {
-                            is ApiResponse.Success -> {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Berhasil Update Profile",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                findNavController().navigate(R.id.action_editProfileFragment_to_profileFragment)
-                            }
-                            is ApiResponse.Error -> {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Gagal Update Profile",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                Log.d("Error", "$imageMultipart")
-                            }
-                            is ApiResponse.Loading -> {
-                                Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT)
-                                    .show()
+                            viewModel.updateProfile(
+                                it.toInt(),
+                                name.toRequestBody("multipart/form-data".toMediaType()),
+                                email.toRequestBody("multipart/form-data".toMediaType()),
+                                confirmPassword.toRequestBody("multipart/form-data".toMediaType()),
+                                imageMultipart,
+                                address.toRequestBody("multipart/form-data".toMediaType()),
+                                phone.toRequestBody("multipart/form-data".toMediaType())
+                            )
+                            viewModel.updateLiveDataProfile().observe(viewLifecycleOwner) { response ->
+                                when (response) {
+                                    is ApiResponse.Success -> {
+                                        binding.progressBar.visibility = View.GONE
+                                        Toast.makeText(
+                                            requireContext(),
+                                            "Berhasil Update Profile",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                        Log.d("Success", response.toString())
+                                        findNavController().navigate(R.id.action_editProfileFragment_to_profileFragment)
+                                    }
+                                    is ApiResponse.Error -> {
+                                        binding.progressBar.visibility = View.GONE
+                                        Toast.makeText(
+                                            requireContext(),
+                                            "Gagal Update Profile",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                        Log.d("Error", "${response.msg}")
+                                    }
+                                    is ApiResponse.Loading -> {
+                                        binding.progressBar.visibility = View.VISIBLE
+                                        Log.d("Loading", response.toString())
+                                    }
+                                }
                             }
                         }
                     }

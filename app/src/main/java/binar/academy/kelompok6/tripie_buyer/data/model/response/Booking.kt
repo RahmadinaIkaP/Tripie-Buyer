@@ -1,8 +1,12 @@
 package binar.academy.kelompok6.tripie_buyer.data.model.response
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
+@Parcelize
 data class Booking(
     @SerializedName("id")
     val id: Int,
@@ -31,7 +35,7 @@ data class Booking(
     @SerializedName("flight_date")
     val flightDate: String,
     @SerializedName("flight_back_date")
-    val flightBackDate: String,
+    val flightBackDate: String?,
     @SerializedName("airline_name")
     val airlineName: String,
     @SerializedName("departure_hour")
@@ -49,7 +53,7 @@ data class Booking(
     @SerializedName("updatedAt")
     val updatedAt: String,
     @SerializedName("users")
-    val users: Users,
+    val users: @RawValue Users,
     @SerializedName("schedules")
-    val schedules: Schedules
-)
+    val schedules: @RawValue Schedules
+) : Parcelable

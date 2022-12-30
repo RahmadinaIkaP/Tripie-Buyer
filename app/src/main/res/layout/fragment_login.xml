@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".view.authentication.login.LoginFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_margin="25dp"
         android:layout_width="match_parent"
@@ -14,12 +13,14 @@
 
         <ImageView
             android:id="@+id/imageView_logotripie"
-            android:layout_marginTop="35dp"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:contentDescription="@string/tripie_logo"
             android:src="@drawable/tripie_logo"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/tripie_logo" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView2"
@@ -28,7 +29,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Login"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView_logotripie" />
 
@@ -70,7 +70,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editText_pass"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:inputType="textPassword"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

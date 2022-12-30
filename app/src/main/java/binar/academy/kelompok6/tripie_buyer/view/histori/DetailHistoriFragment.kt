@@ -6,37 +6,90 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import binar.academy.kelompok6.tripie_buyer.R
+import binar.academy.kelompok6.tripie_buyer.data.model.response.Booking
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentDetailHistoriBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class DetailHistoriFragment : Fragment() {
     lateinit var binding : FragmentDetailHistoriBinding
+    private val args : DetailHistoriFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         binding = FragmentDetailHistoriBinding.inflate(inflater, container, false)
         return binding.root
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var id = arguments?.getInt("id")
-        var originAirport = arguments?.getString("originAirport")
-        var destinationAirport = arguments?.getString("destinationAirport")
-
-        binding.tvBandaraAsal.text = originAirport
-        binding.tvBandaraTujuan.text = destinationAirport
+        val  data = args.dataHistory
 
         binding.buttonBack.setOnClickListener{
-            findNavController().navigate(R.id.action_detailHistoriFragment_to_historiFragment)
+            findNavController().navigateUp()
+        }
+
+        data?.let { setData(it) }
+    }
+
+    private fun setData(data: Booking) {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        val flightDate = SimpleDateFormat("d MMMM y",
+            Locale.getDefault()).format(dateFormat.parse(data.flightDate)!!)
+        val flightBackDate = data.flightBackDate?.let {
+            dateFormat.parse(it)?.let { date->
+                SimpleDateFormat("d MMMM y",
+                    Locale.getDefault()).format(date)
+            }
+        }
+
+        val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+        val convertedDepartHour = timeFormat.parse(data.departureHour)?.let {
+            SimpleDateFormat("HH:mm",
+                Locale.getDefault()).format(it)
+        }
+        val convertedArriveHour = timeFormat.parse(data.arrivalHour)?.let {
+            SimpleDateFormat("HH:mm",
+                Locale.getDefault()).format(it)
+        }
+
+
+        binding.apply {
+            if (data.flightType.lowercase() == "one way trip"){
+                tvNamaPenumpang.text = data.passengerName
+                tvBandaraAsal.text = "${data.originCode}, ${data.originCity}"
+                tvBandaraTujuan.text = "${data.destinationCode}, ${data.destinationCity}"
+                tvTanggalBerangkat.text = flightDate
+                tvTanggalSampai.text = flightDate
+                tvJamBerangkat.text = convertedDepartHour
+                tvJamSampai.text = convertedArriveHour
+                tvHargatiket.text = "IDR. ${data.price}"
+                tvTipePenerbangan.text = data.flightType
+                tvBookingID.text = data.id.toString()
+                tvKelas.text = data.planeClass
+                tvSubHeaderMaskapai.text = data.airlineName
+
+            }else if(data.flightType.lowercase() == "round trip"){
+                tvNamaPenumpang.text = data.passengerName
+                tvBandaraAsal.text = "${data.originCode}, ${data.originCity}"
+                tvBandaraTujuan.text = "${data.destinationCode}, ${data.destinationCity}"
+                tvTanggalBerangkat.text = flightDate
+                tvTanggalSampai.text = flightBackDate
+                tvJamBerangkat.text = convertedDepartHour
+                tvJamSampai.text = convertedArriveHour
+                tvHargatiket.text = "IDR. ${data.price}"
+                tvTipePenerbangan.text = data.flightType
+                tvBookingID.text = data.id.toString()
+                tvKelas.text = data.planeClass
+                tvSubHeaderMaskapai.text = data.airlineName
+            }
         }
     }
 }

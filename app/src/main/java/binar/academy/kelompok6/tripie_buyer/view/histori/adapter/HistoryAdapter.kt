@@ -14,8 +14,14 @@ import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.model.response.Booking
 import binar.academy.kelompok6.tripie_buyer.databinding.ItemHistoriBinding
 import binar.academy.kelompok6.tripie_buyer.view.histori.DetailHistoriFragment
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
-class HistoryAdapter(private var listBooking : List<Booking>, private val onClick : HistoryInterface) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>()
+class HistoryAdapter(
+    private var listBooking : List<Booking>,
+    private val onClick : HistoryInterface) :
+    RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>()
     , Filterable {
 
     private var filteredBooking : List<Booking> = listBooking
@@ -33,21 +39,27 @@ class HistoryAdapter(private var listBooking : List<Booking>, private val onClic
 
     private val differ = AsyncListDiffer(this, differCallback)
 
-    fun filteredHistory(filter : List<Booking>){
-        listBooking = filter
-    }
-
 
     inner class HistoryViewHolder(val binding : ItemHistoriBinding)
         : RecyclerView.ViewHolder(binding.root) {
         fun bind(booking: Booking) {
             binding.apply {
+                val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+                val convertedDepartHour = timeFormat.parse(booking.departureHour)?.let {
+                    SimpleDateFormat("HH:mm",
+                        Locale.getDefault()).format(it)
+                }
+                val convertedArriveHour = timeFormat.parse(booking.arrivalHour)?.let {
+                    SimpleDateFormat("HH:mm",
+                        Locale.getDefault()).format(it)
+                }
+
                 tvKodeBandaraAsal.text = booking.originCode
                 tvKodeBandaraTujuan.text = booking.destinationCode
                 tvKotaBandaraAsal.text = booking.originCity
                 tvKotaBandaraTujuan.text = booking.destinationCity
-                tvJamBerangkat.text = booking.departureHour
-                tvJamPulang.text = booking.arrivalHour
+                tvJamBerangkat.text = convertedDepartHour
+                tvJamPulang.text = convertedArriveHour
                 tvHargatiket.text = "IDR ${booking.price}"
 
                 btnDetails.setOnClickListener {
@@ -69,7 +81,7 @@ class HistoryAdapter(private var listBooking : List<Booking>, private val onClic
     override fun getItemCount(): Int = differ.currentList.size
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        holder.bind(listBooking[position])
+        holder.bind(differ.currentList[position])
     }
 
     fun setData(data : List<Booking>) {
@@ -81,23 +93,34 @@ class HistoryAdapter(private var listBooking : List<Booking>, private val onClic
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charString = constraint.toString()
 
-                filteredBooking = if (charString.isEmpty()){
-                    listBooking
+                if (charString.isEmpty()){
+                    filteredBooking = listBooking
                 }else{
-                    val filtered = listBooking
-                        .filter {
-                            it.destinationCode.lowercase().contains(charString.lowercase())
+                    val filtered = ArrayList<Booking>()
+                    for (row in listBooking){
+                        if (row.originCity.lowercase().contains(constraint.toString().lowercase())
+                            || row.destinationCity.lowercase().contains(constraint.toString().lowercase())
+                            || row.originCode.lowercase().contains(constraint.toString().lowercase())
+                            || row.destinationCode.lowercase().contains(constraint.toString().lowercase())
+                        ){
+                            filtered.add(row)
                         }
-                    filtered
+                        filteredBooking = filtered
+                    }
                 }
 
-                val result = Filter.FilterResults()
+                val result = FilterResults()
                 result.values = filteredBooking
                 return result
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                filteredHistory(results?.values as List<Booking>)
+                filteredBooking =
+                    if (results?.values == null){
+                        ArrayList()
+                    }else{
+                        results.values as ArrayList<Booking>
+                    }
                 differ.submitList(filteredBooking)
             }
 

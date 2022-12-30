@@ -27,7 +27,7 @@ class FirstOnboardingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.line1.setProgress(0)
+        binding.line1.progress = 0
         binding.line1.max = 5000
         val currentProgress = 5000
         ObjectAnimator.ofInt(binding.line1, "progress", currentProgress).setDuration(5000).start()

@@ -24,8 +24,12 @@ import binar.academy.kelompok6.tripie_buyer.databinding.FragmentHomeBinding
 import binar.academy.kelompok6.tripie_buyer.view.home.adapter.PopularDestinationAdapter
 import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.AirportViewModel
 import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.HomeViewModel
+import binar.academy.kelompok6.tripie_buyer.view.profile.viewmodel.ViewModelProfile
+import com.bumptech.glide.Glide
 import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -38,6 +42,7 @@ class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
     private val binding get() = _binding!!
     private val homeVm : HomeViewModel by viewModels()
     private val vmAirport : AirportViewModel by viewModels()
+    private val vmProfile : ViewModelProfile by viewModels()
     private lateinit var sharedPref: SharedPref
     private lateinit var adapter : PopularDestinationAdapter
     private var flightType = "One Way Trip"
@@ -52,6 +57,8 @@ class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
         super.onViewCreated(view, savedInstanceState)
 
         sharedPref = SharedPref(requireContext())
+
+        setGreeting()
 
         setDestinasiPopuler()
 
@@ -120,6 +127,54 @@ class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
         }
     }
 
+    private fun setGreeting() {
+        sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){ id ->
+            sharedPref.getUsername.asLiveData().observe(viewLifecycleOwner){ username ->
+
+                binding.apply {
+                    if (id == "Undefined" && username == "Undefined"){
+                        layoutGreet.visibility = View.GONE
+                    }else{
+                        layoutGreet.visibility = View.VISIBLE
+                        tvGreetUser.text = "Halo, $username!"
+                        setImageGreet(id)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setImageGreet(id: String?) {
+        sharedPref.getStatusGoogle.asLiveData().observe(viewLifecycleOwner){ status ->
+            if (status.equals(false)){
+                id?.let { vmProfile.getProfile(it.toInt()) }
+                vmProfile.getLiveDataProfile().observe(viewLifecycleOwner){ response ->
+                    when(response){
+                        is ApiResponse.Loading -> {
+                            Log.d("Loading", response.toString())
+                        }
+                        is ApiResponse.Success -> {
+                            Glide.with(requireContext())
+                                .load(response.data?.data?.foto)
+                                .into(binding.circleImageView)
+                        }
+                        is ApiResponse.Error -> {
+                            Log.d("Error", response.msg.toString())
+                        }
+                    }
+                }
+            }else{
+                sharedPref.getUrlImg.asLiveData().observe(viewLifecycleOwner){ url ->
+                    if (url != "Undefined"){
+                        Glide.with(requireContext())
+                            .load(url)
+                            .into(binding.circleImageView)
+                    }
+                }
+            }
+        }
+    }
+
     private fun getNameOriginAirport(checkTypeOw: String) {
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(
             "namaAirportOrigin"
@@ -128,10 +183,18 @@ class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
             if (checkTypeOw == "One Way Trip"){
                 binding.linearLayout7.visibility = View.VISIBLE
                 binding.linearLayout8.visibility = View.GONE
+                binding.btnOneWay.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue))
+                binding.btnOneWay.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                binding.btnRoundTrip.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue_purple))
+                binding.btnRoundTrip.setTextColor(ContextCompat.getColor(requireContext(), R.color.soft_black))
                 flightType = "One Way Trip"
             }else if (checkTypeOw == "Round Trip"){
                 binding.linearLayout7.visibility = View.GONE
                 binding.linearLayout8.visibility = View.VISIBLE
+                binding.btnOneWay.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue_purple))
+                binding.btnOneWay.setTextColor(ContextCompat.getColor(requireContext(), R.color.soft_black))
+                binding.btnRoundTrip.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue))
+                binding.btnRoundTrip.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
                 flightType = "Round Trip"
             }
             binding.editTextDari.setText(name)
@@ -146,10 +209,18 @@ class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
             if (checkTypeOw == "One Way Trip"){
                 binding.linearLayout7.visibility = View.VISIBLE
                 binding.linearLayout8.visibility = View.GONE
+                binding.btnOneWay.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue))
+                binding.btnOneWay.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                binding.btnRoundTrip.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue_purple))
+                binding.btnRoundTrip.setTextColor(ContextCompat.getColor(requireContext(), R.color.soft_black))
                 flightType = "One Way Trip"
             }else if (checkTypeOw == "Round Trip"){
                 binding.linearLayout7.visibility = View.GONE
                 binding.linearLayout8.visibility = View.VISIBLE
+                binding.btnOneWay.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue_purple))
+                binding.btnOneWay.setTextColor(ContextCompat.getColor(requireContext(), R.color.soft_black))
+                binding.btnRoundTrip.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue))
+                binding.btnRoundTrip.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
                 flightType = "Round Trip"
             }
             binding.editTextKe.setText(name)
@@ -164,10 +235,18 @@ class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
             if (checkTypeOw == "One Way Trip"){
                 binding.linearLayout7.visibility = View.VISIBLE
                 binding.linearLayout8.visibility = View.GONE
+                binding.btnOneWay.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue))
+                binding.btnOneWay.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                binding.btnRoundTrip.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue_purple))
+                binding.btnRoundTrip.setTextColor(ContextCompat.getColor(requireContext(), R.color.soft_black))
                 flightType = "One Way Trip"
             }else if (checkTypeOw == "Round Trip"){
                 binding.linearLayout7.visibility = View.GONE
                 binding.linearLayout8.visibility = View.VISIBLE
+                binding.btnOneWay.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue_purple))
+                binding.btnOneWay.setTextColor(ContextCompat.getColor(requireContext(), R.color.soft_black))
+                binding.btnRoundTrip.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue))
+                binding.btnRoundTrip.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
                 flightType = "Round Trip"
             }
             binding.etPlaneClass.setText(it)
@@ -217,49 +296,54 @@ class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
     }
 
     private fun reqSearch(checkTypeOw : String) {
-        if (checkTypeOw == "One Way Trip"){
-            homeVm.searchData(
-                SearchTicketRequest(
-                    originName = binding.editTextDari.text.toString(),
-                    destinationName = binding.editTextKe.text.toString(),
-                    planeClass = binding.etPlaneClass.text.toString(),
-                    flightDate = binding.etDepartureDateOw.text.toString(),
-                    totalPassenger = binding.etJumlahPenumpang.text.toString().toInt()
+        if (binding.editTextDari.text.toString().isEmpty() || binding.editTextKe.text.toString().isEmpty() || binding.etPlaneClass.text.toString().isEmpty() || binding.etDepartureDateOw.text.toString().isEmpty() ||
+            binding.etJumlahPenumpang.text.toString().isEmpty() || binding.etDepartureDateRt.text.toString().isEmpty() ||  binding.etArriveDateRt.text.toString().isEmpty()){
+            Toast.makeText(requireContext(), "Tidak bisa melakukan search, data kosong!", Toast.LENGTH_SHORT).show()
+        }else{
+            if (checkTypeOw == "One Way Trip"){
+                homeVm.searchData(
+                    SearchTicketRequest(
+                        originName = binding.editTextDari.text.toString(),
+                        destinationName = binding.editTextKe.text.toString(),
+                        planeClass = binding.etPlaneClass.text.toString(),
+                        flightDate = binding.etDepartureDateOw.text.toString(),
+                        totalPassenger = binding.etJumlahPenumpang.text.toString().toInt()
+                    )
                 )
-            )
-        }else if (checkTypeOw == "Round Trip"){
-            homeVm.searchData(
-                SearchTicketRequest(
-                    originName = binding.editTextDari.text.toString(),
-                    destinationName = binding.editTextKe.text.toString(),
-                    planeClass = binding.etPlaneClass.text.toString(),
-                    flightDate = binding.etDepartureDateRt.text.toString(),
-                    totalPassenger = binding.etJumlahPenumpang.text.toString().toInt()
+            }else if (checkTypeOw == "Round Trip"){
+                homeVm.searchData(
+                    SearchTicketRequest(
+                        originName = binding.editTextDari.text.toString(),
+                        destinationName = binding.editTextKe.text.toString(),
+                        planeClass = binding.etPlaneClass.text.toString(),
+                        flightDate = binding.etDepartureDateRt.text.toString(),
+                        totalPassenger = binding.etJumlahPenumpang.text.toString().toInt()
+                    )
                 )
-            )
-        }
+            }
 
-        homeVm.ambilLiveDataSearch().observe(viewLifecycleOwner){ response->
-            when(response){
-                is ApiResponse.Loading -> {
-                    binding.progressbar.visibility = View.VISIBLE
-                    Log.d("Loading: ", response.toString())
-                }
-                is ApiResponse.Success -> {
-                    binding.progressbar.visibility = View.GONE
-                    response.data?.let {
-                        Log.d("flightType: ", checkTypeOw)
-                        saveDataPref(binding.etJumlahPenumpang.text.toString().toInt(), checkTypeOw)
-                        saveBundle(checkTypeOw, it)
+            homeVm.ambilLiveDataSearch().observe(viewLifecycleOwner){ response->
+                when(response){
+                    is ApiResponse.Loading -> {
+                        binding.progressbar.visibility = View.VISIBLE
+                        Log.d("Loading: ", response.toString())
                     }
-                    Toast.makeText(requireContext(), response.toString(), Toast.LENGTH_SHORT).show()
-                    Log.d("Success: ", response.toString())
-                }
-                is ApiResponse.Error -> {
-                    binding.progressbar.visibility = View.GONE
-                    Toast.makeText(requireContext(), response.msg, Toast.LENGTH_SHORT).show()
-                    Log.d("Error: ", response.toString())
-                    Log.d("flightType: ", checkTypeOw)
+                    is ApiResponse.Success -> {
+                        binding.progressbar.visibility = View.GONE
+                        response.data?.let {
+                            Log.d("flightType: ", checkTypeOw)
+                            saveDataPref(binding.etJumlahPenumpang.text.toString().toInt(), checkTypeOw)
+                            saveBundle(checkTypeOw, it)
+                        }
+                        Toast.makeText(requireContext(), response.toString(), Toast.LENGTH_SHORT).show()
+                        Log.d("Success: ", response.toString())
+                    }
+                    is ApiResponse.Error -> {
+                        binding.progressbar.visibility = View.GONE
+                        Toast.makeText(requireContext(), response.msg, Toast.LENGTH_SHORT).show()
+                        Log.d("Error: ", response.toString())
+                        Log.d("flightType: ", checkTypeOw)
+                    }
                 }
             }
         }
@@ -286,19 +370,19 @@ class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
                     originName = binding.editTextDari.text.toString(),
                     destinationName = binding.editTextKe.text.toString(),
                     planeClass = binding.etPlaneClass.text.toString(),
-                    flightDate = binding.etDepartureDateOw.text.toString(),
+                    flightDate = binding.etDepartureDateRt.text.toString(),
                     totalPassenger = binding.etJumlahPenumpang.text.toString().toInt()
                 ),
                 dataResponse = responseSearchTicket,
                 flight_back_date = binding.etArriveDateRt.text.toString(),
-                flight_type = "One Way Trip"
+                flight_type = "Round Trip"
             ))
         }
         findNavController().navigate(R.id.action_homeFragment_to_hasilSearchFragment, bundle)
     }
 
     private fun saveDataPref(tpass: Int, checkTypeOw: String) {
-        GlobalScope.launch {
+        CoroutineScope(Dispatchers.IO).launch {
             sharedPref.saveSearch(tpass, checkTypeOw)
         }
     }
