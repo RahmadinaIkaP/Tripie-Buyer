@@ -1,7 +1,6 @@
 package binar.academy.kelompok6.tripie_buyer.data.room
 
 import androidx.room.*
-import dagger.Module
 
 @Dao
 interface FavoritDAO {

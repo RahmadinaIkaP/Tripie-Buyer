@@ -9,6 +9,7 @@
 
     <ImageView
         android:id="@+id/imageView"
+        android:contentDescription="@string/tripie_logo"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:scaleType="center"
@@ -24,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Take Off With Confidence"
+        android:text="@string/take_off_with_confidence"
         android:textColor="@color/soft_black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

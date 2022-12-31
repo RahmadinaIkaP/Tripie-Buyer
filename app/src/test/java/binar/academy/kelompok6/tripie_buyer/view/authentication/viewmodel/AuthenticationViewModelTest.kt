@@ -17,7 +17,7 @@ import retrofit2.Call
 
 class AuthenticationViewModelTest {
 
-    lateinit var service : ApiEndpoint
+    private lateinit var service : ApiEndpoint
 
     @Before
     fun setUp() {

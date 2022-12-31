@@ -22,9 +22,10 @@
 
             <ImageButton
                 android:id="@+id/btnBacktoResult"
+                android:contentDescription="@string/image_button_back"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_baseline_arrow_back_24" />
 
@@ -33,7 +34,7 @@
                 android:layout_marginEnd="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Detail Booking"
+                android:text="@string/detail_booking"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -136,7 +137,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Detail Penumpang"
+            android:text="@string/detail_penumpang"
             android:textColor="@color/black"
             android:textSize="24sp"
 
@@ -150,7 +151,7 @@
             android:layout_below="@id/subHeaderDetailPenumpang"
             android:layout_marginTop="16dp"
             android:ems="10"
-            android:hint="Nama Lengkap"
+            android:hint="@string/nama_lengkap"
             android:inputType="textPersonName"
             app:boxBackgroundColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -170,7 +171,7 @@
             android:layout_below="@id/tfNamaLengkapPenumpang"
             android:layout_marginTop="16dp"
             android:ems="10"
-            android:hint="Nomor Telepon"
+            android:hint="@string/nomor_telepon"
             android:inputType="phone"
             app:boxBackgroundColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -209,7 +210,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_centerVertical="true"
-                    android:text="Total : "
+                    android:text="@string/total"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="15sp"/>
@@ -220,7 +221,6 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@id/subTextTotal"
-                    android:text="Rp. 1.152.580"
                     android:textColor="#FD5B1F"
                     android:textStyle="bold"
                     android:textSize="15sp"/>
@@ -231,7 +231,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginEnd="25dp"
-                    android:text="Booking" />
+                    android:text="@string/booking" />
 
             </androidx.appcompat.widget.Toolbar>
 

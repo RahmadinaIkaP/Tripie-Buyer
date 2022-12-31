@@ -6,12 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.Navigation
 import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentFirstOnboardingBinding
-import binar.academy.kelompok6.tripie_buyer.view.home.HomeFragment
-import binar.academy.kelompok6.tripie_buyer.view.onboarding.adapter.OnboardingAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

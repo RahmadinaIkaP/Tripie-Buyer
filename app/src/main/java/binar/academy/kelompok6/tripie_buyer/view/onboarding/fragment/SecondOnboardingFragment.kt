@@ -2,19 +2,11 @@ package binar.academy.kelompok6.tripie_buyer.view.onboarding.fragment
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.os.CountDownTimer
-import android.os.Handler
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
-import binar.academy.kelompok6.tripie_buyer.R
-import binar.academy.kelompok6.tripie_buyer.databinding.FragmentFirstOnboardingBinding
-import binar.academy.kelompok6.tripie_buyer.databinding.FragmentOnboardingBinding
+import androidx.fragment.app.Fragment
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentSecondOnboardingBinding
-import binar.academy.kelompok6.tripie_buyer.view.onboarding.adapter.OnboardingAdapter
-import java.util.*
 
 class SecondOnboardingFragment : Fragment() {
 

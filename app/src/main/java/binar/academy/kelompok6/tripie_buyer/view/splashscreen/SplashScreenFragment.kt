@@ -1,18 +1,15 @@
 package binar.academy.kelompok6.tripie_buyer.view.splashscreen
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.asLiveData
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentSplashScreenBinding

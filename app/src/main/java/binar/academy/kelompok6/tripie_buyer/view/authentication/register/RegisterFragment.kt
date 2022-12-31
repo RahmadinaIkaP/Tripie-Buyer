@@ -25,7 +25,7 @@ class RegisterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
@@ -43,7 +43,7 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    fun postRegister(){
+    private fun postRegister(){
         if (binding.etNamaLengkap.text.toString().isEmpty() || binding.etEmail.text.toString().isEmpty() || binding.etPassword.text.toString().isEmpty() || binding.etKonfirPass.text.toString().isEmpty()) {
             Toast.makeText(requireContext(), "Data tidak boleh kosong", Toast.LENGTH_SHORT).show()
         } else {

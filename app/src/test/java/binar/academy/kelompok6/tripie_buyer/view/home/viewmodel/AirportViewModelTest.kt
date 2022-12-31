@@ -14,7 +14,7 @@ import retrofit2.Call
 
 class AirportViewModelTest {
 
-    lateinit var service : ApiEndpoint
+    private lateinit var service : ApiEndpoint
 
     @Before
     fun setUp() {

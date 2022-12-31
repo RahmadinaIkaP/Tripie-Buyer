@@ -4,7 +4,6 @@ package binar.academy.kelompok6.tripie_buyer.data.model.request
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
-import java.io.Serializable
 
 @Parcelize
 data class SearchTicketRequest(

@@ -51,7 +51,7 @@ class HasilSearchFragment : Fragment(), SearchHomeAdapter.HasilSearchInterface {
             }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHasilSearchBinding.inflate(inflater, container, false)
         return binding.root
     }

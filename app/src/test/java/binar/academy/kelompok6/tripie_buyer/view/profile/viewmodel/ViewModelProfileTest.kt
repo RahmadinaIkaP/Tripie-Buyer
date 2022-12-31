@@ -12,7 +12,7 @@ import org.junit.Before
 import org.junit.Test
 
 class ViewModelProfileTest {
-    lateinit var service : ApiEndpoint
+    private lateinit var service : ApiEndpoint
 
     @Before
     fun setUp() {

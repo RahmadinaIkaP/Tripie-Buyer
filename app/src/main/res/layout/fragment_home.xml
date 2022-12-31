@@ -53,7 +53,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Halo, Bang Jono"
+                        android:text="@string/halo_bang_jono"
                         android:textColor="@color/soft_black"
                         android:textSize="16sp" />
 
@@ -73,7 +73,8 @@
                     android:src="@drawable/ic_notification"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/image_button_notification" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -109,7 +110,7 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:text="Mau liburan kemana kali ini?"
+                    android:text="@string/mau_liburan_kemana_kali_ini"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -149,7 +150,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:fontFamily="@font/poppins_semibold"
-                            android:text="Dari"
+                            android:text="@string/dari"
                             android:textColor="@color/soft_black"
                             android:textSize="16sp" />
 
@@ -162,7 +163,7 @@
                             android:textAlignment="center"
                             android:focusable="false"
                             android:clickable="false"
-                            android:hint="Klik untuk pilih bandara asal"/>
+                            android:hint="@string/klik_untuk_pilih_bandara_asal"/>
 
                     </LinearLayout>
 
@@ -179,7 +180,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:fontFamily="@font/poppins_semibold"
-                            android:text="Ke"
+                            android:text="@string/ke"
                             android:textColor="@color/soft_black"
                             android:textSize="16sp" />
 
@@ -192,7 +193,7 @@
                             android:textAlignment="center"
                             android:focusable="false"
                             android:clickable="false"
-                            android:hint="Klik untuk pilih tujuan"/>
+                            android:hint="@string/klik_untuk_pilih_tujuan"/>
 
                     </LinearLayout>
 
@@ -210,7 +211,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:fontFamily="@font/poppins_semibold"
-                            android:text="Tanggal Keberangkatan"
+                            android:text="@string/tanggal_keberangkatan"
                             android:textColor="@color/soft_black"
                             android:textSize="16sp" />
 
@@ -228,6 +229,7 @@
 
                     <LinearLayout
                         android:id="@+id/linearLayout8"
+                        android:baselineAligned="false"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -247,8 +249,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
                                 android:fontFamily="@font/poppins_semibold"
-                                android:text="Tanggal Keberangkatan"
-                                android:textAlignment="center"
+                                android:text="@string/tanggal_keberangkatan"                                android:textAlignment="center"
                                 android:textColor="@color/soft_black"
                                 android:textSize="16sp" />
 
@@ -276,7 +277,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
                                 android:fontFamily="@font/poppins_semibold"
-                                android:text="Tanggal\nPulang"
+                                android:text="@string/tanggal_npulang"
                                 android:textAlignment="center"
                                 android:textColor="@color/soft_black"
                                 android:textSize="16sp" />
@@ -308,7 +309,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:fontFamily="@font/poppins_semibold"
-                            android:text="Penumpang"
+                            android:text="@string/penumpang"
                             android:textColor="@color/soft_black"
                             android:textSize="16sp" />
 
@@ -321,7 +322,7 @@
                             android:padding="10dp"
                             android:textAlignment="center"
                             android:textColor="@color/soft_black"
-                            android:hint="Masukkan jumlah penumpang"/>
+                            android:hint="@string/masukkan_jumlah_penumpang"/>
 
                     </LinearLayout>
 
@@ -338,7 +339,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:fontFamily="@font/poppins_semibold"
-                            android:text="Kelas"
+                            android:text="@string/kelas"
                             android:textAlignment="center"
                             android:textColor="@color/soft_black"
                             android:textSize="16sp" />
@@ -353,7 +354,7 @@
                             android:textColor="@color/soft_black"
                             android:focusable="false"
                             android:clickable="false"
-                            android:hint="Klik untuk pilih kelas pesawat"/>
+                            android:hint="@string/klik_untuk_pilih_kelas_pesawat"/>
 
 <!--                        <LinearLayout-->
 <!--                            android:layout_width="match_parent"-->
@@ -405,7 +406,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="24dp"
                         android:backgroundTint="@color/blue"
-                        android:text="Search"
+                        android:text="@string/search"
                         android:textColor="@color/white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -438,7 +439,7 @@
                         android:layout_weight="1"
                         android:background="@color/blue"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="One-Way"
+                        android:text="@string/one_way"
                         android:textAllCaps="false"
                         android:textColor="@color/white" />
 
@@ -449,7 +450,7 @@
                         android:layout_weight="1"
                         android:background="@color/blue_purple"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Round Trip"
+                        android:text="@string/round_trip"
                         android:textAllCaps="false" />
 
                 </LinearLayout>
@@ -468,7 +469,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="Destinasi Populer"
+                    android:text="@string/destinasi_populer"
                     android:textColor="@color/soft_black"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -480,7 +481,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Lihat Semua >"
+                    android:text="@string/lihat_semua"
                     android:textColor="@color/blue"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"

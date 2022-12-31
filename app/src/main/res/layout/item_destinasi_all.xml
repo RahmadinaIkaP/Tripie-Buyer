@@ -17,6 +17,7 @@
 
             <ImageView
                 android:id="@+id/ivAllPopular"
+                android:contentDescription="@string/image_popular_destination"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/bg_onboarding_1"
@@ -33,7 +34,6 @@
                     android:layout_marginStart="16dp"
                     android:paddingTop="10dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="Nama Bandara"
                     android:textColor="@color/white"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toTopOf="@+id/linearLayout10"
@@ -54,6 +54,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
+                        android:contentDescription="@string/image_location"
                         android:src="@drawable/ic_location"
                         android:layout_marginEnd="5dp"/>
 
@@ -63,7 +64,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Nama Lokasi"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 

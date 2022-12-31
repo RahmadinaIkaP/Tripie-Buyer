@@ -31,7 +31,7 @@ class ListAirportOriginFragment : Fragment(), AirportAdapter.AirportInterface {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentListAirportOriginBinding.inflate(inflater, container, false)
         return binding.root
     }

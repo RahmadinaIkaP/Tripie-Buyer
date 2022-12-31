@@ -2,7 +2,6 @@ package binar.academy.kelompok6.tripie_buyer.view.profile.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import binar.academy.kelompok6.tripie_buyer.data.model.response.googleauth.ResponseErrorGoogle
 import binar.academy.kelompok6.tripie_buyer.data.model.response.profile.ResponseErrorUpdateProfile
 import binar.academy.kelompok6.tripie_buyer.data.model.response.profile.ResponseUpdateProfile
 import binar.academy.kelompok6.tripie_buyer.data.model.response.profile.ResponseUser

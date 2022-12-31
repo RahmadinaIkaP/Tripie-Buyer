@@ -16,14 +16,15 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageButton
                 android:id="@+id/buttonBack"
-                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/ic_baseline_arrow_back_24" />
-
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                android:contentDescription="@string/image_button_back" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -42,7 +43,7 @@
             android:id="@+id/tvHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Detail Ticket"
+            android:text="@string/detail_ticket"
             android:textColor="@color/black"
             android:textSize="28sp"
             android:textStyle="bold"
@@ -78,7 +79,7 @@
                     android:id="@+id/tvSubHeaderPenumpang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Penumpang"
+                    android:text="@string/penumpang"
                     android:textColor="#9F9A9A"
                     android:textStyle="bold" />
 
@@ -87,20 +88,19 @@
                     android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Jamal Agung"
+                    android:text="@string/jamal_agung"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:layout_below="@id/tvSubHeaderPenumpang" />
 
                 <ImageView
                     android:labelFor="@id/tvNamaPenumpang"
+                    android:contentDescription="@string/line"
                     android:layout_marginTop="30dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/line_down"
-                    android:layout_below="@id/tvNamaPenumpang"
-
-                    />
+                    android:layout_below="@id/tvNamaPenumpang" />
 
                 <RelativeLayout
                     android:id="@+id/container1"
@@ -115,7 +115,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxWidth="90dp"
-                        android:text="CGK, Jakarta"
+                        android:text="@string/cgk_jakarta"
                         android:textStyle="bold"
                         android:textColor="@color/black" />
                     <TextView
@@ -125,7 +125,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxWidth="90dp"
-                        android:text="DPS, Bali"
+                        android:text="@string/dps_bali"
                         android:textStyle="bold"
                         android:textColor="@color/black" />
 
@@ -137,7 +137,7 @@
                         android:layout_toStartOf="@id/tvJamBerangkat"
                         android:layout_toEndOf="@+id/tvBandaraAsal"
                         android:paddingEnd="20dp"
-                        android:text="26 Nov, 2022"
+                        android:text="@string/_26_nov_2022"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:textAlignment="center"
@@ -152,7 +152,7 @@
                         android:layout_toStartOf="@+id/tvJamSampai"
                         android:layout_toEndOf="@+id/tvBandaraTujuan"
                         android:paddingEnd="20dp"
-                        android:text="26 Nov, 2022"
+                        android:text="@string/_26_nov_2022"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:textAlignment="center"
@@ -166,7 +166,7 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:textColor="@color/black"
-                        android:text="07:40" />
+                        android:text="@string/_07_40" />
 
 
                     <TextView
@@ -178,7 +178,7 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:textColor="@color/black"
-                        android:text="09:10"
+                        android:text="@string/_09_10"
 
 
                         />
@@ -208,7 +208,7 @@
                     android:id="@+id/tvSubHeaderPembayaran"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Harga : "
+                    android:text="@string/harga"
                     android:textColor="#0066B3"
                     android:textStyle="bold"
 
@@ -220,7 +220,7 @@
                     android:id="@+id/tvSubHeaderPembayaran1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tipe Penerbangan : "
+                    android:text="@string/tipe_penerbangan"
                     android:textColor="#9F9A9A"
                     android:textStyle="bold"
                     />
@@ -230,11 +230,9 @@
                     android:id="@+id/tvHargatiket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="IDR 1.152.580"
+                    android:text="@string/idr_1_152_580"
                     android:textColor="#0066B3"
-                    android:textStyle="bold"
-
-                    />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvTipePenerbangan"
@@ -243,7 +241,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tipe"
+                    android:text="@string/tipe"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     />
@@ -259,7 +257,7 @@
                         android:id="@+id/tvLblBackDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Tanggal Pulang : "
+                        android:text="@string/tanggal_pulang"
                         android:textColor="#9F9A9A"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -271,7 +269,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:text="Tanggal"
+                        android:text="@string/tanggal"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -288,10 +286,10 @@
                     android:layout_marginTop="30dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Booking ID"
+                    android:text="@string/booking_id"
                     android:textStyle="bold"
                     android:textColor="#9F9A9A"
-                    android:layout_gravity="left" />
+                    android:layout_gravity="start" />
 
                     <TextView
                         android:layout_centerHorizontal="true"
@@ -301,7 +299,7 @@
                         android:id="@+id/tvSubHeaderKelas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Kelas"
+                        android:text="@string/kelas"
                         android:textStyle="bold"
                         android:textColor="#9F9A9A"
                         android:layout_gravity="center_horizontal"
@@ -318,7 +316,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
-                        android:text="Maskapai"
+                        android:text="@string/maskapai"
                         android:textAlignment="viewEnd"
                         android:textColor="#9F9A9A"
                         android:textStyle="bold"
@@ -332,7 +330,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#0066B3"
                     android:textStyle="bold"
-                    android:text="12345"
+                    android:text="@string/_12345"
                     android:layout_below="@id/tvSubHeaderBookingID"
                     android:layout_marginTop="10dp"
                     />
@@ -346,7 +344,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#0066B3"
                     android:textStyle="bold"
-                    android:text="Ekonomi"
+                    android:text="@string/ekonomi"
                     />
 
                 <TextView
@@ -358,8 +356,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#0066B3"
                     android:textStyle="bold"
-                    android:text="Batik Air" />
-
+                    android:text="@string/batik_air" />
 
             </RelativeLayout>
 

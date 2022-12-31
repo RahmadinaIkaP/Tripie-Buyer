@@ -77,15 +77,6 @@ class SharedPref (private val context: Context) {
             it[status] ?: false
         }
 
-    val getTotalPassenger : Flow<Int> = context.dataStore.data
-        .map {
-            it[totalPassenger] ?: 0
-        }
-    val getTypeFlight : Flow<String> = context.dataStore.data
-        .map {
-            it[typeFlight] ?: "Undefined"
-        }
-
     val getOriginCode : Flow<String> = context.dataStore.data
         .map {
             it[originCode] ?: "Undefined"

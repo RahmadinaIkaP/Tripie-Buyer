@@ -15,7 +15,7 @@ import retrofit2.Call
 
 class HomeViewModelTest {
 
-    lateinit var service : ApiEndpoint
+    private lateinit var service : ApiEndpoint
 
     @Before
     fun setUp() {

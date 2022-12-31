@@ -13,7 +13,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
-        android:text="Your Profile"
+        android:text="@string/your_profile"
         style="@style/HeaderText"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,7 +45,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Pristia"
             android:textColor="@color/soft_black"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/circleImageView2"
@@ -57,7 +56,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/poppins"
-            android:text="pristia@gmail.com"
             android:textColor="@color/grey"
             android:textSize="15sp"
             app:layout_constraintStart_toEndOf="@+id/circleImageView2"
@@ -83,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Your Profile"
+            android:text="@string/your_profile"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -91,6 +89,7 @@
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:contentDescription="@string/your_profile"
             android:src="@drawable/ic_profile_circle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -116,7 +115,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Notifikasi"
+            android:text="@string/notifikasi"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -124,6 +123,7 @@
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:contentDescription="@string/notifikasi"
             android:src="@drawable/ic_notification"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -173,7 +173,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Keluar"
+        android:text="@string/keluar"
         android:textColor="@color/soft_black"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"

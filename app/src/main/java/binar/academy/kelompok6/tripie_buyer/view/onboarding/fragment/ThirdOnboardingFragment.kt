@@ -2,13 +2,10 @@ package binar.academy.kelompok6.tripie_buyer.view.onboarding.fragment
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
-import binar.academy.kelompok6.tripie_buyer.R
-import binar.academy.kelompok6.tripie_buyer.databinding.FragmentSecondOnboardingBinding
+import androidx.fragment.app.Fragment
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentThirdOnboardingBinding
 
 class ThirdOnboardingFragment : Fragment() {

@@ -21,6 +21,7 @@
 
             <ImageButton
                 android:id="@+id/buttonBack"
+                android:contentDescription="@string/image_button_back"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="25dp"

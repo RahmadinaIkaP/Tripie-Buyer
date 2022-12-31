@@ -23,6 +23,7 @@
                     android:id="@+id/btnBackHome"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:contentDescription="@string/image_button_back"
                     android:layout_marginStart="25dp"
                     android:background="@android:color/transparent"
                     android:src="@drawable/ic_baseline_arrow_back_24" />
@@ -31,7 +32,7 @@
                     android:layout_marginEnd="25dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Search Flight"
+                    android:text="@string/search_flight"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
@@ -48,9 +49,8 @@
                     <TextView
                         android:id="@+id/tvBandaraAsal"
                         android:layout_alignParentStart="true"
-                        android:layout_width="wrap_content"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
-                        android:text="CGK"
                         android:textSize="16sp"
                         android:fontFamily="@font/poppins_semibold"
                         android:textColor="@color/black" />
@@ -58,15 +58,15 @@
                     <TextView
                         android:id="@+id/tvBandaraTujuan"
                         android:layout_alignParentEnd="true"
-                        android:layout_width="wrap_content"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
-                        android:text="DPS"
                         android:textSize="16sp"
                         android:fontFamily="@font/poppins_semibold"
                         android:textColor="@color/black" />
 
                     <ImageView
                         android:id="@+id/ivPlane"
+                        android:contentDescription="@string/line"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/airplane"
@@ -76,7 +76,6 @@
                         android:id="@+id/tvKotaAsal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Jakarta"
                         android:textColor="@color/black"
                         android:layout_below="@id/tvBandaraAsal" />
 
@@ -84,7 +83,6 @@
                         android:id="@+id/tvKotaTujuan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Bali"
                         android:textColor="@color/black"
                         android:layout_below="@id/tvBandaraTujuan"
                         android:layout_alignParentEnd="true" />
@@ -101,25 +99,23 @@
                     android:id="@+id/tvTanggal"
                     android:layout_centerVertical="true"
                     android:layout_alignParentStart="true"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="12-12-2022"
                     android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tvJumlahPenumpang"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
+                    android:textAlignment="center"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="1 Penumpang"
                     android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tvKelas"
                     android:layout_alignParentEnd="true"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="Ekonomi"
                     android:textColor="@color/black" />
 
             </RelativeLayout>

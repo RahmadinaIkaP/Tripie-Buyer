@@ -1,7 +1,8 @@
+@file:Suppress("SpellCheckingInspection")
+
 package binar.academy.kelompok6.tripie_buyer.data.network
 
 import binar.academy.kelompok6.tripie_buyer.data.model.request.*
-import binar.academy.kelompok6.tripie_buyer.data.model.response.*
 import binar.academy.kelompok6.tripie_buyer.data.model.response.airport.AirportResponse
 import binar.academy.kelompok6.tripie_buyer.data.model.response.bookingticket.ResponseBookingTicket
 import binar.academy.kelompok6.tripie_buyer.data.model.response.googleauth.ResponseGetGoogleUser

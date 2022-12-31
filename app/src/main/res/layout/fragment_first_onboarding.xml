@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".view.onboarding.fragment.FirstOnboardingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_margin="25dp"
         android:layout_width="match_parent"
@@ -18,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Skip"
+            android:text="@string/skip"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +29,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_bold"
             android:lineHeight="45sp"
-            android:text="Kunjungi Objek Wisata"
+            android:text="@string/kunjungi_objek_wisata"
             android:textColor="@color/white"
             android:textSize="45sp"
             android:layout_marginVertical="25dp"
@@ -42,7 +41,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
             android:letterSpacing="0.01"
-            android:text="Jelajahi objek wisata di seluruh penjuru dunia"
+            android:text="@string/jelajahi_objek_wisata_di_seluruh_penjuru_dunia"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:layout_marginBottom="50dp"

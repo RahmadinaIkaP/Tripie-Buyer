@@ -15,7 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/image_beach" />
 
     <TextView
         android:id="@+id/textView3"
@@ -23,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Tiket Berhasil Dipesan"
+        android:text="@string/tiket_berhasil_dipesan"
         android:textColor="@color/soft_black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +39,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/poppins"
-        android:text="Anda bisa melihat tiket anda di halaman history tiket"
+        android:text="@string/anda_bisa_melihat_tiket_anda_di_halaman_history_tiket"
         android:textAlignment="center"
         android:textColor="@color/grey"
         android:textSize="18sp"
@@ -54,7 +55,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="Halaman Utama"
+        android:text="@string/halaman_utama"
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:textSize="16sp"

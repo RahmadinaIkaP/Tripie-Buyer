@@ -7,7 +7,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.onboarding.fragment.OnboardingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
@@ -24,7 +23,7 @@
             android:layout_height="60dp"
             android:backgroundTint="@color/blue"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Next"
+            android:text="@string/next"
             android:textSize="18sp"
             android:textColor="@color/white"
             android:textAllCaps="false"

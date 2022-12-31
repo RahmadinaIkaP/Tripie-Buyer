@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package binar.academy.kelompok6.tripie_buyer.data.model.request
 
 

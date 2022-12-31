@@ -8,7 +8,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.onboarding.fragment.SecondOnboardingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_margin="25dp"
         android:layout_width="match_parent"
@@ -20,7 +19,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_bold"
             android:lineHeight="45sp"
-            android:text="Nikmati Keindahan"
+            android:text="@string/nikmati_keindahan"
             android:textColor="@color/white"
             android:textSize="45sp"
             android:layout_marginVertical="25dp"
@@ -32,7 +31,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
             android:letterSpacing="0.01"
-            android:text="Temukan beragam objek wisata dalam satu genggaman"
+            android:text="@string/temukan_beragam_objek_wisata_dalam_satu_genggaman"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:layout_marginBottom="50dp"

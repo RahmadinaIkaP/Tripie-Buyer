@@ -7,7 +7,6 @@
     tools:context=".view.onboarding.fragment.ThirdOnboardingFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_margin="25dp"
         android:layout_width="match_parent"
@@ -19,7 +18,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_bold"
             android:lineHeight="45sp"
-            android:text="Mudahkan Liburanmu"
+            android:text="@string/mudahkan_liburanmu"
             android:textColor="@color/white"
             android:textSize="45sp"
             android:layout_marginVertical="25dp"
@@ -31,7 +30,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
             android:letterSpacing="0.01"
-            android:text="Kami pastikan liburanmu mudah, nyaman dan terjangkau"
+            android:text="@string/kami_pastikan_liburanmu_mudah_nyaman_dan_terjangkau"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:layout_marginBottom="50dp"
