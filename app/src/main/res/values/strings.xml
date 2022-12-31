@@ -3,7 +3,6 @@
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
-    <string name="login_failed">"Login failed"</string>
     <string name="tripie_logo">Tripie Logo</string>
     <string name="image_button_back">image button back</string>
     <string name="detail_booking">Detail Booking</string>

@@ -206,7 +206,7 @@
 
                 <TextView
                     android:id="@+id/tvSubHeaderPembayaran"
-                    android:layout_width="wrap_content"
+                    android:layout_width="75dp"
                     android:layout_height="wrap_content"
                     android:text="@string/harga"
                     android:textColor="#0066B3"
