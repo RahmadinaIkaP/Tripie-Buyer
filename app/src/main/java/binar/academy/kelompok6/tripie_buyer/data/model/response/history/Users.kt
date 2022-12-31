@@ -1,8 +1,11 @@
 package binar.academy.kelompok6.tripie_buyer.data.model.response.history
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Users(
     @SerializedName("id")
     val id: Int,
@@ -17,11 +20,11 @@ data class Users(
     @SerializedName("Address")
     val address: String,
     @SerializedName("Email")
-    val email: String?,
+    val email: String,
     @SerializedName("Phone_Number")
     val phoneNumber: String,
     @SerializedName("createdAt")
     val createdAt: String,
     @SerializedName("updatedAt")
     val updatedAt: String
-)
+) : Parcelable

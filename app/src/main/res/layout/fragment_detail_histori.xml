@@ -279,8 +279,6 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
                 <TextView
                     android:id="@+id/tvSubHeaderBookingID"
                     android:layout_below="@id/layoutBackDate"
