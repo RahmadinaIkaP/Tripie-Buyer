@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
-import binar.academy.kelompok6.tripie_buyer.data.model.response.Airport
+import binar.academy.kelompok6.tripie_buyer.data.model.response.airport.Airport
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentListAirportDestinationBinding
 import binar.academy.kelompok6.tripie_buyer.view.home.adapter.AirportAdapter

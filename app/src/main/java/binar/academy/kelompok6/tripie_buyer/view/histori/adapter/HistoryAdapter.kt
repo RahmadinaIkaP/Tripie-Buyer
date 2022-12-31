@@ -1,19 +1,14 @@
 package binar.academy.kelompok6.tripie_buyer.view.histori.adapter
 
-import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import binar.academy.kelompok6.tripie_buyer.R
-import binar.academy.kelompok6.tripie_buyer.data.model.response.Booking
+import binar.academy.kelompok6.tripie_buyer.data.model.response.history.Booking
 import binar.academy.kelompok6.tripie_buyer.databinding.ItemHistoriBinding
-import binar.academy.kelompok6.tripie_buyer.view.histori.DetailHistoriFragment
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList

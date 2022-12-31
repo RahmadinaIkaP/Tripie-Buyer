@@ -1,9 +1,12 @@
-package binar.academy.kelompok6.tripie_buyer.data.model.response
+package binar.academy.kelompok6.tripie_buyer.data.model.response.search
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
-data class Schedules(
+@Parcelize
+data class DataSearch(
     @SerializedName("id")
     val id: Int,
     @SerializedName("origin_code")
@@ -34,4 +37,4 @@ data class Schedules(
     val createdAt: String,
     @SerializedName("updatedAt")
     val updatedAt: String
-)
+) : Parcelable

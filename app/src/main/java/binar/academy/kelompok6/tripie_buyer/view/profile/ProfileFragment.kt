@@ -89,36 +89,29 @@ class ProfileFragment : Fragment() {
         }
 
         binding.navigateToProfile.setOnClickListener {
-            sharedPref.getStatusGoogle.asLiveData().observe(viewLifecycleOwner){
-                if (it == false){
-                    sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){ id ->
-                        viewModel.getProfile(id.toInt())
+            sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){ id ->
+                viewModel.getProfile(id.toInt())
+            }
+            viewModel.getLiveDataProfile().observe(viewLifecycleOwner){ response ->
+                when(response){
+                    is ApiResponse.Loading -> {
+                        Log.d("Loading", it.toString())
                     }
-                    viewModel.getLiveDataProfile().observe(viewLifecycleOwner){ response ->
-                        when(response){
-                            is ApiResponse.Loading -> {
-                                Log.d("Loading", it.toString())
-                            }
-                            is ApiResponse.Success -> {
-                                response.data?.data?.let{ user ->
-                                    val bundle = Bundle()
-                                    bundle.putInt("id", user.id)
-                                    bundle.putString("name", user.name)
-                                    bundle.putString("email", user.email)
-                                    bundle.putString("phone", user.phoneNumber)
-                                    bundle.putString("gambar", user.foto)
-                                    bundle.putString("address", user.address)
-                                    Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_editProfileFragment, bundle)
-                                }
-                            }
-                            is ApiResponse.Error -> {
-                                Log.d("Error", response.msg.toString())
-                            }
+                    is ApiResponse.Success -> {
+                        response.data?.data?.let{ user ->
+                            val bundle = Bundle()
+                            bundle.putInt("id", user.id)
+                            bundle.putString("name", user.name)
+                            bundle.putString("email", user.email)
+                            bundle.putString("phone", user.phoneNumber)
+                            bundle.putString("gambar", user.foto)
+                            bundle.putString("address", user.address)
+                            Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_editProfileFragment, bundle)
                         }
                     }
-                }
-                else{
-                    Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_editProfileFragment)
+                    is ApiResponse.Error -> {
+                        Log.d("Error", response.msg.toString())
+                    }
                 }
             }
         }
@@ -146,13 +139,7 @@ class ProfileFragment : Fragment() {
 
     private fun showDataUSer(){
         sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){ idUser ->
-            sharedPref.getStatusGoogle.asLiveData().observe(viewLifecycleOwner){ isGoogle ->
-                if (isGoogle.equals(false)){
-                    viewModel.getProfile(idUser.toInt())
-                }else{
-                    setProfileGoogle()
-                }
-            }
+            viewModel.getProfile(idUser.toInt())
         }
 
         viewModel.getLiveDataProfile().observe(viewLifecycleOwner){ response ->
@@ -162,41 +149,17 @@ class ProfileFragment : Fragment() {
                 }
                 is ApiResponse.Success -> {
                     response.data?.data?.let{ user ->
-                        sharedPref.getStatusGoogle.asLiveData().observe(viewLifecycleOwner){ statusG ->
-                            if (statusG.equals(false)){
-                                Glide.with(this)
-                                    .load(user.foto)
-                                    .into(binding.circleImageView2)
-                                binding.tvNamaUser.text = user.name
-                                binding.tvEmailUser.text = user.email
-                            }
-
-                        }
+                        Glide.with(this)
+                            .load(user.foto)
+                            .placeholder(R.drawable.shape_round_imageview)
+                            .into(binding.circleImageView2)
+                        binding.tvNamaUser.text = user.name
+                        binding.tvEmailUser.text = user.email
                     }
                 }
                 is ApiResponse.Error -> {
                     Log.d("Error", response.msg.toString())
                 }
-            }
-        }
-    }
-
-    private fun setProfileGoogle() {
-        sharedPref.getUsername.asLiveData().observe(viewLifecycleOwner){ username ->
-            if (username != "Undefined"){
-                binding.tvNamaUser.text = username
-            }
-        }
-        sharedPref.getUrlImg.asLiveData().observe(viewLifecycleOwner){ url ->
-            if (url != "Undefined"){
-                Glide.with(this)
-                    .load(url)
-                    .into(binding.circleImageView2)
-            }
-        }
-        sharedPref.getEmail.asLiveData().observe(viewLifecycleOwner){ email ->
-            if (email != "Undefined"){
-                binding.tvEmailUser.text = email
             }
         }
     }

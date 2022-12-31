@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import binar.academy.kelompok6.tripie_buyer.data.model.response.DataNotification
+import binar.academy.kelompok6.tripie_buyer.data.model.response.notification.DataNotification
 import binar.academy.kelompok6.tripie_buyer.databinding.ItemNotificationBinding
 
 class NotifikasiAdapter : RecyclerView.Adapter<NotifikasiAdapter.ViewHolder>() {

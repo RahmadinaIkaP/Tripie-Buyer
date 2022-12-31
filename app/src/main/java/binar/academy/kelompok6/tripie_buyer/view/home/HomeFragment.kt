@@ -16,8 +16,8 @@ import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
 import binar.academy.kelompok6.tripie_buyer.data.model.SearchBundle
 import binar.academy.kelompok6.tripie_buyer.data.model.request.SearchTicketRequest
-import binar.academy.kelompok6.tripie_buyer.data.model.response.Airport
-import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseSearchTicket
+import binar.academy.kelompok6.tripie_buyer.data.model.response.airport.Airport
+import binar.academy.kelompok6.tripie_buyer.data.model.response.search.ResponseSearchTicket
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.data.room.Favorit
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentHomeBinding
@@ -30,7 +30,6 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -145,31 +144,20 @@ class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
     }
 
     private fun setImageGreet(id: String?) {
-        sharedPref.getStatusGoogle.asLiveData().observe(viewLifecycleOwner){ status ->
-            if (status.equals(false)){
-                id?.let { vmProfile.getProfile(it.toInt()) }
-                vmProfile.getLiveDataProfile().observe(viewLifecycleOwner){ response ->
-                    when(response){
-                        is ApiResponse.Loading -> {
-                            Log.d("Loading", response.toString())
-                        }
-                        is ApiResponse.Success -> {
-                            Glide.with(requireContext())
-                                .load(response.data?.data?.foto)
-                                .into(binding.circleImageView)
-                        }
-                        is ApiResponse.Error -> {
-                            Log.d("Error", response.msg.toString())
-                        }
-                    }
+        id?.let { vmProfile.getProfile(it.toInt()) }
+        vmProfile.getLiveDataProfile().observe(viewLifecycleOwner){ response ->
+            when(response){
+                is ApiResponse.Loading -> {
+                    Log.d("Loading", response.toString())
                 }
-            }else{
-                sharedPref.getUrlImg.asLiveData().observe(viewLifecycleOwner){ url ->
-                    if (url != "Undefined"){
-                        Glide.with(requireContext())
-                            .load(url)
-                            .into(binding.circleImageView)
-                    }
+                is ApiResponse.Success -> {
+                    Glide.with(requireContext())
+                        .load(response.data?.data?.foto)
+                        .placeholder(R.drawable.shape_round_imageview)
+                        .into(binding.circleImageView)
+                }
+                is ApiResponse.Error -> {
+                    Log.d("Error", response.msg.toString())
                 }
             }
         }
@@ -428,11 +416,6 @@ class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     override fun onItemClick(airport: Airport) {
         sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){
             val action = HomeFragmentDirections.actionHomeFragmentToDetailFlightFragment(
@@ -442,5 +425,9 @@ class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 }

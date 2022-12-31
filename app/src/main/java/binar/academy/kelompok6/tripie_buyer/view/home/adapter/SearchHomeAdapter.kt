@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import binar.academy.kelompok6.tripie_buyer.data.model.response.DataSearch
+import binar.academy.kelompok6.tripie_buyer.data.model.response.search.DataSearch
 import binar.academy.kelompok6.tripie_buyer.databinding.ItemHistoriBinding
 import binar.academy.kelompok6.tripie_buyer.utils.RupiahConverter
 import java.text.SimpleDateFormat

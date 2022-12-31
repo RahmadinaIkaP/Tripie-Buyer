@@ -248,25 +248,54 @@
                     android:textStyle="bold"
                     />
 
-
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutBackDate"
+                    android:layout_below="@id/tvTipePenerbangan"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/tvSubHeaderBookingID"
-                        android:layout_below="@id/tvSubHeaderPembayaran1"
-                        android:layout_marginTop="30dp"
+                        android:id="@+id/tvLblBackDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Booking ID"
-                        android:textStyle="bold"
+                        android:text="Tanggal Pulang : "
                         android:textColor="#9F9A9A"
-                        android:layout_gravity="left"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvPulang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="Tanggal"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-                        />
+
+                <TextView
+                    android:id="@+id/tvSubHeaderBookingID"
+                    android:layout_below="@id/layoutBackDate"
+                    android:layout_marginTop="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Booking ID"
+                    android:textStyle="bold"
+                    android:textColor="#9F9A9A"
+                    android:layout_gravity="left" />
 
                     <TextView
                         android:layout_centerHorizontal="true"
-                        android:layout_below="@id/tvSubHeaderPembayaran1"
+                        android:layout_below="@id/layoutBackDate"
                         android:layout_marginTop="30dp"
                         android:layout_marginStart="40dp"
                         android:id="@+id/tvSubHeaderKelas"
@@ -283,7 +312,7 @@
 
                     <TextView
                         android:layout_alignParentEnd="true"
-                        android:layout_below="@id/tvSubHeaderPembayaran1"
+                        android:layout_below="@id/layoutBackDate"
                         android:layout_marginTop="30dp"
                         android:id="@+id/tvSubHeaderMaskapai"
                         android:layout_width="wrap_content"

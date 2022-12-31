@@ -1,4 +1,4 @@
-package binar.academy.kelompok6.tripie_buyer.data.model.response
+package binar.academy.kelompok6.tripie_buyer.data.model.response.search
 
 
 import android.os.Parcelable

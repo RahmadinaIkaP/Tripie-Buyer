@@ -3,12 +3,10 @@ package binar.academy.kelompok6.tripie_buyer.view.home.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import binar.academy.kelompok6.tripie_buyer.data.model.request.SearchTicketRequest
-import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseErrorSearchTicket
-import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseSearchTicket
+import binar.academy.kelompok6.tripie_buyer.data.model.response.search.ResponseSearchTicket
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiEndpoint
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.utils.EspressoIdlingResource
-import com.google.gson.GsonBuilder
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.json.JSONObject
 import retrofit2.Call

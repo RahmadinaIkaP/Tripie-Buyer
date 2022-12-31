@@ -3,7 +3,6 @@ package binar.academy.kelompok6.tripie_buyer.view.histori
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,10 +16,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
-import binar.academy.kelompok6.tripie_buyer.data.model.response.Booking
+import binar.academy.kelompok6.tripie_buyer.data.model.response.history.Booking
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentHistoriBinding
-import binar.academy.kelompok6.tripie_buyer.utils.Constant
 import binar.academy.kelompok6.tripie_buyer.utils.Constant.Companion.LOGIN_SUCCESSFUL
 import binar.academy.kelompok6.tripie_buyer.view.histori.adapter.HistoryAdapter
 import binar.academy.kelompok6.tripie_buyer.view.histori.viewmodel.ViewModelHistory

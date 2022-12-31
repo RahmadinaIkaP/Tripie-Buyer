@@ -1,4 +1,4 @@
-package binar.academy.kelompok6.tripie_buyer.data.model.response
+package binar.academy.kelompok6.tripie_buyer.data.model.response.bookingticket
 
 
 import com.google.gson.annotations.SerializedName

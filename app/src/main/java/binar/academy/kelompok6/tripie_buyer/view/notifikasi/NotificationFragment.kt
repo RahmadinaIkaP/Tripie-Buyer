@@ -11,13 +11,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
-import binar.academy.kelompok6.tripie_buyer.data.model.response.Airport
-import binar.academy.kelompok6.tripie_buyer.data.model.response.DataNotification
+import binar.academy.kelompok6.tripie_buyer.data.model.response.notification.DataNotification
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentNotificationBinding
-import binar.academy.kelompok6.tripie_buyer.view.home.adapter.AirportAdapter
 import binar.academy.kelompok6.tripie_buyer.view.notifikasi.adapter.NotifikasiAdapter
 import binar.academy.kelompok6.tripie_buyer.view.notifikasi.viewmodel.NotifikasiViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,7 +27,7 @@ class NotificationFragment : Fragment() {
     private lateinit var adapter : NotifikasiAdapter
     private val vmNotifikasi : NotifikasiViewModel by viewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentNotificationBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -48,31 +45,27 @@ class NotificationFragment : Fragment() {
     }
 
     private fun setRvNotif() {
-        sharedPref.getStatusGoogle.asLiveData().observe(viewLifecycleOwner){ status ->
-            if (status.equals(false)){
-                sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){ userId ->
-                    if (userId != "Undefined"){
-                        vmNotifikasi.getNotifikasi(userId.toInt())
-                        vmNotifikasi.getNotifikasiObserver().observe(viewLifecycleOwner){ response ->
-                            when(response){
-                                is ApiResponse.Loading -> {
-                                    showLoading()
-                                    Log.d("Loading: ", response.toString())
-                                }
-                                is ApiResponse.Success -> {
-                                    stopLoading()
-                                    response.data?.let {
-                                        val sortedNotif = it.data.sortedByDescending { data-> data.id }
-                                        showRvDataNotif(sortedNotif)
-                                    }
-                                    Log.d("Success: ", response.toString())
-                                }
-                                is ApiResponse.Error -> {
-                                    stopLoading()
-                                    Toast.makeText(requireContext(), response.msg, Toast.LENGTH_SHORT).show()
-                                    Log.d("Error: ", response.toString())
-                                }
+        sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){ userId ->
+            if (userId != "Undefined"){
+                vmNotifikasi.getNotifikasi(userId.toInt())
+                vmNotifikasi.getNotifikasiObserver().observe(viewLifecycleOwner){ response ->
+                    when(response){
+                        is ApiResponse.Loading -> {
+                            showLoading()
+                            Log.d("Loading: ", response.toString())
+                        }
+                        is ApiResponse.Success -> {
+                            stopLoading()
+                            response.data?.let {
+                                val sortedNotif = it.data.sortedByDescending { data-> data.id }
+                                showRvDataNotif(sortedNotif)
                             }
+                            Log.d("Success: ", response.toString())
+                        }
+                        is ApiResponse.Error -> {
+                            stopLoading()
+                            Toast.makeText(requireContext(), response.msg, Toast.LENGTH_SHORT).show()
+                            Log.d("Error: ", response.toString())
                         }
                     }
                 }

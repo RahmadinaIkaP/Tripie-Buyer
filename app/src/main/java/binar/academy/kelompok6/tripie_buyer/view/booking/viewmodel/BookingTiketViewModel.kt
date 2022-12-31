@@ -3,7 +3,7 @@ package binar.academy.kelompok6.tripie_buyer.view.booking.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import binar.academy.kelompok6.tripie_buyer.data.model.request.BookingTicketRequest
-import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseBookingTicket
+import binar.academy.kelompok6.tripie_buyer.data.model.response.bookingticket.ResponseBookingTicket
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiEndpoint
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.utils.EspressoIdlingResource

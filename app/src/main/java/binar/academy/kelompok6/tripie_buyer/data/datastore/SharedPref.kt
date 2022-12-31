@@ -15,27 +15,19 @@ class SharedPref (private val context: Context) {
     private val status = booleanPreferencesKey("status")
     private val idUser = stringPreferencesKey("idUser")
     private val username = stringPreferencesKey("username")
-    private val email = stringPreferencesKey("email")
     private val totalPassenger = intPreferencesKey("tpass")
     private val typeFlight = stringPreferencesKey("typeflight")
-
-    private val isSignInGoogle = booleanPreferencesKey("isGoogle")
-    private val urlImg = stringPreferencesKey("urlImg")
 
     private val originCode = stringPreferencesKey("ogCode")
     private val destCode = stringPreferencesKey("destCode")
     private val originCity = stringPreferencesKey("ogCity")
     private val destCity = stringPreferencesKey("destCity")
 
-    suspend fun saveToken(tokens : String,idUsers : String, usernames : String,
-                          isGoogle : Boolean, url : String, emails : String){
+    suspend fun saveToken(tokens : String,idUsers : String, usernames : String){
         context.dataStore.edit {
             it[token] = tokens
             it[idUser] = idUsers
             it[username] = usernames
-            it[isSignInGoogle] = isGoogle
-            it[urlImg] = url
-            it[email] = emails
         }
     }
 
@@ -80,24 +72,9 @@ class SharedPref (private val context: Context) {
             it[username] ?: "Undefined"
         }
 
-    val getEmail : Flow<String> = context.dataStore.data
-        .map {
-            it[email] ?: "Undefined"
-        }
-
     val getStatus : Flow<Boolean> = context.dataStore.data
         .map {
             it[status] ?: false
-        }
-
-    val getStatusGoogle : Flow<Boolean> = context.dataStore.data
-        .map {
-            it[isSignInGoogle] ?: false
-        }
-
-    val getUrlImg : Flow<String> = context.dataStore.data
-        .map {
-            it[urlImg] ?: "Undefined"
         }
 
     val getTotalPassenger : Flow<Int> = context.dataStore.data
@@ -140,9 +117,6 @@ class SharedPref (private val context: Context) {
             it.remove(originCity)
             it.remove(destCode)
             it.remove(destCity)
-            it.remove(isSignInGoogle)
-            it.remove(urlImg)
-            it.remove(email)
         }
     }
 }

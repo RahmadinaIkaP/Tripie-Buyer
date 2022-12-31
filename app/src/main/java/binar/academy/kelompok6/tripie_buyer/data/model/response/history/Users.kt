@@ -1,4 +1,4 @@
-package binar.academy.kelompok6.tripie_buyer.data.model.response
+package binar.academy.kelompok6.tripie_buyer.data.model.response.history
 
 
 import com.google.gson.annotations.SerializedName
@@ -17,7 +17,7 @@ data class Users(
     @SerializedName("Address")
     val address: String,
     @SerializedName("Email")
-    val email: String,
+    val email: String?,
     @SerializedName("Phone_Number")
     val phoneNumber: String,
     @SerializedName("createdAt")

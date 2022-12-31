@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
 import binar.academy.kelompok6.tripie_buyer.data.model.SearchBundle
-import binar.academy.kelompok6.tripie_buyer.data.model.response.DataSearch
+import binar.academy.kelompok6.tripie_buyer.data.model.response.search.DataSearch
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentHasilSearchBinding
 import binar.academy.kelompok6.tripie_buyer.utils.Constant
 import binar.academy.kelompok6.tripie_buyer.view.home.adapter.SearchHomeAdapter

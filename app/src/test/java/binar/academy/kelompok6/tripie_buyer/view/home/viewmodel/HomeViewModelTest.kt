@@ -1,8 +1,7 @@
 package binar.academy.kelompok6.tripie_buyer.view.home.viewmodel
 
 import binar.academy.kelompok6.tripie_buyer.data.model.request.SearchTicketRequest
-import binar.academy.kelompok6.tripie_buyer.data.model.response.AirportResponse
-import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseSearchTicket
+import binar.academy.kelompok6.tripie_buyer.data.model.response.search.ResponseSearchTicket
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiEndpoint
 import io.mockk.every
 import io.mockk.mockk

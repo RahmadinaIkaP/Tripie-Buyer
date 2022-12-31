@@ -2,7 +2,7 @@ package binar.academy.kelompok6.tripie_buyer.view.home.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import binar.academy.kelompok6.tripie_buyer.data.model.response.AirportResponse
+import binar.academy.kelompok6.tripie_buyer.data.model.response.airport.AirportResponse
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiEndpoint
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.utils.EspressoIdlingResource

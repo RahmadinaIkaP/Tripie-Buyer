@@ -81,20 +81,28 @@ class EditProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         sharedPref = SharedPref(requireContext())
-        val name_ = arguments?.getString("name")
-        val email_ = arguments?.getString("email")
-        val phone_= arguments?.getString("phone")
-        val gambar_ = arguments?.getString("gambar")
-        val address_ = arguments?.getString("address")
 
-        binding.editTextNama.setText(name_)
-        binding.editTextEmail.setText(email_)
-        binding.editTextNotelp.setText(phone_)
-        binding.editTextAlamat.setText(address_)
-        Glide.with(this)
-            .load(gambar_)
-            .placeholder(R.drawable.shape_round_imageview)
-            .into(binding.ivProfile)
+        binding.btnBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
+        val argsName = arguments?.getString("name")
+        val argsEmail = arguments?.getString("email")
+        val argsPhone= arguments?.getString("phone")
+        val argsGambar = arguments?.getString("gambar")
+        val argsAddress = arguments?.getString("address")
+
+        binding.editTextNama.setText(argsName)
+        binding.editTextEmail.setText(argsEmail)
+        binding.editTextNotelp.setText(argsPhone)
+        binding.editTextAlamat.setText(argsAddress)
+
+        if (argsGambar != null){
+            Glide.with(this)
+                .load(argsGambar)
+                .placeholder(R.drawable.shape_round_imageview)
+                .into(binding.ivProfile)
+        }
 
         binding.btnUbahData.setOnClickListener{
             sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner) {

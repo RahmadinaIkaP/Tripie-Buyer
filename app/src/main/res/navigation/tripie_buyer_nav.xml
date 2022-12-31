@@ -115,7 +115,7 @@
             app:destination="@id/historiFragment" />
         <argument
             android:name="dataHistory"
-            app:argType="binar.academy.kelompok6.tripie_buyer.data.model.response.Booking"
+            app:argType="binar.academy.kelompok6.tripie_buyer.data.model.response.history.Booking"
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>

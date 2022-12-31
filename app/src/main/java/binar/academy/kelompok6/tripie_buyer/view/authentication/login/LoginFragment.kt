@@ -17,6 +17,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
+import binar.academy.kelompok6.tripie_buyer.data.model.request.GoogleAuthRequest
 import binar.academy.kelompok6.tripie_buyer.data.model.request.LoginRequest
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentLoginBinding
@@ -116,13 +117,58 @@ class LoginFragment : Fragment() {
 
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful){
-                saveToken(account.idToken.toString(), account.id.toString(),
-                    account.displayName.toString(), true, account.photoUrl.toString(), account.email.toString())
-                Toast.makeText(requireContext(), "Login Berhasil!", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
+//                saveToken(account.idToken.toString(), account.id.toString(),
+//                    account.displayName.toString(), true, account.photoUrl.toString(), account.email.toString())
+                authGoogle(account)
+                Log.d("Token Google", account.idToken.toString())
+                Log.d("Token Google", account.displayName.toString())
+                Log.d("Token Google", account.email.toString())
+                Log.d("Token Google", account.id.toString())
             }else{
                 Toast.makeText(requireContext(), "Login Gagal!!", Toast.LENGTH_SHORT).show()
                 Log.d("Error", it.result.toString())
+            }
+        }
+    }
+
+    private fun authGoogle(account: GoogleSignInAccount) {
+        auth.loginGoogle(GoogleAuthRequest(account.idToken.toString(), account.email.toString(), account.displayName.toString()))
+        auth.goggleAuthObserver().observe(viewLifecycleOwner){ response ->
+            when(response){
+                is ApiResponse.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                is ApiResponse.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    response.data?.let { getGoogleUser(it.accessToken) }
+                }
+                is ApiResponse.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(requireContext(), response.msg, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun getGoogleUser(accessToken: String) {
+        auth.getGoogleUser(accessToken)
+        auth.getGoogleUserObserver().observe(viewLifecycleOwner){ response ->
+            when(response){
+                is ApiResponse.Loading -> {
+                    Log.d("Loading", response.toString())
+                }
+                is ApiResponse.Success -> {
+                    response.data?.data?.let {
+                        saveToken(accessToken, it.id.toString(), it.name)
+                    }
+                    Toast.makeText(requireContext(), "Login Berhasil!", Toast.LENGTH_SHORT).show()
+                    Log.d("Success", response.toString())
+                    savedStateHandle[LOGIN_SUCCESSFUL] = true
+                    findNavController().popBackStack()
+                }
+                is ApiResponse.Error -> {
+                    Log.d("Error", response.msg.toString())
+                }
             }
         }
     }
@@ -136,26 +182,29 @@ class LoginFragment : Fragment() {
             when(it){
                 is ApiResponse.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
+                    Log.d("Loading", it.toString())
                 }
                 is ApiResponse.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    saveToken(it.data!!.token,it.data.id.toString(), it.data.name, false, "Undefined", it.data.email)
+                    saveToken(it.data!!.token,it.data.id.toString(), it.data.name)
                     Toast.makeText(requireContext(), "Login Berhasil!", Toast.LENGTH_SHORT).show()
+                    Log.d("Success", it.toString())
                     savedStateHandle[LOGIN_SUCCESSFUL] = true
                     findNavController().popBackStack()
                 }
                 is ApiResponse.Error -> {
                     binding.progressBar.visibility = View.GONE
                     Toast.makeText(requireContext(), it.msg, Toast.LENGTH_SHORT).show()
+                    Log.d("Error", it.msg.toString())
                 }
             }
         }
     }
 
-    private fun saveToken(token:String, idUser:String, username : String,
-                          isGoogle : Boolean, url : String, email : String) {
+    private fun saveToken(token:String, idUser:String, username : String) {
         CoroutineScope(Dispatchers.IO).launch {
-            sharedPref.saveToken(token, idUser, username, isGoogle, url, email)
+            sharedPref.saveToken(token, idUser, username)
         }
     }
+
 }

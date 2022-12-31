@@ -1,6 +1,6 @@
 package binar.academy.kelompok6.tripie_buyer.view.notifikasi.viewmodel
 
-import binar.academy.kelompok6.tripie_buyer.data.model.response.GetNotificationResponse
+import binar.academy.kelompok6.tripie_buyer.data.model.response.notification.GetNotificationResponse
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiEndpoint
 import io.mockk.every
 import io.mockk.mockk

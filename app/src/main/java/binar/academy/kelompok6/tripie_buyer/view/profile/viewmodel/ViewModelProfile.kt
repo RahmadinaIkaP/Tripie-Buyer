@@ -2,10 +2,13 @@ package binar.academy.kelompok6.tripie_buyer.view.profile.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseUpdateProfile
-import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseUser
+import binar.academy.kelompok6.tripie_buyer.data.model.response.googleauth.ResponseErrorGoogle
+import binar.academy.kelompok6.tripie_buyer.data.model.response.profile.ResponseErrorUpdateProfile
+import binar.academy.kelompok6.tripie_buyer.data.model.response.profile.ResponseUpdateProfile
+import binar.academy.kelompok6.tripie_buyer.data.model.response.profile.ResponseUser
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiEndpoint
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
+import com.google.gson.GsonBuilder
 import dagger.hilt.android.lifecycle.HiltViewModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -66,8 +69,9 @@ class ViewModelProfile @Inject constructor(private val api : ApiEndpoint) : View
                     else {
                         try {
                             response.errorBody()?.let {
-                                val jsonObject = JSONObject(it.string()).getString("message")
-                                updateProfile.postValue(ApiResponse.Error(jsonObject))
+                                val gson = GsonBuilder().create()
+                                val jsonObject = gson.fromJson(it.string(), ResponseErrorUpdateProfile::class.java)
+                                updateProfile.postValue(ApiResponse.Error(jsonObject.error.message))
                             }
                         } catch (e: Exception) {
                             updateProfile.postValue(ApiResponse.Error("${e.message}"))
@@ -76,7 +80,7 @@ class ViewModelProfile @Inject constructor(private val api : ApiEndpoint) : View
                 }
 
                 override fun onFailure(call: Call<ResponseUpdateProfile>, t: Throwable) {
-                    updateProfile.postValue(ApiResponse.Error("${t.message}"))
+                    updateProfile.postValue(ApiResponse.Error(t.message.toString()))
                 }
 
             })

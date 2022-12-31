@@ -2,7 +2,7 @@ package binar.academy.kelompok6.tripie_buyer.view.histori.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseHistory
+import binar.academy.kelompok6.tripie_buyer.data.model.response.history.ResponseHistory
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiEndpoint
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.utils.EspressoIdlingResource

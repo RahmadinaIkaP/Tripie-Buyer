@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import binar.academy.kelompok6.tripie_buyer.R
-import binar.academy.kelompok6.tripie_buyer.data.model.response.Booking
+import binar.academy.kelompok6.tripie_buyer.data.model.response.history.Booking
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentDetailHistoriBinding
 import binar.academy.kelompok6.tripie_buyer.utils.RupiahConverter
 import dagger.hilt.android.AndroidEntryPoint
@@ -74,6 +73,12 @@ class DetailHistoriFragment : Fragment() {
             tvBookingID.text = data.id.toString()
             tvKelas.text = data.planeClass
             tvSubHeaderMaskapai.text = data.airlineName
+
+            if (data.flightType.lowercase() == "round trip"){
+                tvPulang.text = flightBackDate
+            }else{
+                tvPulang.text = "-"
+            }
         }
     }
 }

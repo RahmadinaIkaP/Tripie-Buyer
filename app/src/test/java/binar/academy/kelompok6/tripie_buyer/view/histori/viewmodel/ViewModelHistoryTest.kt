@@ -1,6 +1,6 @@
 package binar.academy.kelompok6.tripie_buyer.view.histori.viewmodel
 
-import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseHistory
+import binar.academy.kelompok6.tripie_buyer.data.model.response.history.ResponseHistory
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiEndpoint
 import io.mockk.every
 import io.mockk.mockk

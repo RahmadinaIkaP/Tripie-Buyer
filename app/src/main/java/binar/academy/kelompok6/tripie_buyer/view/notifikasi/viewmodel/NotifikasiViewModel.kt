@@ -2,7 +2,7 @@ package binar.academy.kelompok6.tripie_buyer.view.notifikasi.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import binar.academy.kelompok6.tripie_buyer.data.model.response.GetNotificationResponse
+import binar.academy.kelompok6.tripie_buyer.data.model.response.notification.GetNotificationResponse
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiEndpoint
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
 import binar.academy.kelompok6.tripie_buyer.utils.EspressoIdlingResource

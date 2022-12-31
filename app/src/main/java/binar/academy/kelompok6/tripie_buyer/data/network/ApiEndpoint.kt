@@ -2,6 +2,17 @@ package binar.academy.kelompok6.tripie_buyer.data.network
 
 import binar.academy.kelompok6.tripie_buyer.data.model.request.*
 import binar.academy.kelompok6.tripie_buyer.data.model.response.*
+import binar.academy.kelompok6.tripie_buyer.data.model.response.airport.AirportResponse
+import binar.academy.kelompok6.tripie_buyer.data.model.response.bookingticket.ResponseBookingTicket
+import binar.academy.kelompok6.tripie_buyer.data.model.response.googleauth.ResponseGetGoogleUser
+import binar.academy.kelompok6.tripie_buyer.data.model.response.googleauth.ResponseSuccessGoogle
+import binar.academy.kelompok6.tripie_buyer.data.model.response.history.ResponseHistory
+import binar.academy.kelompok6.tripie_buyer.data.model.response.login.ResponseLogin
+import binar.academy.kelompok6.tripie_buyer.data.model.response.notification.GetNotificationResponse
+import binar.academy.kelompok6.tripie_buyer.data.model.response.profile.ResponseUpdateProfile
+import binar.academy.kelompok6.tripie_buyer.data.model.response.profile.ResponseUser
+import binar.academy.kelompok6.tripie_buyer.data.model.response.register.ResponseRegister
+import binar.academy.kelompok6.tripie_buyer.data.model.response.search.ResponseSearchTicket
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -14,6 +25,12 @@ interface ApiEndpoint {
 
     @POST("login")
     fun login(@Body loginRequest: LoginRequest) : Call<ResponseLogin>
+
+    @POST("api/v1/google")
+    fun loginGoogle(@Body googleAuthRequest: GoogleAuthRequest) : Call<ResponseSuccessGoogle>
+
+    @GET("api/v1/whoami")
+    fun getUserGoogle(@Header("Authorization") token : String) : Call<ResponseGetGoogleUser>
 
     @GET("history")
     fun getHistory() : Call<ResponseHistory>

@@ -2,8 +2,8 @@ package binar.academy.kelompok6.tripie_buyer.view.authentication.viewmodel
 
 import binar.academy.kelompok6.tripie_buyer.data.model.request.LoginRequest
 import binar.academy.kelompok6.tripie_buyer.data.model.request.RegisterRequest
-import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseLogin
-import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseRegister
+import binar.academy.kelompok6.tripie_buyer.data.model.response.login.ResponseLogin
+import binar.academy.kelompok6.tripie_buyer.data.model.response.register.ResponseRegister
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiEndpoint
 import io.mockk.every
 import io.mockk.mockk

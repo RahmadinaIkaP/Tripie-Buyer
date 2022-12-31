@@ -1,9 +1,7 @@
 package binar.academy.kelompok6.tripie_buyer.view.booking.viewmodel
 
 import binar.academy.kelompok6.tripie_buyer.data.model.request.BookingTicketRequest
-import binar.academy.kelompok6.tripie_buyer.data.model.request.LoginRequest
-import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseBookingTicket
-import binar.academy.kelompok6.tripie_buyer.data.model.response.ResponseLogin
+import binar.academy.kelompok6.tripie_buyer.data.model.response.bookingticket.ResponseBookingTicket
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiEndpoint
 import io.mockk.every
 import io.mockk.mockk
