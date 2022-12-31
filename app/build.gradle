@@ -42,7 +42,7 @@ android {
         dataBinding true
     }
     lint{
-        disable 'GradleDependency', 'IconLocation', 'UnusedAttribute'
+        disable 'GradleDependency', 'IconLocation', 'UnusedAttribute', 'VectorPath', 'Typos', 'ObsoleteSdkInt', 'UseCompoundDrawables'
     }
 }
 

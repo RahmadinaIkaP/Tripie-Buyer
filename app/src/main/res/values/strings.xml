@@ -1,15 +1,8 @@
 <resources>
     <string name="app_name">Tripie</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome!"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="tripie_logo">Tripie Logo</string>
     <string name="image_button_back">image button back</string>
@@ -100,4 +93,8 @@
     <string name="image_popular_destination">image popular destination</string>
     <string name="see_ticket_details">See Ticket Details</string>
     <string name="pembayaranmu_sudah_kami_terima_mohon_tunggu_konfirmasi_selanjutnya_lihat_rincian_penerbangan_pada_histori_pesanan_detail_tiket">Pembayaranmu sudah kami terima, mohon tunggu konfirmasi selanjutnya. Lihat rincian penerbangan pada histori pesanan detail tiket.</string>
+    <string name="home">Home</string>
+    <string name="histori">Histori</string>
+    <string name="favorite">Favorite</string>
+    <string name="profile">Profile</string>
 </resources>

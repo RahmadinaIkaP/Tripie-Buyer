@@ -3,13 +3,13 @@
     <item
         android:id="@+id/homeFragment"
         android:orderInCategory="100"
-        android:title="Home"
+        android:title="@string/home"
         android:icon="@drawable/home_2" />
 
     <item
         android:id="@+id/historiFragment"
         android:orderInCategory="100"
-        android:title="Histori"
+        android:title="@string/histori"
         android:icon="@drawable/histori" />
 
 
@@ -17,12 +17,12 @@
         android:id="@+id/whistlistFragment"
         android:icon="@drawable/heart"
         android:orderInCategory="100"
-        android:title="Favorite" />
+        android:title="@string/favorite" />
 
     <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/profile"
         android:orderInCategory="100"
-        android:title="Profile" />
+        android:title="@string/profile" />
 
 </menu>

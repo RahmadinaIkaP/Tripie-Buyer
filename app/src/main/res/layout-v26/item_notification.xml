@@ -26,7 +26,7 @@
             android:id="@+id/tvNotifikasiMsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pembayaranmu sudah kami terima, mohon tunggu konfirmasi selanjutnya. Lihat rincian penerbangan pada histori pesanan detail tiket."
+            android:text="@string/pembayaranmu_sudah_kami_terima_mohon_tunggu_konfirmasi_selanjutnya_lihat_rincian_penerbangan_pada_histori_pesanan_detail_tiket"
             android:textColor="@color/black"
             android:fontFamily="@font/poppins_medium"
             android:justificationMode="inter_word"/>
