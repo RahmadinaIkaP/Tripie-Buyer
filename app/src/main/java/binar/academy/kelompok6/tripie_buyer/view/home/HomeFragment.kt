@@ -66,6 +66,17 @@ class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
                 findNavController().navigate(R.id.action_homeFragment_to_notificationFragment)
             }
 
+            etDepartureDateOw.setOnClickListener {
+                getDateFromDatePickerOneway()
+            }
+            etDepartureDateRt.setOnClickListener {
+                getDateFromDatePickerRtDeparture()
+            }
+
+            etArriveDateRt.setOnClickListener {
+                getDateFromDatePickerRtArrive()
+            }
+
             btnOneWay.setOnClickListener {
                 linearLayout7.visibility = View.VISIBLE
                 btnOneWay.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue))
@@ -98,23 +109,11 @@ class HomeFragment : Fragment(), PopularDestinationAdapter.PopularInterface {
 
             getNameDestinationAirport(flightType)
 
-            etDepartureDateOw.setOnClickListener {
-                getDateFromDatePickerOneway()
-            }
-
             etPlaneClass.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_listPlaneClassFragment)
             }
 
             getPlaneClass(flightType)
-
-            etDepartureDateRt.setOnClickListener {
-                getDateFromDatePickerRtDeparture()
-            }
-
-            etArriveDateRt.setOnClickListener {
-                getDateFromDatePickerRtArrive()
-            }
 
             btnSearch.setOnClickListener {
                 reqSearch(flightType)

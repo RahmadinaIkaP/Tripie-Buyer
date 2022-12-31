@@ -90,7 +90,7 @@ class HistoriFragment : Fragment(), HistoryAdapter.HistoryInterface {
                     binding.progressBar.visibility = View.GONE
                     it.data?.data.let { data ->
                         sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner) { id ->
-                            val filteredHistory = data!!.booking.filter { booking -> booking.userId.toString() == id  }
+                            val filteredHistory = data!!.booking.filter { booking -> booking.userId.toString() == id && booking.schedules != null  }
                             showRvData(filteredHistory)
                         }
                     }

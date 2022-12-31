@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import binar.academy.kelompok6.tripie_buyer.data.model.response.history.Booking
 import binar.academy.kelompok6.tripie_buyer.databinding.ItemHistoriBinding
+import binar.academy.kelompok6.tripie_buyer.utils.RupiahConverter
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -55,7 +56,7 @@ class HistoryAdapter(
                 tvKotaBandaraTujuan.text = booking.destinationCity
                 tvJamBerangkat.text = convertedDepartHour
                 tvJamPulang.text = convertedArriveHour
-                tvHargatiket.text = "IDR ${booking.price}"
+                tvHargatiket.text = RupiahConverter.rupiah(booking.price)
 
                 btnDetails.setOnClickListener {
                     onClick.onItemClick(booking)

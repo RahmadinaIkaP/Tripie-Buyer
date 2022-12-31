@@ -36,7 +36,7 @@ class DetailHistoriFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        data?.let { setData(it) }
+        setData(data)
     }
 
     private fun setData(data: Booking) {
