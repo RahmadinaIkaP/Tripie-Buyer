@@ -17,6 +17,8 @@ import binar.academy.kelompok6.tripie_buyer.databinding.FragmentListAirportOrigi
 import binar.academy.kelompok6.tripie_buyer.view.home.adapter.AirportAdapter
 import binar.academy.kelompok6.tripie_buyer.view.home.viewmodel.AirportViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -40,6 +42,9 @@ class ListAirportOriginFragment : Fragment(), AirportAdapter.AirportInterface {
         super.onViewCreated(view, savedInstanceState)
 
         sharedPref = SharedPref(requireContext())
+        binding.buttonBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
         setFlightDataAirport()
     }
 
@@ -92,7 +97,7 @@ class ListAirportOriginFragment : Fragment(), AirportAdapter.AirportInterface {
     }
 
     override fun onItemClick(airport: Airport) {
-        GlobalScope.launch {
+        CoroutineScope(Dispatchers.IO).launch {
             sharedPref.saveDataOriginAirport(airport.airportCode!!, airport.city!!)
         }
         findNavController().previousBackStackEntry?.savedStateHandle?.set(

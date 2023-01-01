@@ -37,16 +37,12 @@
         android:text="@string/setelah_ini_anda_dapat_login_menggunakan_akun_yang_telah_terdaftar"
         android:layout_below="@id/headerAkunBerhasilDibuat" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:text="@string/masuk"
-        android:backgroundTint="#0095F6"
-
-        />
-
-
+        android:backgroundTint="#0095F6" />
 
 </RelativeLayout>

@@ -40,6 +40,11 @@ class ListAirportDestinationFragment : Fragment(), AirportAdapter.AirportInterfa
         super.onViewCreated(view, savedInstanceState)
 
         sharedPref = SharedPref(requireContext())
+
+        binding.buttonBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
         setFlightDataAirport()
     }
 

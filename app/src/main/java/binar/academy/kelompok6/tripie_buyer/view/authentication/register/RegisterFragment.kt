@@ -21,7 +21,6 @@ class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
     private val auth : AuthenticationViewModel by viewModels()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

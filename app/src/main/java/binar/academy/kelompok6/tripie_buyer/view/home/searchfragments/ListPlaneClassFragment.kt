@@ -30,6 +30,9 @@ class ListPlaneClassFragment : Fragment(), PlaneClassAdapter.PlaneClassInterface
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.buttonBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
         setPlaneClass()
     }
 
