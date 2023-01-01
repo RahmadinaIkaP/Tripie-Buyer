@@ -8,13 +8,13 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class SearchTicketRequest(
     @SerializedName("origin_name")
-    val originName: String,
+    val originName: String?,
     @SerializedName("destination_name")
-    val destinationName: String,
+    val destinationName: String?,
     @SerializedName("plane_class")
-    val planeClass: String,
+    val planeClass: String?,
     @SerializedName("flight_date")
-    val flightDate: String,
+    val flightDate: String?,
     @SerializedName("total_passenger")
-    val totalPassenger: Int
+    val totalPassenger: Int?
 ) : Parcelable

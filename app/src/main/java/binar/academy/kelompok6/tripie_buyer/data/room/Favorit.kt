@@ -10,8 +10,8 @@ import kotlinx.parcelize.Parcelize
 data class Favorit(
     @PrimaryKey(autoGenerate = true) var id:Int,
     var idUser : String,
-    val airportCode: String,
-    val airportName: String,
-    val city: String,
-    val foto: String,
-    val description: String) : Parcelable
+    val airportCode: String?,
+    val airportName: String?,
+    val city: String?,
+    val foto: String?,
+    val description: String?) : Parcelable

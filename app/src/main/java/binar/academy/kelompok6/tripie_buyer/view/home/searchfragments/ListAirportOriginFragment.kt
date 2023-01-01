@@ -93,7 +93,7 @@ class ListAirportOriginFragment : Fragment(), AirportAdapter.AirportInterface {
 
     override fun onItemClick(airport: Airport) {
         GlobalScope.launch {
-            sharedPref.saveDataOriginAirport(airport.airportCode, airport.city)
+            sharedPref.saveDataOriginAirport(airport.airportCode!!, airport.city!!)
         }
         findNavController().previousBackStackEntry?.savedStateHandle?.set(
             "namaAirportOrigin",

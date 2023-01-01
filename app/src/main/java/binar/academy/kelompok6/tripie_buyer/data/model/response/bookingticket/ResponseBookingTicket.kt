@@ -9,5 +9,5 @@ data class ResponseBookingTicket(
     @SerializedName("message")
     val message: String,
     @SerializedName("data")
-    val data : DataBookingTicket
+    val data : DataBookingTicket?
 )

@@ -33,7 +33,7 @@ data class Booking(
     @SerializedName("flight_type")
     val flightType: String,
     @SerializedName("flight_date")
-    val flightDate: String,
+    val flightDate: String?,
     @SerializedName("flight_back_date")
     val flightBackDate: String?,
     @SerializedName("airline_name")

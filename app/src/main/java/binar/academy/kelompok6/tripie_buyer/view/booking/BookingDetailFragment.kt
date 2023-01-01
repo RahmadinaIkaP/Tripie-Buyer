@@ -48,7 +48,7 @@ class BookingDetailFragment : Fragment() {
         }
 
         data.dataResponse.data.forEach {
-            totalPrice = it.price * data.dataRequest.totalPassenger
+            totalPrice = it.price * data.dataRequest.totalPassenger!!
         }
 
         binding.tvHargaTiket.text = RupiahConverter.rupiah(totalPrice)
@@ -70,7 +70,7 @@ class BookingDetailFragment : Fragment() {
                         originName = it.originName,
                         destinationName = it.destinationName,
                         planeClass = it.planeClass,
-                        totalPassenger = data.dataRequest.totalPassenger,
+                        totalPassenger = data.dataRequest.totalPassenger!!,
                         flightType = data.flight_type,
                         flightDate = it.flightDate,
                         flightBackDate = data.flight_back_date,

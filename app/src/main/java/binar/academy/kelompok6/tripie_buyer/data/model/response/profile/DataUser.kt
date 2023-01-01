@@ -9,17 +9,17 @@ data class DataUser(
     @SerializedName("Name")
     val name: String,
     @SerializedName("Encrypted_Password")
-    val encryptedPassword: String,
+    val encryptedPassword: String?,
     @SerializedName("Role")
     val role: String,
     @SerializedName("Foto")
-    val foto: String,
+    val foto: String?,
     @SerializedName("Address")
-    val address: String,
+    val address: String?,
     @SerializedName("Email")
     val email: String,
     @SerializedName("Phone_Number")
-    val phoneNumber: String,
+    val phoneNumber: String?,
     @SerializedName("createdAt")
     val createdAt: String,
     @SerializedName("updatedAt")

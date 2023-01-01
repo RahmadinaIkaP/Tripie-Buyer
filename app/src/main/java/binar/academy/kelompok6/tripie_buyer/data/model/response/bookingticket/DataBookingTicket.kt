@@ -11,39 +11,39 @@ data class DataBookingTicket(
     @SerializedName("schedule_id")
     val scheduleId: Int,
     @SerializedName("origin_code")
-    val originCode: String,
+    val originCode: String?,
     @SerializedName("origin_name")
-    val originName: String,
+    val originName: String?,
     @SerializedName("origin_city")
-    val originCity: String,
+    val originCity: String?,
     @SerializedName("destination_code")
-    val destinationCode: String,
+    val destinationCode: String?,
     @SerializedName("destination_name")
-    val destinationName: String,
+    val destinationName: String?,
     @SerializedName("destination_city")
-    val destinationCity: String,
+    val destinationCity: String?,
     @SerializedName("plane_class")
-    val planeClass: String,
+    val planeClass: String?,
     @SerializedName("total_passenger")
-    val totalPassenger: Int,
+    val totalPassenger: Int?,
     @SerializedName("flight_type")
-    val flightType: String,
+    val flightType: String?,
     @SerializedName("flight_date")
-    val flightDate: String,
+    val flightDate: String?,
     @SerializedName("flight_back_date")
-    val flightBackDate: String,
+    val flightBackDate: String?,
     @SerializedName("airline_name")
-    val airlineName: String,
+    val airlineName: String?,
     @SerializedName("departure_hour")
-    val departureHour: String,
+    val departureHour: String?,
     @SerializedName("arrival_hour")
-    val arrivalHour: String,
+    val arrivalHour: String?,
     @SerializedName("price")
-    val price: Int,
+    val price: Int?,
     @SerializedName("passenger_name")
-    val passengerName: String,
+    val passengerName: String?,
     @SerializedName("phone_number")
-    val phoneNumber: String,
+    val phoneNumber: String?,
     @SerializedName("updatedAt")
     val updatedAt: String,
     @SerializedName("createdAt")

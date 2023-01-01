@@ -76,7 +76,7 @@ class FavoritAdapter(
                 }else{
                     val filtered = ArrayList<Favorit>()
                     for (row in listFavorit){
-                        if (row.airportName.lowercase().contains(constraint.toString().lowercase()) || row.city.lowercase().contains(constraint.toString().lowercase())){
+                        if (row.airportName!!.lowercase().contains(constraint.toString().lowercase()) || row.city!!.lowercase().contains(constraint.toString().lowercase())){
                             filtered.add(row)
                         }
                         filteredFav = filtered

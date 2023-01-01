@@ -7,15 +7,15 @@ data class Airport(
     @SerializedName("id")
     val id: Int,
     @SerializedName("Airport_Code")
-    val airportCode: String,
+    val airportCode: String?,
     @SerializedName("Airport_Name")
-    val airportName: String,
+    val airportName: String?,
     @SerializedName("City")
-    val city: String,
+    val city: String?,
     @SerializedName("Foto")
-    val foto: String,
+    val foto: String?,
     @SerializedName("Description")
-    val description: String,
+    val description: String?,
     @SerializedName("createdAt")
     val createdAt: String,
     @SerializedName("updatedAt")
