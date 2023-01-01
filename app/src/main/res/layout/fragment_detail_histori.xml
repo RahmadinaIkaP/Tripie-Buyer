@@ -111,18 +111,19 @@
 
                     <TextView
                         android:id="@+id/tvBandaraAsal"
-                        android:layout_marginTop="25dp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
                         android:maxWidth="90dp"
                         android:text="@string/cgk_jakarta"
-                        android:textStyle="bold"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/tvBandaraTujuan"
                         android:layout_marginTop="14dp"
                         android:layout_below="@id/tvBandaraAsal"
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:maxWidth="90dp"
                         android:text="@string/dps_bali"
@@ -153,20 +154,20 @@
                         android:layout_toEndOf="@+id/tvBandaraTujuan"
                         android:paddingEnd="20dp"
                         android:text="@string/_26_nov_2022"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textStyle="bold"
-                        android:textAlignment="center"
                         tools:ignore="RtlSymmetry" />
 
                     <TextView
                         android:id="@+id/tvJamBerangkat"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginTop="25dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="25dp"
+                        android:text="@string/_07_40"
                         android:textColor="@color/black"
-                        android:text="@string/_07_40" />
+                        android:textStyle="bold" />
 
 
                     <TextView

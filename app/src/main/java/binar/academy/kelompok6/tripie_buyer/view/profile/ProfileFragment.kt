@@ -134,7 +134,7 @@ class ProfileFragment : Fragment() {
 
 
 
-    private fun showDataUSer(){
+    private fun showDataUser(){
         sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){ idUser ->
             viewModel.getProfile(idUser.toInt())
         }
@@ -161,15 +161,17 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun checkUser(){
-        sharedPref.getToken.asLiveData().observe(viewLifecycleOwner){ token->
-            if(token == "Undefined"){
-                findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
+    private fun checkUser() {
+        sharedPref.getToken.asLiveData().observe(viewLifecycleOwner) { token ->
+            sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner) { idUser ->
+                if (token == "Undefined" || idUser == "Undefined") {
+                    findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
 //                Toast.makeText(context, "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
-            }else{
-                showDataUSer()
+                }
+                else {
+                    showDataUser()
+                }
             }
         }
     }
-
 }
