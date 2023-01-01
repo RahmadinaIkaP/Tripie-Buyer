@@ -7,18 +7,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:990609930426:android:e9492f52fc2e2413f7ea83",
+        "mobilesdk_app_id": "1:990609930426:android:609533e21b084fd4f7ea83",
         "android_client_info": {
           "package_name": "binar.academy.kelompok6.tripie_buyer"
         }
       },
       "oauth_client": [
         {
-          "client_id": "990609930426-icsifcqj05m0nnc6luvs8k1bpo6ej66v.apps.googleusercontent.com",
+          "client_id": "990609930426-vf9v7our7m1bap0r6gouki4vg6iji8lq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "binar.academy.kelompok6.tripie_buyer",
-            "certificate_hash": "da70b51491d2f3f5154440cb07427a342c095c35"
+            "certificate_hash": "84aa2a0a7b208b5c6397ff4425428181c36f27a7"
           }
         },
         {
