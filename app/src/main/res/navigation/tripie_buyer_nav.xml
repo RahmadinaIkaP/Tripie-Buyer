@@ -53,9 +53,6 @@
             android:id="@+id/action_homeFragment_to_listAirportDestinationFragment"
             app:destination="@id/listAirportDestinationFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_hasilSearchFragment"
-            app:destination="@id/hasilSearchFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_listPlaneClassFragment"
             app:destination="@id/listPlaneClassFragment" />
         <action
@@ -67,6 +64,9 @@
         <action
             android:id="@+id/action_homeFragment_to_popularDestinationFragment"
             app:destination="@id/popularDestinationFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_hasilSearchFragment"
+            app:destination="@id/hasilSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -220,7 +220,9 @@
         tools:layout="@layout/fragment_booking_detail" >
         <action
             android:id="@+id/action_bookingDetailFragment_to_bookingSuccessFragment"
-            app:destination="@id/bookingSuccessFragment" />
+            app:destination="@id/bookingSuccessFragment"
+            app:popUpTo="@id/bookingDetailFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/listAirportDestinationFragment"
