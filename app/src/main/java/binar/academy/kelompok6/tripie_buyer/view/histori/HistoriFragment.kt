@@ -32,24 +32,24 @@ class HistoriFragment : Fragment(), HistoryAdapter.HistoryInterface {
     private val viewModelHistory : ViewModelHistory by viewModels()
     private lateinit var sharedPref : SharedPref
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val navController = findNavController()
-
-        val currentBackStackEntry = navController.currentBackStackEntry!!
-        val savedStateHandle = currentBackStackEntry.savedStateHandle
-        savedStateHandle.getLiveData<Boolean>(LOGIN_SUCCESSFUL)
-            .observe(currentBackStackEntry){ success ->
-                if (!success){
-                    val startDestination = navController.graph.startDestinationId
-                    val navOptions = NavOptions.Builder()
-                        .setPopUpTo(startDestination, true)
-                        .build()
-                    navController.navigate(startDestination, null, navOptions)
-                }
-            }
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//
+//        val navController = findNavController()
+//
+//        val currentBackStackEntry = navController.currentBackStackEntry!!
+//        val savedStateHandle = currentBackStackEntry.savedStateHandle
+//        savedStateHandle.getLiveData<Boolean>(LOGIN_SUCCESSFUL)
+//            .observe(currentBackStackEntry){ success ->
+//                if (!success){
+//                    val startDestination = navController.graph.startDestinationId
+//                    val navOptions = NavOptions.Builder()
+//                        .setPopUpTo(startDestination, false, saveState = true)
+//                        .build()
+//                    navController.navigate(startDestination, null, navOptions)
+//                }
+//            }
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -25,83 +25,83 @@ import javax.inject.Inject
 class AuthenticationViewModel @Inject constructor(private val api : ApiEndpoint) : ViewModel() {
     private var liveDataUser : MutableLiveData<ApiResponse<ResponseLogin>> = MutableLiveData()
     private var postDataRegister : MutableLiveData<ApiResponse<ResponseRegister>> = MutableLiveData()
-    private var googleAuthLiveData : MutableLiveData<ApiResponse<ResponseSuccessGoogle>> = MutableLiveData()
-    private var getGoogleUserLiveData : MutableLiveData<ApiResponse<ResponseGetGoogleUser>> = MutableLiveData()
+//    private var googleAuthLiveData : MutableLiveData<ApiResponse<ResponseSuccessGoogle>> = MutableLiveData()
+//    private var getGoogleUserLiveData : MutableLiveData<ApiResponse<ResponseGetGoogleUser>> = MutableLiveData()
 
     fun ambilLiveDataUser() : MutableLiveData<ApiResponse<ResponseLogin>> = liveDataUser
     fun postDataRegister() : MutableLiveData<ApiResponse<ResponseRegister>> = postDataRegister
-    fun goggleAuthObserver() : MutableLiveData<ApiResponse<ResponseSuccessGoogle>> = googleAuthLiveData
-    fun getGoogleUserObserver() : MutableLiveData<ApiResponse<ResponseGetGoogleUser>> = getGoogleUserLiveData
+//    fun goggleAuthObserver() : MutableLiveData<ApiResponse<ResponseSuccessGoogle>> = googleAuthLiveData
+//    fun getGoogleUserObserver() : MutableLiveData<ApiResponse<ResponseGetGoogleUser>> = getGoogleUserLiveData
 
-    fun loginGoogle(googleAuthRequest: GoogleAuthRequest){
-        googleAuthLiveData.postValue(ApiResponse.Loading())
-        EspressoIdlingResource.increment()
-
-        api.loginGoogle(googleAuthRequest).enqueue(object : Callback<ResponseSuccessGoogle>{
-            override fun onResponse(
-                call: Call<ResponseSuccessGoogle>,
-                response: Response<ResponseSuccessGoogle>
-            ) {
-                if(response.isSuccessful){
-                    val data = response.body()
-
-                    data?.let {
-                        googleAuthLiveData.postValue(ApiResponse.Success(it))
-                    }
-                }
-                else {
-                    try {
-                        response.errorBody()?.let {
-                            val gson = GsonBuilder().create()
-                            val jsonObject = gson.fromJson(it.string(), ResponseErrorGoogle::class.java)
-                            googleAuthLiveData.postValue(ApiResponse.Error(jsonObject.error.message))
-                        }
-                    } catch (e: Exception) {
-                        googleAuthLiveData.postValue(ApiResponse.Error("${e.message}"))
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<ResponseSuccessGoogle>, t: Throwable) {
-                googleAuthLiveData.postValue(ApiResponse.Error("${t.message}"))
-            }
-        })
-    }
-
-    fun getGoogleUser(token : String){
-        getGoogleUserLiveData.postValue(ApiResponse.Loading())
-        EspressoIdlingResource.increment()
-
-        api.getUserGoogle("Bearer $token").enqueue(object : Callback<ResponseGetGoogleUser>{
-            override fun onResponse(
-                call: Call<ResponseGetGoogleUser>,
-                response: Response<ResponseGetGoogleUser>
-            ) {
-                if(response.isSuccessful){
-                    val data = response.body()
-
-                    data?.let {
-                        getGoogleUserLiveData.postValue(ApiResponse.Success(it))
-                    }
-                }
-                else {
-                    try {
-                        response.errorBody()?.let {
-                            val jsonObject = JSONObject(it.string()).getString("message")
-                            getGoogleUserLiveData.postValue(ApiResponse.Error(jsonObject))
-                        }
-                    } catch (e: Exception) {
-                        getGoogleUserLiveData.postValue(ApiResponse.Error("${e.message}"))
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<ResponseGetGoogleUser>, t: Throwable) {
-                getGoogleUserLiveData.postValue(ApiResponse.Error("${t.message}"))
-            }
-
-        })
-    }
+//    fun loginGoogle(googleAuthRequest: GoogleAuthRequest){
+//        googleAuthLiveData.postValue(ApiResponse.Loading())
+//        EspressoIdlingResource.increment()
+//
+//        api.loginGoogle(googleAuthRequest).enqueue(object : Callback<ResponseSuccessGoogle>{
+//            override fun onResponse(
+//                call: Call<ResponseSuccessGoogle>,
+//                response: Response<ResponseSuccessGoogle>
+//            ) {
+//                if(response.isSuccessful){
+//                    val data = response.body()
+//
+//                    data?.let {
+//                        googleAuthLiveData.postValue(ApiResponse.Success(it))
+//                    }
+//                }
+//                else {
+//                    try {
+//                        response.errorBody()?.let {
+//                            val gson = GsonBuilder().create()
+//                            val jsonObject = gson.fromJson(it.string(), ResponseErrorGoogle::class.java)
+//                            googleAuthLiveData.postValue(ApiResponse.Error(jsonObject.error.message))
+//                        }
+//                    } catch (e: Exception) {
+//                        googleAuthLiveData.postValue(ApiResponse.Error("${e.message}"))
+//                    }
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<ResponseSuccessGoogle>, t: Throwable) {
+//                googleAuthLiveData.postValue(ApiResponse.Error("${t.message}"))
+//            }
+//        })
+//    }
+//
+//    fun getGoogleUser(token : String){
+//        getGoogleUserLiveData.postValue(ApiResponse.Loading())
+//        EspressoIdlingResource.increment()
+//
+//        api.getUserGoogle("Bearer $token").enqueue(object : Callback<ResponseGetGoogleUser>{
+//            override fun onResponse(
+//                call: Call<ResponseGetGoogleUser>,
+//                response: Response<ResponseGetGoogleUser>
+//            ) {
+//                if(response.isSuccessful){
+//                    val data = response.body()
+//
+//                    data?.let {
+//                        getGoogleUserLiveData.postValue(ApiResponse.Success(it))
+//                    }
+//                }
+//                else {
+//                    try {
+//                        response.errorBody()?.let {
+//                            val jsonObject = JSONObject(it.string()).getString("message")
+//                            getGoogleUserLiveData.postValue(ApiResponse.Error(jsonObject))
+//                        }
+//                    } catch (e: Exception) {
+//                        getGoogleUserLiveData.postValue(ApiResponse.Error("${e.message}"))
+//                    }
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<ResponseGetGoogleUser>, t: Throwable) {
+//                getGoogleUserLiveData.postValue(ApiResponse.Error("${t.message}"))
+//            }
+//
+//        })
+//    }
 
     fun loginUser(request : LoginRequest){
         liveDataUser.postValue(ApiResponse.Loading())
@@ -125,6 +125,8 @@ class AuthenticationViewModel @Inject constructor(private val api : ApiEndpoint)
                     } catch (e: Exception) {
                         liveDataUser.postValue(ApiResponse.Error("${e.message}"))
                     }
+
+                    EspressoIdlingResource.decrement()
                 }
             }
 
@@ -156,6 +158,8 @@ class AuthenticationViewModel @Inject constructor(private val api : ApiEndpoint)
                     } catch (e: Exception) {
                         postDataRegister.postValue(ApiResponse.Error("${e.message}"))
                     }
+
+                    EspressoIdlingResource.decrement()
                 }
             }
 

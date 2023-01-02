@@ -37,24 +37,24 @@ class ProfileFragment : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var mGoogleSignInClient: GoogleSignInClient
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val navController = findNavController()
-
-        val currentBackStackEntry = navController.currentBackStackEntry!!
-        val savedStateHandle = currentBackStackEntry.savedStateHandle
-        savedStateHandle.getLiveData<Boolean>(Constant.LOGIN_SUCCESSFUL)
-            .observe(currentBackStackEntry){ success ->
-                if (!success){
-                    val startDestination = navController.graph.startDestinationId
-                    val navOptions = NavOptions.Builder()
-                        .setPopUpTo(startDestination, true)
-                        .build()
-                    navController.navigate(startDestination, null, navOptions)
-                }
-            }
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//
+//        val navController = findNavController()
+//
+//        val currentBackStackEntry = navController.currentBackStackEntry!!
+//        val savedStateHandle = currentBackStackEntry.savedStateHandle
+//        savedStateHandle.getLiveData<Boolean>(Constant.LOGIN_SUCCESSFUL)
+//            .observe(currentBackStackEntry){ success ->
+//                if (!success){
+//                    val startDestination = navController.graph.startDestinationId
+//                    val navOptions = NavOptions.Builder()
+//                        .setPopUpTo(startDestination, false, saveState = true)
+//                        .build()
+//                    navController.navigate(startDestination, null, navOptions)
+//                }
+//            }
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,12 +70,12 @@ class ProfileFragment : Fragment() {
         sharedPref = SharedPref(requireContext())
         firebaseAuth = FirebaseAuth.getInstance()
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .requestProfile()
-            .build()
-        mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
+//        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//            .requestIdToken(getString(R.string.default_web_client_id))
+//            .requestEmail()
+//            .requestProfile()
+//            .build()
+//        mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
 
         binding.navigateToNotificaiton.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_notificationFragment)
@@ -115,24 +115,17 @@ class ProfileFragment : Fragment() {
         checkUser()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     private fun clearData(){
         CoroutineScope(Dispatchers.IO).launch {
             sharedPref.removeToken()
 
-            if (GoogleSignIn.getLastSignedInAccount(requireContext()) != null){
-                mGoogleSignInClient.signOut()
-            }
+//            if (GoogleSignIn.getLastSignedInAccount(requireContext()) != null){
+//                mGoogleSignInClient.signOut()
+//            }
         }
         findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
         Toast.makeText(context, "Logout berhasil", Toast.LENGTH_SHORT).show()
     }
-
-
 
     private fun showDataUser(){
         sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){ idUser ->
@@ -173,5 +166,10 @@ class ProfileFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
