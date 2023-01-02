@@ -85,14 +85,20 @@ class PopularDestinationFragment : Fragment(), AllPopularDestinationAdapter.Popu
     }
 
     override fun onItemClick(airport: Airport) {
-        sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){
-            if (it != "Undefined"){
-                val action = PopularDestinationFragmentDirections.actionPopularDestinationFragmentToDetailFlightFragment(
-                    Favorit(airport.id, it, airport.airportCode, airport.airportName, airport.city, airport.foto, airport.description))
-                findNavController().navigate(action)
-            }else{
-                Toast.makeText(requireContext(),"Tidak bisa menambahkan favorit silahkan login terlebih dahulu!", Toast.LENGTH_SHORT).show()
-            }
+        sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner) {
+            val action =
+                PopularDestinationFragmentDirections.actionPopularDestinationFragmentToDetailFlightFragment(
+                    Favorit(
+                        airport.id,
+                        it,
+                        airport.airportCode,
+                        airport.airportName,
+                        airport.city,
+                        airport.foto,
+                        airport.description
+                    )
+                )
+            findNavController().navigate(action)
         }
     }
 }

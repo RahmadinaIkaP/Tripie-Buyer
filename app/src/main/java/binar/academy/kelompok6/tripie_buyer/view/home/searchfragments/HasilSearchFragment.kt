@@ -122,10 +122,12 @@ class HasilSearchFragment : Fragment(), SearchHomeAdapter.HasilSearchInterface {
     private fun checkUser(){
         sharedPref.getToken.asLiveData().observe(viewLifecycleOwner){
             if(it == "Undefined"){
-                Handler(Looper.getMainLooper()).postDelayed({
-                    findNavController().navigate(R.id.action_historiFragment_to_loginFragment)
-                    Toast.makeText(context, "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
-                }, 1000)
+                if (findNavController().currentDestination?.id != R.id.loginFragment) {
+                    findNavController().navigate(
+                        HasilSearchFragmentDirections.actionHasilSearchFragmentToLoginFragment()
+                    )
+                }
+                Toast.makeText(context, "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
             }else{
                 val bundle = Bundle()
                 bundle.putParcelable("dataBuatBooking", arguments?.getParcelable<SearchBundle>("searchResult"))

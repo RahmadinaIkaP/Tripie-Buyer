@@ -70,12 +70,10 @@ class HistoriFragment : Fragment(), HistoryAdapter.HistoryInterface {
 
     private fun checkUser(){
         sharedPref.getToken.asLiveData().observe(viewLifecycleOwner){
-            Handler(Looper.getMainLooper()).postDelayed({
-                if(it == "Undefined"){
-                    findNavController().navigate(R.id.action_historiFragment_to_loginFragment)
-                    Toast.makeText(context, "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
-                }
-            }, 1000)
+            if(it == "Undefined"){
+                findNavController().navigate(R.id.action_historiFragment_to_loginFragment)
+                Toast.makeText(context, "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

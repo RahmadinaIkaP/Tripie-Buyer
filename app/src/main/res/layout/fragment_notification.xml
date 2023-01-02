@@ -22,7 +22,7 @@
 
                     <ImageButton
                         android:contentDescription="@string/image_button_back"
-                        android:id="@+id/btnBack"
+                        android:id="@+id/buttonBack"
                         android:layout_marginStart="16dp"
                         android:layout_centerVertical="true"
                         android:layout_width="24dp"

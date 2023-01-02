@@ -3,7 +3,7 @@ package binar.academy.kelompok6.tripie_buyer.data.room
 import androidx.room.Database
 import androidx.room.RoomDatabase
 
-@Database(entities = [Favorit::class], version = 2, exportSchema = false)
+@Database(entities = [Favorit::class], version = 1, exportSchema = false)
 abstract class FavoritDatabase : RoomDatabase() {
 
     abstract fun favoritDao() : FavoritDAO

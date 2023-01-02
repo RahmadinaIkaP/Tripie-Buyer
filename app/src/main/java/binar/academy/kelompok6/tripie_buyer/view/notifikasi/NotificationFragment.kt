@@ -37,7 +37,7 @@ class NotificationFragment : Fragment() {
 
         sharedPref = SharedPref(requireContext())
 
-        binding.btnBack.setOnClickListener {
+        binding.buttonBack.setOnClickListener {
             findNavController().navigateUp()
         }
 
