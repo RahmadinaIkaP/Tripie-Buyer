@@ -62,6 +62,7 @@ class SharedPref (private val context: Context) {
         .map {
             it[token] ?: "Undefined"
         }
+
     val getIdUser : Flow<String> = context.dataStore.data
         .map {
             it[idUser] ?: "Undefined"
@@ -75,6 +76,11 @@ class SharedPref (private val context: Context) {
     val getStatus : Flow<Boolean> = context.dataStore.data
         .map {
             it[status] ?: false
+        }
+
+    val getTotalPassenger : Flow<Int> = context.dataStore.data
+        .map {
+            it[totalPassenger] ?: 0
         }
 
     val getOriginCode : Flow<String> = context.dataStore.data

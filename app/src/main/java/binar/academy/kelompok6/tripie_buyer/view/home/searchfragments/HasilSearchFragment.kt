@@ -14,7 +14,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
+import binar.academy.kelompok6.tripie_buyer.data.model.DataForBooking
 import binar.academy.kelompok6.tripie_buyer.data.model.SearchBundle
+import binar.academy.kelompok6.tripie_buyer.data.model.request.BookingTicketRequest
 import binar.academy.kelompok6.tripie_buyer.data.model.response.search.DataSearch
 import binar.academy.kelompok6.tripie_buyer.databinding.FragmentHasilSearchBinding
 import binar.academy.kelompok6.tripie_buyer.utils.Constant
@@ -61,15 +63,15 @@ class HasilSearchFragment : Fragment(), SearchHomeAdapter.HasilSearchInterface {
 
         activity?.let {
             sharedPref = SharedPref(requireContext())
-            val data = arguments?.getParcelable<SearchBundle>("searchResult") as SearchBundle
+            val args = arguments?.getParcelable<SearchBundle>("searchResult") as SearchBundle
 
             binding.btnBackHome.setOnClickListener {
                 findNavController().navigate(R.id.action_hasilSearchFragment_to_homeFragment)
             }
 
-            setDataHasilSearch(data)
+            setDataHasilSearch(args)
             setTextHasilSearch()
-            showData(data.dataResponse.data)
+            showData(args.dataResponse.data)
         }
 
     }
@@ -116,23 +118,37 @@ class HasilSearchFragment : Fragment(), SearchHomeAdapter.HasilSearchInterface {
     }
 
     override fun onItemClick(dataHome: DataSearch) {
-        checkUser()
+        val args = arguments?.getParcelable<SearchBundle>("searchResult") as SearchBundle
+        checkUser(dataHome, args)
     }
 
-    private fun checkUser(){
-        sharedPref.getToken.asLiveData().observe(viewLifecycleOwner){
-            if(it == "Undefined"){
-                if (findNavController().currentDestination?.id != R.id.loginFragment) {
-                    findNavController().navigate(
-                        HasilSearchFragmentDirections.actionHasilSearchFragmentToLoginFragment()
-                    )
+    private fun checkUser(data : DataSearch, sb : SearchBundle){
+        sharedPref.getToken.asLiveData().observe(viewLifecycleOwner){ token ->
+            sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){ userId ->
+                if(token == "Undefined" && userId == "Undefined"){
+                    if (findNavController().currentDestination?.id != R.id.loginFragment) {
+                        findNavController().navigate(
+                            HasilSearchFragmentDirections.actionHasilSearchFragmentToLoginFragment()
+                        )
+                    }
+                    Toast.makeText(context, "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
+                }else{
+                    val bundle = Bundle()
+                    bundle.putParcelable("dataBuatBooking", DataForBooking(
+                        scheduleId = data.id,
+                        originName = data.originName,
+                        destinationName = data.destinationName,
+                        planeClass = data.planeClass,
+                        totalPassenger = sb.dataRequest.totalPassenger?.toInt() ?: 0,
+                        flightType = sb.flight_type,
+                        flightBackDate = sb.flight_back_date,
+                        flightDate = data.flightDate,
+                        departureHour = data.departureHour,
+                        arrivalHour = data.arrivalHour,
+                        price = data.price
+                    ))
+                    findNavController().navigate(R.id.action_hasilSearchFragment_to_bookingDetailFragment, bundle)
                 }
-                Toast.makeText(context, "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
-            }else{
-                val bundle = Bundle()
-                bundle.putParcelable("dataBuatBooking", arguments?.getParcelable<SearchBundle>("searchResult"))
-
-                findNavController().navigate(R.id.action_hasilSearchFragment_to_bookingDetailFragment, bundle)
             }
         }
     }

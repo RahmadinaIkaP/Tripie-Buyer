@@ -12,6 +12,7 @@ import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
 import binar.academy.kelompok6.tripie_buyer.R
 import binar.academy.kelompok6.tripie_buyer.data.datastore.SharedPref
+import binar.academy.kelompok6.tripie_buyer.data.model.DataForBooking
 import binar.academy.kelompok6.tripie_buyer.data.model.SearchBundle
 import binar.academy.kelompok6.tripie_buyer.data.model.request.BookingTicketRequest
 import binar.academy.kelompok6.tripie_buyer.data.network.ApiResponse
@@ -41,15 +42,13 @@ class BookingDetailFragment : Fragment() {
 
         sharedPref = SharedPref(requireContext())
 
-        val data = arguments?.getParcelable<SearchBundle>("dataBuatBooking") as SearchBundle
+        val data = arguments?.getParcelable<DataForBooking>("dataBuatBooking") as DataForBooking
 
         binding.btnBacktoResult.setOnClickListener {
             findNavController().navigateUp()
         }
 
-        data.dataResponse.data.forEach {
-            totalPrice = it.price * data.dataRequest.totalPassenger!!
-        }
+        totalPrice = data.price * data.totalPassenger
 
         binding.tvHargaTiket.text = RupiahConverter.rupiah(totalPrice)
 
@@ -58,29 +57,27 @@ class BookingDetailFragment : Fragment() {
         }
     }
 
-    private fun bookingTiket(data: SearchBundle, tprice : Int) {
+    private fun bookingTiket(data: DataForBooking, tprice : Int) {
         if (binding.etNamaLengkapPenumpang.text.toString().isEmpty() || binding.etNomorTeleponPenumpang.text.toString().isEmpty()){
             Toast.makeText(requireContext(), "Data tidak boleh kosong!", Toast.LENGTH_SHORT).show()
         }else{
             sharedPref.getIdUser.asLiveData().observe(viewLifecycleOwner){ userId ->
-                data.dataResponse.data.forEach {
-                    vmBookingTicket.bookingTicket(BookingTicketRequest(
-                        userId = userId.toInt(),
-                        scheduleId = it.id,
-                        originName = it.originName,
-                        destinationName = it.destinationName,
-                        planeClass = it.planeClass,
-                        totalPassenger = data.dataRequest.totalPassenger!!,
-                        flightType = data.flight_type,
-                        flightDate = it.flightDate,
-                        flightBackDate = data.flight_back_date,
-                        departureHour = it.departureHour,
-                        arrivalHour = it.arrivalHour,
-                        price = tprice,
-                        passengerName = binding.etNamaLengkapPenumpang.text.toString(),
-                        phoneNumber = binding.etNomorTeleponPenumpang.text.toString()
-                    ))
-                }
+                vmBookingTicket.bookingTicket(BookingTicketRequest(
+                    userId = userId.toInt(),
+                    scheduleId = data.scheduleId,
+                    originName = data.originName,
+                    destinationName = data.destinationName,
+                    planeClass = data.planeClass,
+                    totalPassenger = data.totalPassenger,
+                    flightType = data.flightType,
+                    flightDate = data.flightDate,
+                    flightBackDate = data.flightBackDate,
+                    departureHour = data.departureHour,
+                    arrivalHour = data.arrivalHour,
+                    price = tprice,
+                    passengerName = binding.etNamaLengkapPenumpang.text.toString(),
+                    phoneNumber = binding.etNomorTeleponPenumpang.text.toString()
+                ))
 
             }
         }
